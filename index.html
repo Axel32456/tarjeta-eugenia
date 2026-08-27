@@ -12,6 +12,10 @@
 
     <style>
 
+        /* =========================
+           GENERAL
+           ========================= */
+
         html
         {
             width: 100%;
@@ -113,54 +117,6 @@
         #tiempoContador
         {
             display: block;
-        }
-
-
-        /* =========================
-           MENÚ
-           ========================= */
-
-        #menu
-        {
-            display: none;
-
-            background-color: white;
-
-            padding: 30px;
-
-            border-radius: 20px;
-
-            box-shadow:
-                0 4px 16px gray;
-
-            width: 80%;
-
-            max-width: 400px;
-
-            box-sizing: border-box;
-        }
-
-        #menu h2
-        {
-            color: deeppink;
-
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
-
-            margin-top: 0;
-        }
-
-        #menu button
-        {
-            display: block;
-
-            width: 100%;
-
-            margin-top: 12px;
-
-            font-size: 20px;
         }
 
 
@@ -397,7 +353,7 @@
             filter:
                 brightness(0.7);
 
-            display: none;
+            display: block;
         }
 
 
@@ -428,374 +384,6 @@
 
 
         /* =========================
-           IMAGEN DEL MENÚ
-           ========================= */
-
-        #imagenMenu
-        {
-            position: fixed;
-
-            top: 0;
-
-            left: 0;
-
-            width: 100vw;
-
-            height: 100vh;
-
-            object-fit: cover;
-
-            object-position: center;
-
-            z-index: -3;
-
-            display: none;
-        }
-
-
-        /* =========================
-           CARTA / SOBRE
-           ========================= */
-
-        #carta
-        {
-            display: none;
-
-            position: relative;
-
-            width: 600px;
-
-            max-width: 90%;
-
-            height: 500px;
-
-            z-index: 5;
-        }
-
-
-        /* =========================
-           SOBRE
-           ========================= */
-
-        #sobre
-        {
-            position: absolute;
-
-            left: 50%;
-
-            bottom: 20px;
-
-            transform:
-                translateX(-50%);
-
-            width: 420px;
-
-            height: 270px;
-
-            max-width: 90vw;
-
-            background-color:
-                #e89aaa;
-
-            border-radius: 8px;
-
-            box-shadow:
-                0 8px 25px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.3
-                );
-
-            z-index: 2;
-        }
-
-
-        /* =========================
-           PARTE TRASERA DEL SOBRE
-           ========================= */
-
-        #parteTrasera
-        {
-            position: absolute;
-
-            left: 0;
-
-            bottom: 0;
-
-            width: 100%;
-
-            height: 100%;
-
-            background-color:
-                #e89aaa;
-
-            border-radius: 8px;
-
-            z-index: 1;
-        }
-
-
-        /* =========================
-           SOLAPA DEL SOBRE
-           ========================= */
-
-        #solapa
-        {
-            position: absolute;
-
-            top: 0;
-
-            left: 0;
-
-            width: 0;
-
-            height: 0;
-
-            border-left:
-                210px solid transparent;
-
-            border-right:
-                210px solid transparent;
-
-            border-top:
-                145px solid #d87991;
-
-            transform-origin: top center;
-
-            z-index: 5;
-
-            transition:
-                transform 1s ease;
-        }
-
-
-        /* =========================
-           PARTE DELANTERA DEL SOBRE
-           ========================= */
-
-        #parteDelantera
-        {
-            position: absolute;
-
-            left: 0;
-
-            bottom: 0;
-
-            width: 100%;
-
-            height: 55%;
-
-            background-color:
-                #d97991;
-
-            clip-path:
-                polygon(
-                    0 0,
-                    50% 60%,
-                    100% 0,
-                    100% 100%,
-                    0 100%
-                );
-
-            z-index: 4;
-        }
-
-
-        /* =========================
-           PAPEL
-           ========================= */
-
-        #papel
-        {
-            position: absolute;
-
-            left: 50%;
-
-            bottom: 35px;
-
-            transform:
-                translateX(-50%)
-                translateY(0);
-
-            width: 360px;
-
-            height: 330px;
-
-            max-width: 80vw;
-
-            background-color:
-                #fffdf4;
-
-            border-radius: 4px;
-
-            box-shadow:
-                0 4px 15px
-                rgba(
-                    0,
-                    0,
-                    0,
-                    0.25
-                );
-
-            z-index: 3;
-
-            padding: 25px;
-
-            box-sizing: border-box;
-
-            opacity: 0;
-
-            transition:
-                transform 1.5s ease,
-                opacity 0.5s ease;
-        }
-
-
-        /* =========================
-           PAPEL SALIENDO
-           ========================= */
-
-        #carta.abierta #papel
-        {
-            opacity: 1;
-
-            transform:
-                translateX(-50%)
-                translateY(-150px);
-        }
-
-
-        /* =========================
-           ABRIR SOLAPA
-           ========================= */
-
-        #carta.abierta #solapa
-        {
-            transform:
-                rotateX(180deg);
-
-            z-index: 1;
-        }
-
-
-        /* =========================
-           TEXTO DEL PAPEL
-           ========================= */
-
-        #papel h2
-        {
-            color: deeppink;
-
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
-
-            margin-top: 0;
-
-            font-size: 24px;
-        }
-
-        #textoCarta
-        {
-            color: #4a3525;
-
-            font-size: 18px;
-
-            line-height: 1.5;
-
-            text-align: left;
-
-            margin: 0;
-
-            overflow-y: auto;
-
-            max-height: 220px;
-        }
-
-
-        /* =========================
-           BOTÓN VOLVER
-           ========================= */
-
-        #botonVolver
-        {
-            position: absolute;
-
-            left: 50%;
-
-            bottom: 15px;
-
-            transform:
-                translateX(-50%);
-
-            z-index: 10;
-
-            font-size: 18px;
-
-            padding: 10px 20px;
-
-            display: none;
-        }
-
-
-        /* =========================
-           SOBRE CERRADO
-           ========================= */
-
-        #carta:not(.abierta)
-        {
-            animation:
-                aparecerSobre 0.8s ease;
-        }
-
-        @keyframes aparecerSobre
-        {
-            from
-            {
-                opacity: 0;
-
-                transform:
-                    translateY(30px);
-            }
-
-            to
-            {
-                opacity: 1;
-
-                transform:
-                    translateY(0);
-            }
-        }
-
-
-        /* =========================
-           BOTÓN ABRIR
-           ========================= */
-
-        #botonAbrirSobre
-        {
-            position: absolute;
-
-            left: 50%;
-
-            bottom: 0;
-
-            transform:
-                translateX(-50%);
-
-            z-index: 10;
-
-            font-size: 18px;
-
-            padding:
-                10px 20px;
-        }
-
-
-        /* =========================
            CELULAR
            ========================= */
 
@@ -808,69 +396,6 @@
                 font-size: 18px;
 
                 padding: 16px;
-            }
-
-
-            #carta
-            {
-                width: 100%;
-
-                height: 470px;
-            }
-
-
-            #sobre
-            {
-                width: 320px;
-
-                height: 210px;
-
-                bottom: 90px;
-            }
-
-
-            #solapa
-            {
-                border-left-width:
-                    160px;
-
-                border-right-width:
-                    160px;
-
-                border-top-width:
-                    110px;
-            }
-
-
-            #papel
-            {
-                width: 280px;
-
-                height: 300px;
-
-                padding: 20px;
-            }
-
-
-            #carta.abierta #papel
-            {
-                transform:
-                    translateX(-50%)
-                    translateY(-120px);
-            }
-
-
-            #papel h2
-            {
-                font-size: 21px;
-            }
-
-
-            #textoCarta
-            {
-                font-size: 16px;
-
-                max-height: 205px;
             }
         }
 
@@ -910,16 +435,6 @@
 
 
     <!-- =========================
-         IMAGEN MENÚ
-         ========================= -->
-
-    <img
-        id="imagenMenu"
-        src="fondoMenu.png"
-    >
-
-
-    <!-- =========================
          FONDO ANIMADO
          ========================= -->
 
@@ -939,97 +454,6 @@
 
 
     <!-- =========================
-         MENÚ
-         ========================= -->
-
-    <div id="menu">
-
-        <h2>
-            ¿Por dónde querés empezar? 💗
-        </h2>
-
-
-        <button id="botonMenuCarta">
-
-            💌 Carta
-
-        </button>
-
-
-        <button>
-
-            🔐 Juego de la Caja fuerte
-
-        </button>
-
-    </div>
-
-
-    <!-- =========================
-         CARTA
-         ========================= -->
-
-    <div id="carta">
-
-
-        <!-- PAPEL -->
-
-        <div id="papel">
-
-            <h2>
-                💌 Para vos
-            </h2>
-
-            <p id="textoCarta"></p>
-
-        </div>
-
-
-        <!-- SOBRE -->
-
-        <div id="sobre">
-
-
-            <!-- PARTE TRASERA -->
-
-            <div id="parteTrasera"></div>
-
-
-            <!-- PAPEL SALE POR AQUÍ -->
-
-
-            <!-- SOLAPA -->
-
-            <div id="solapa"></div>
-
-
-            <!-- PARTE DELANTERA -->
-
-            <div id="parteDelantera"></div>
-
-        </div>
-
-
-        <!-- BOTÓN -->
-
-        <button id="botonAbrirSobre">
-
-            Abrir carta 💗
-
-        </button>
-
-
-        <button id="botonVolver">
-
-            Volver al menú
-
-        </button>
-
-
-    </div>
-
-
-    <!-- =========================
          CONTROLES DE MÚSICA
          ========================= -->
 
@@ -1037,13 +461,12 @@
 
         <p id="tituloMusica">
 
-            🎵 Música
+            ¿Querés escuchar música mientras esperás?
 
         </p>
 
 
         <div id="botonesMusica">
-
 
             <button id="botonAnterior">
 
@@ -1071,7 +494,6 @@
                 ⏭
 
             </button>
-
 
         </div>
 
@@ -1123,14 +545,11 @@
            ========================= */
 
         const fechaCumple =
-            new Date(
-                "2026-08-27T17:33:00-03:00"
+            new Date("2026-08-29T00:00:00-03:00"
             );
 
 
         const modoPrueba = false;
-
-        const probarMenu = false;
 
 
         /* =========================
@@ -1161,48 +580,6 @@
             );
 
 
-        const menu =
-            document.getElementById(
-                "menu"
-            );
-
-
-        const carta =
-            document.getElementById(
-                "carta"
-            );
-
-
-        const botonMenuCarta =
-            document.getElementById(
-                "botonMenuCarta"
-            );
-
-
-        const botonAbrirSobre =
-            document.getElementById(
-                "botonAbrirSobre"
-            );
-
-
-        const botonVolver =
-            document.getElementById(
-                "botonVolver"
-            );
-
-
-        const papel =
-            document.getElementById(
-                "papel"
-            );
-
-
-        const textoCarta =
-            document.getElementById(
-                "textoCarta"
-            );
-
-
         const contador =
             document.getElementById(
                 "contador"
@@ -1221,27 +598,9 @@
             );
 
 
-        const fondoAnimado =
-            document.getElementById(
-                "fondoAnimado"
-            );
-
-
         const videoFondo =
             document.getElementById(
                 "videoFondo"
-            );
-
-
-        const capaFondo =
-            document.getElementById(
-                "capaFondo"
-            );
-
-
-        const imagenMenu =
-            document.getElementById(
-                "imagenMenu"
             );
 
 
@@ -1264,14 +623,6 @@
 
 
         /* =========================
-           TEXTOS
-           ========================= */
-
-        const textoReal =
-            "Eugenia, hoy es tu cumpleaños y espero que estas palabras alcancen por lo menos a reflejar lo mucho que te quiero. Gracias por siempre estar, por todos tus regalos y por los momentos lindos que generas.";
-
-
-        /* =========================
            CANCIONES
            ========================= */
 
@@ -1289,10 +640,6 @@
            ========================= */
 
         let indiceCancion = 0;
-
-        let posicion = 0;
-
-        let pantalla = "menu";
 
         let ahoraOficial;
 
@@ -1364,116 +711,12 @@
                MODO PRUEBA
                ========================= */
 
-            if(
-                probarMenu
-                ||
-                modoPrueba
-            )
+            if(modoPrueba)
             {
-                if(
-                    pantalla
-                    ==
-                    "menu"
-                )
-                {
-                    menu.style.display =
-                        "block";
-
-
-                    carta.style.display =
-                        "none";
-
-
-                    contador.style.display =
-                        "none";
-
-
-                    fondoAnimado.style.display =
-                        "block";
-
-
-                    videoFondo.style.display =
-                        "none";
-
-
-                    capaFondo.style.display =
-                        "none";
-
-
-                    elegirImagenMenu();
-
-
-                    imagenMenu.style.display =
-                        "block";
-                }
-
+                contador.style.display =
+                    "block";
 
                 return;
-            }
-
-
-            /* =========================
-               TODAVÍA NO LLEGÓ
-               ========================= */
-
-            if(diferencia > 0)
-            {
-                if(
-                    pantalla
-                    ==
-                    "menu"
-                )
-                {
-                    menu.style.display =
-                        "none";
-
-
-                    carta.style.display =
-                        "none";
-
-
-                    contador.style.display =
-                        "block";
-                }
-
-
-                if(
-                    pantalla
-                    ==
-                    "carta"
-                )
-                {
-                    menu.style.display =
-                        "none";
-
-
-                    carta.style.display =
-                        "block";
-
-
-                    contador.style.display =
-                        "none";
-                }
-
-
-                fondoAnimado.style.display =
-                    "block";
-
-
-                videoFondo.style.display =
-                    "block";
-
-
-                capaFondo.style.display =
-                    "block";
-
-
-                imagenMenu.style.display =
-                    "none";
-
-
-                tituloMusica.textContent =
-                    "¿Querés escuchar música mientras esperás?";
             }
 
 
@@ -1481,101 +724,14 @@
                YA LLEGÓ
                ========================= */
 
-            else
+            if(diferencia <= 0)
             {
-                if(
-                    pantalla
-                    ==
-                    "menu"
-                )
-                {
-                    menu.style.display =
-                        "block";
+                mensajeContador.textContent =
+                    "¡Ya llegó el momento! 💗";
 
 
-                    carta.style.display =
-                        "none";
-
-
-                    contador.style.display =
-                        "none";
-
-
-                    fondoAnimado.style.display =
-                        "none";
-
-
-                    videoFondo.style.display =
-                        "none";
-
-
-                    capaFondo.style.display =
-                        "none";
-
-
-                    elegirImagenMenu();
-
-
-                    imagenMenu.style.display =
-                        "block";
-
-
-                    musica.style.display =
-                        "none";
-
-
-                    tituloMusica.textContent =
-                        "🎵 Música";
-                }
-
-
-                if(
-                    pantalla
-                    ==
-                    "carta"
-                )
-                {
-                    menu.style.display =
-                        "none";
-
-
-                    carta.style.display =
-                        "block";
-
-
-                    contador.style.display =
-                        "none";
-
-
-                    fondoAnimado.style.display =
-                        "none";
-
-
-                    videoFondo.style.display =
-                        "none";
-
-
-                    capaFondo.style.display =
-                        "none";
-
-
-                    /*
-                     * IMPORTANTE:
-                     *
-                     * La imagen del menú
-                     * permanece como fondo.
-                     */
-
-                    elegirImagenMenu();
-
-
-                    imagenMenu.style.display =
-                        "block";
-
-
-                    musica.style.display =
-                        "none";
-                }
+                tiempoContador.textContent =
+                    "";
 
 
                 return;
@@ -1713,175 +869,6 @@
 
 
         /* =========================
-           ENTRAR A CARTA
-           ========================= */
-
-        botonMenuCarta.addEventListener(
-            "click",
-            function()
-            {
-                pantalla =
-                    "carta";
-
-
-                menu.style.display =
-                    "none";
-
-
-                contador.style.display =
-                    "none";
-
-
-                carta.style.display =
-                    "block";
-
-
-                imagenMenu.style.display =
-                    "block";
-
-
-                elegirImagenMenu();
-
-
-                /*
-                 * Reiniciamos la carta.
-                 */
-
-                carta.classList.remove(
-                    "abierta"
-                );
-
-
-                botonAbrirSobre.style.display =
-                    "block";
-
-
-                botonVolver.style.display =
-                    "none";
-
-
-                textoCarta.textContent =
-                    "";
-
-
-                posicion = 0;
-            }
-        );
-
-
-        /* =========================
-           ABRIR SOBRE
-           ========================= */
-
-        botonAbrirSobre.addEventListener(
-            "click",
-            function()
-            {
-                botonAbrirSobre.style.display =
-                    "none";
-
-
-                carta.classList.add(
-                    "abierta"
-                );
-
-
-                /*
-                 * Esperamos a que
-                 * el papel termine
-                 * de salir.
-                 */
-
-                setTimeout(
-                    escribirCarta,
-                    1500
-                );
-            }
-        );
-
-
-        /* =========================
-           ESCRIBIR CARTA
-           ========================= */
-
-        function escribirCarta()
-        {
-            if(
-                posicion
-                <
-                textoReal.length
-            )
-            {
-                textoCarta.textContent +=
-                    textoReal[posicion];
-
-
-                posicion++;
-
-
-                setTimeout(
-                    escribirCarta,
-                    45
-                );
-            }
-            else
-            {
-                botonVolver.style.display =
-                    "block";
-            }
-        }
-
-
-        /* =========================
-           VOLVER
-           ========================= */
-
-        botonVolver.addEventListener(
-            "click",
-            function()
-            {
-                pantalla =
-                    "menu";
-
-
-                carta.style.display =
-                    "none";
-
-
-                menu.style.display =
-                    "block";
-
-
-                imagenMenu.style.display =
-                    "block";
-
-
-                elegirImagenMenu();
-
-
-                textoCarta.textContent =
-                    "";
-
-
-                posicion = 0;
-
-
-                carta.classList.remove(
-                    "abierta"
-                );
-
-
-                botonAbrirSobre.style.display =
-                    "block";
-
-
-                botonVolver.style.display =
-                    "none";
-            }
-        );
-
-
-        /* =========================
            MÚSICA
            ========================= */
 
@@ -2005,29 +992,6 @@
 
 
         /* =========================
-           IMAGEN RESPONSIVE
-           ========================= */
-
-        function elegirImagenMenu()
-        {
-            if(
-                window.innerWidth
-                <=
-                600
-            )
-            {
-                imagenMenu.src =
-                    "fondoMenu1.png";
-            }
-            else
-            {
-                imagenMenu.src =
-                    "fondoMenu.png";
-            }
-        }
-
-
-        /* =========================
            VIDEO
            ========================= */
 
@@ -2049,19 +1013,6 @@
                         );
                     }
                 );
-            }
-        );
-
-
-        /* =========================
-           CAMBIO DE TAMAÑO
-           ========================= */
-
-        window.addEventListener(
-            "resize",
-            function()
-            {
-                elegirImagenMenu();
             }
         );
 
