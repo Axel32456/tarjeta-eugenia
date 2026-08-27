@@ -4,6 +4,12 @@
         <title> Tarjeta para Eugenia </title> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
+            html
+            {
+                width: 100%;
+                height: 100%;
+            }
+
             body
             {
                 background-color: lightpink;
@@ -50,7 +56,7 @@
                 border-radius: 20px;
                 box-shadow: 0 4px 16px gray;
                 color: deeppink;
-                font-size: 24px;
+                font-size: 23px;
                 font-weight: bold;
                 margin-top: 20px;
                 max-width: 80%;
@@ -60,6 +66,7 @@
 
             #tarjeta
             {
+                display: none;
                 background-color: white;
                 padding: 32px;
                 border-radius: 20px;
@@ -71,6 +78,7 @@
 
             #confeti
             {
+                display: none;
                 font-size: 40px;
                 margin-top: 24px;
             }
@@ -281,26 +289,26 @@
                 }
             }
 
-#fondoAnimado span:nth-child(1)
-{
-    left: 10%;
-    font-size: 20px;
-    animation-duration: 7s;
-}
+            #fondoAnimado span:nth-child(1)
+            {
+                left: 10%;
+                font-size: 20px;
+                animation-duration: 7s;
+            }
 
-#fondoAnimado span:nth-child(2)
-{
-    left: 25%;
-    font-size: 30px;
-    animation-duration: 9s;
-}
+            #fondoAnimado span:nth-child(2)
+            {
+                left: 25%;
+                font-size: 30px;
+                animation-duration: 9s;
+            }
 
-#fondoAnimado span:nth-child(3)
-{
-    left: 40%;
-    font-size: 25px;
-    animation-duration: 6s;
-}
+            #fondoAnimado span:nth-child(3)
+            {
+                left: 40%;
+                font-size: 25px;
+                animation-duration: 6s;
+            }
             
             #fondoAnimado span:nth-child(4)
             {
@@ -308,33 +316,66 @@
                 animation-duration: 10s;
             }
             #fondoAnimado span:nth-child(5)
-{
-    left: 70%;
-    animation-duration: 8s;
-}
+            {
+                left: 70%;
+                animation-duration: 8s;
+            }
 
-#fondoAnimado span:nth-child(6)
-{
-    left: 85%;
-    animation-duration: 7s;
-}
+            #fondoAnimado span:nth-child(6)
+            {
+                left: 85%;
+                animation-duration: 7s;
+            }
 
-#fondoAnimado span:nth-child(7)
-{
-    left: 35%;
-    animation-duration: 11s;
-}
+            #fondoAnimado span:nth-child(7)
+            {
+                left: 35%;
+                animation-duration: 11s;
+            }
 
-#fondoAnimado span:nth-child(8)
-{
-    left: 65%;
-    animation-duration: 9s;
-}
+            #fondoAnimado span:nth-child(8)
+            {
+                left: 65%;
+                animation-duration: 9s;
+            }
+
+            #videoFondo
+            {
+                position: fixed;
+                inset: 0;
+
+                width: 100%;
+                height: 100%;
+
+                object-fit: cover;
+                z-index: -3;
+
+                filter: brightness(0.7);
+            }
+
+            #capaFondo
+            {
+                position: fixed;
+                inset: 0;
+
+                width: 100%;
+                height: 100%;
+
+                background-color: rgba(255, 182, 193, 0.75);
+
+                z-index: -2;
+            }
         </style>
 
     </head>
 
     <body>
+        <video id="videoFondo" autoplay muted loop playsinline>
+            <source src="fondo.mp4" type="video/mp4">
+        </video>
+
+        <div id="capaFondo"></div>
+
         <div id="fondoAnimado">
             <span>💗</span>
             <span>✨</span>
@@ -344,13 +385,6 @@
             <span>✨</span>
             <span>💕</span>
             <span>🌸</span>
-        </div>
-        <div id="tarjeta">
-        
-        <h1> Feliz cumpleaños </h1>
-        <p> ¡Felices 23 años! </p>
-        <button id="botonSorpresa">Abrí tu sorpresa ✨</button>
-        <p id="mensajeSorpresa"> Llegó el día, feliz cumpleaños</p>
         </div>
 
         <div id="menu">
@@ -375,22 +409,16 @@
 
             <label for="volumen">Volumen</label>
             <input id="volumen" type="range" min="0" max="1" step="0.1" value="0.5">
-
         </div>
+
         <audio id="musica" loop>
             <source src="musica.mp3" type="audio/mpeg">
         </audio>
         <p id="contador"></p>
 
-        <div id="confeti">
-
-        </div>
         <script> 
         const fechaCumple = new Date("2026-08-29T00:00:00-03:00")
-        const tarjeta = document.getElementById("tarjeta")
-        const botonSorpresa = document.getElementById("botonSorpresa")
-        const mensajeSorpresa = document.getElementById("mensajeSorpresa")
-        const confeti = document.getElementById("confeti")
+        const modoPrueba = false
         const botonMusica  = document.getElementById("botonMusica")
         const musica = document.getElementById("musica")
         const botonPausa = document.getElementById("botonPausa")
@@ -400,6 +428,10 @@
         const carta = document.getElementById("carta")
         const botonMenuCarta = document.getElementById("botonMenuCarta")
         const fondoAnimado  = document.getElementById("fondoAnimado")
+        const videoFondo   = document.getElementById("videoFondo")
+        const capaFondo    = document.getElementById("capaFondo")
+
+
 
         let ahoraOficial
         let momentoConsulta
@@ -414,7 +446,7 @@
             const datos = await respuesta.json()
 
             ahoraOficial = new Date(datos.dateTime)
-            momentoConsulta = new Date()
+            momentoConsulta = Date.now()
         }
 
         function actualizarContador()
@@ -425,20 +457,23 @@
             const diferencia = fechaCumple - ahora
             const contador = document.getElementById("contador")
 
-            if(diferencia > 0)
+            if(diferencia > 0 || modoPrueba)
             {
-                tarjeta.style.display = "none"
                 menu.style.display = "none"
                 contador.style.display = "block"
                 fondoAnimado.style.display = "block"
+                videoFondo.style.display = "block"
+                capaFondo.style.display = "block"
             }
 
             else
             {
-                tarjeta.style.display = "none"
                 menu.style.display = "block"
                 contador.style.display = "none"
                 fondoAnimado.style.display = "none"
+                videoFondo.style.display = "none"
+                capaFondo.style.display = "none"
+                musica.style.display = "none"
                 return 
             }
 
@@ -462,22 +497,19 @@
             const horasTexto = String(horasEnteras).padStart(2, "0")
             const minutosTexto = String(minutosEnteros).padStart(2, "0")
             const segundosTexto = String(segundosEnterosRestantes).padStart(2, "0")
-
-            contador.textContent = "Faltan: " + diasTexto + " días, " + horasTexto + " horas, " + minutosTexto + " minutos y " + segundosTexto + " segundos"
+            
+            contador.textContent = "Aunque tu cumpleaños está cada vez más cerca "+"Faltan: " + diasTexto + " días, " + horasTexto + " horas, " + minutosTexto + " minutos y " + segundosTexto + " segundos"
         }   
 
         obtenerHora().then(function()
         {
             actualizarContador()
             setInterval(actualizarContador, 1000)
-        })
 
-        botonSorpresa.addEventListener("click", function()
-        {
-            mensajeSorpresa.style.display = "block"
-            botonSorpresa.style.display = "none"
-            confeti.textContent = "🎉 🎊 ✨ 🎈 🎉 🎊 ✨"
-            confeti.classList.add("confetiAnimado")
+            setInterval(function()
+            {
+                obtenerHora()
+            }, 60000)
         })
 
         botonMusica.addEventListener("click", function()
