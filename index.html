@@ -1,1507 +1,2076 @@
 <!DOCTYPE html>
 <html>
-    <head> 
-        <title>Tarjeta para Eugenia</title> 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <style>
+<head>
 
-            html
+    <title>Tarjeta para Eugenia</title>
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <style>
+
+        /* =========================
+           GENERAL
+           ========================= */
+
+        html
+        {
+            width: 100%;
+            height: 100%;
+        }
+
+        body
+        {
+            width: 100%;
+
+            background-color: lightpink;
+
+            text-align: center;
+
+            margin: 0;
+
+            min-height: 100vh;
+
+            overflow: hidden;
+
+            box-sizing: border-box;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+
+            align-items: center;
+
+            font-family:
+                "Trebuchet MS",
+                Arial,
+                sans-serif;
+        }
+
+
+        /* =========================
+           BOTONES
+           ========================= */
+
+        button
+        {
+            background-color: #d84b7a;
+
+            color: white;
+
+            font-size: 26px;
+
+            padding: 12px;
+
+            border-radius: 12px;
+
+            border: none;
+
+            cursor: pointer;
+        }
+
+
+        /* =========================
+           CONTADOR
+           ========================= */
+
+        #contador
+        {
+            background-color: white;
+
+            padding: 20px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 4px 16px gray;
+
+            color: deeppink;
+
+            font-size: 23px;
+
+            font-weight: bold;
+
+            margin: 0;
+
+            width: 80%;
+
+            max-width: 600px;
+
+            box-sizing: border-box;
+
+            text-align: center;
+        }
+
+        #mensajeContador
+        {
+            display: block;
+
+            margin-bottom: 12px;
+        }
+
+        #tiempoContador
+        {
+            display: block;
+        }
+
+
+        /* =========================
+           MENÚ
+           ========================= */
+
+        #menu
+        {
+            display: none;
+
+            background-color: white;
+
+            padding: 30px;
+
+            border-radius: 20px;
+
+            box-shadow:
+                0 4px 16px gray;
+
+            width: 80%;
+
+            max-width: 400px;
+
+            box-sizing: border-box;
+        }
+
+        #menu h2
+        {
+            color: deeppink;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            margin-top: 0;
+        }
+
+        #menu button
+        {
+            display: block;
+
+            width: 100%;
+
+            margin-top: 12px;
+
+            font-size: 20px;
+        }
+
+
+        /* =========================
+           CONTROLES DE MÚSICA
+           ========================= */
+
+        #controlesMusica
+        {
+            position: fixed;
+
+            top: 2vh;
+
+            right: 2vw;
+
+            z-index: 20;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 1vh;
+
+            padding: 1.5vh;
+
+            background-color: white;
+
+            border-radius: 1vw;
+
+            box-shadow:
+                0 4px 16px gray;
+
+            width:
+                clamp(180px, 20vw, 280px);
+
+            box-sizing: border-box;
+
+            flex-direction: column;
+        }
+
+        #controlesMusica button
+        {
+            font-size:
+                clamp(10px, 1vw, 14px);
+
+            padding:
+                0.7vw 0.8vw;
+        }
+
+        #controlesMusica label
+        {
+            color: deeppink;
+
+            font-weight: bold;
+
+            font-size:
+                clamp(10px, 1vw, 14px);
+        }
+
+        #volumen
+        {
+            accent-color: deeppink;
+
+            width: 100%;
+        }
+
+        #tituloMusica
+        {
+            margin: 0;
+
+            color: deeppink;
+
+            font-size:
+                clamp(11px, 1.2vw, 16px);
+
+            font-weight: bold;
+        }
+
+        #botonesMusica
+        {
+            display: flex;
+
+            gap: 0.5vw;
+        }
+
+
+        /* =========================
+           FONDO ANIMADO
+           ========================= */
+
+        #fondoAnimado
+        {
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            overflow: hidden;
+
+            pointer-events: none;
+
+            z-index: -1;
+        }
+
+        #fondoAnimado span
+        {
+            position: absolute;
+
+            font-size: 30px;
+
+            animation:
+                flotar 8s linear infinite;
+        }
+
+        @keyframes flotar
+        {
+            from
             {
-                width: 100%;
-                height: 100%;
+                transform:
+                    translateY(100vh);
+
+                opacity: 0;
             }
 
-            body
+            20%
             {
-                width: 100%;
-                background-color: lightpink;
-                text-align: center;
-                margin: 0;
-                min-height: 100vh;
-                overflow: hidden;
-                box-sizing: border-box;
-
-                display: flex;
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-
-                font-family: "Trebuchet MS", Arial, sans-serif;
+                opacity: 1;
             }
 
-            h1
+            80%
             {
-                color: deeppink;
-                font-size: 36px;
-                max-width: 100%;
-                font-family: Georgia, "Times New Roman", serif;
+                opacity: 1;
             }
 
-            button
+            to
             {
-                background-color: #d84b7a;
-                color: white;
-                font-size: 26px;
-                padding: 12px;
-                border-radius: 12px;
-                border: none;
-                cursor: pointer;
+                transform:
+                    translateY(-100px);
+
+                opacity: 0;
+            }
+        }
+
+        #fondoAnimado span:nth-child(1)
+        {
+            left: 10%;
+
+            font-size: 20px;
+
+            animation-duration: 7s;
+        }
+
+        #fondoAnimado span:nth-child(2)
+        {
+            left: 25%;
+
+            font-size: 30px;
+
+            animation-duration: 9s;
+        }
+
+        #fondoAnimado span:nth-child(3)
+        {
+            left: 40%;
+
+            font-size: 25px;
+
+            animation-duration: 6s;
+        }
+
+        #fondoAnimado span:nth-child(4)
+        {
+            left: 55%;
+
+            animation-duration: 10s;
+        }
+
+        #fondoAnimado span:nth-child(5)
+        {
+            left: 70%;
+
+            animation-duration: 8s;
+        }
+
+        #fondoAnimado span:nth-child(6)
+        {
+            left: 85%;
+
+            animation-duration: 7s;
+        }
+
+        #fondoAnimado span:nth-child(7)
+        {
+            left: 35%;
+
+            animation-duration: 11s;
+        }
+
+        #fondoAnimado span:nth-child(8)
+        {
+            left: 65%;
+
+            animation-duration: 9s;
+        }
+
+
+        /* =========================
+           VIDEO
+           ========================= */
+
+        #videoFondo
+        {
+            position: fixed;
+
+            inset: 0;
+
+            width: 100vw;
+
+            height: 100vh;
+
+            object-fit: cover;
+
+            object-position: center;
+
+            z-index: -3;
+
+            filter:
+                brightness(0.7);
+
+            display: none;
+        }
+
+
+        /* =========================
+           CAPA DEL VIDEO
+           ========================= */
+
+        #capaFondo
+        {
+            position: fixed;
+
+            inset: 0;
+
+            width: 100vw;
+
+            height: 100vh;
+
+            background-color:
+                rgba(
+                    255,
+                    182,
+                    193,
+                    0.5
+                );
+
+            z-index: -2;
+        }
+
+
+        /* =========================
+           IMAGEN DEL MENÚ
+           ========================= */
+
+        #imagenMenu
+        {
+            position: fixed;
+
+            top: 0;
+
+            left: 0;
+
+            width: 100vw;
+
+            height: 100vh;
+
+            object-fit: cover;
+
+            object-position: center;
+
+            z-index: -3;
+
+            display: none;
+        }
+
+
+        /* =========================
+           CARTA / SOBRE
+           ========================= */
+
+        #carta
+        {
+            display: none;
+
+            position: relative;
+
+            width: 600px;
+
+            max-width: 90%;
+
+            height: 500px;
+
+            z-index: 5;
+        }
+
+
+        /* =========================
+           SOBRE
+           ========================= */
+
+        #sobre
+        {
+            position: absolute;
+
+            left: 50%;
+
+            bottom: 80px;
+
+            transform:
+                translateX(-50%);
+
+            width: 420px;
+
+            height: 270px;
+
+            max-width: 90vw;
+
+            background-color:
+                #e89aaa;
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 8px 25px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.3
+                );
+
+            z-index: 2;
+        }
+
+
+        /* =========================
+           PARTE TRASERA DEL SOBRE
+           ========================= */
+
+        #parteTrasera
+        {
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background-color:
+                #e89aaa;
+
+            border-radius: 8px;
+
+            z-index: 1;
+        }
+
+
+        /* =========================
+           SOLAPA DEL SOBRE
+           ========================= */
+
+        #solapa
+        {
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 0;
+
+            height: 0;
+
+            border-left:
+                210px solid transparent;
+
+            border-right:
+                210px solid transparent;
+
+            border-top:
+                145px solid #d87991;
+
+            transform-origin: top center;
+
+            z-index: 5;
+
+            transition:
+                transform 1s ease;
+        }
+
+
+        /* =========================
+           PARTE DELANTERA DEL SOBRE
+           ========================= */
+
+        #parteDelantera
+        {
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 100%;
+
+            height: 55%;
+
+            background-color:
+                #d97991;
+
+            clip-path:
+                polygon(
+                    0 0,
+                    50% 60%,
+                    100% 0,
+                    100% 100%,
+                    0 100%
+                );
+
+            z-index: 4;
+        }
+
+
+        /* =========================
+           PAPEL
+           ========================= */
+
+        #papel
+        {
+            position: absolute;
+
+            left: 50%;
+
+            bottom: 35px;
+
+            transform:
+                translateX(-50%)
+                translateY(0);
+
+            width: 360px;
+
+            height: 330px;
+
+            max-width: 80vw;
+
+            background-color:
+                #fffdf4;
+
+            border-radius: 4px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.25
+                );
+
+            z-index: 3;
+
+            padding: 25px;
+
+            box-sizing: border-box;
+
+            opacity: 0;
+
+            transition:
+                transform 1.5s ease,
+                opacity 0.5s ease;
+        }
+
+
+        /* =========================
+           PAPEL SALIENDO
+           ========================= */
+
+        #carta.abierta #papel
+        {
+            opacity: 1;
+
+            transform:
+                translateX(-50%)
+                translateY(-210px);
+        }
+
+
+        /* =========================
+           ABRIR SOLAPA
+           ========================= */
+
+        #carta.abierta #solapa
+        {
+            transform:
+                rotateX(180deg);
+
+            z-index: 1;
+        }
+
+
+        /* =========================
+           TEXTO DEL PAPEL
+           ========================= */
+
+        #papel h2
+        {
+            color: deeppink;
+
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
+
+            margin-top: 0;
+
+            font-size: 24px;
+        }
+
+        #textoCarta
+        {
+            color: #4a3525;
+
+            font-size: 18px;
+
+            line-height: 1.5;
+
+            text-align: left;
+
+            margin: 0;
+
+            overflow-y: auto;
+
+            max-height: 220px;
+        }
+
+
+        /* =========================
+           BOTÓN VOLVER
+           ========================= */
+
+        #botonVolver
+        {
+            position: absolute;
+
+            left: 50%;
+
+            bottom: 15px;
+
+            transform:
+                translateX(-50%);
+
+            z-index: 10;
+
+            font-size: 18px;
+
+            padding: 10px 20px;
+
+            display: none;
+        }
+
+
+        /* =========================
+           SOBRE CERRADO
+           ========================= */
+
+        #carta:not(.abierta)
+        {
+            animation:
+                aparecerSobre 0.8s ease;
+        }
+
+        @keyframes aparecerSobre
+        {
+            from
+            {
+                opacity: 0;
+
+                transform:
+                    translateY(30px);
             }
 
-            #mensajeSorpresa
+            to
             {
-                display: none;
-                font-size: 22px;
-                margin-top: 24px;
+                opacity: 1;
+
+                transform:
+                    translateY(0);
             }
+        }
 
-            /* =========================
-               CONTADOR
-               ========================= */
 
+        /* =========================
+           BOTÓN ABRIR
+           ========================= */
+
+        #botonAbrirSobre
+        {
+            position: absolute;
+
+            left: 50%;
+
+            bottom: 20px;
+
+            transform:
+                translateX(-50%);
+
+            z-index: 10;
+
+            font-size: 18px;
+
+            padding:
+                10px 20px;
+        }
+
+
+        /* =========================
+           CELULAR
+           ========================= */
+
+        @media(max-width: 600px)
+        {
             #contador
             {
-                background-color: white;
+                width: 90%;
 
-                padding: 20px;
+                font-size: 18px;
 
-                border-radius: 20px;
-
-                box-shadow: 0 4px 16px gray;
-
-                color: deeppink;
-
-                font-size: 23px;
-
-                font-weight: bold;
-
-                margin: 0;
-
-                width: 80%;
-
-                max-width: 600px;
-
-                box-sizing: border-box;
-
-                text-align: center;
+                padding: 16px;
             }
 
-            #mensajeContador
-            {
-                display: block;
-                margin-bottom: 12px;
-            }
-
-            #tiempoContador
-            {
-                display: block;
-            }
-
-            /* =========================
-               TARJETA
-               ========================= */
-
-            #tarjeta
-            {
-                display: none;
-
-                background-color: white;
-
-                padding: 32px;
-
-                border-radius: 20px;
-
-                box-shadow: 0 4px 16px gray;
-
-                width: 80%;
-
-                max-width: 500px;
-
-                box-sizing: border-box;
-            }
-
-            /* =========================
-               CONFETI
-               ========================= */
-
-            #confeti
-            {
-                display: none;
-
-                font-size: 40px;
-
-                margin-top: 24px;
-            }
-
-            .confetiAnimado
-            {
-                animation: saltar 2s ease forwards;
-            }
-
-            @keyframes saltar
-            {
-                from
-                {
-                    opacity: 0;
-                    transform: translateY(0);
-                }
-
-                to
-                {
-                    opacity: 1;
-                    transform: translateY(-50px);
-                }
-            }
-
-            /* =========================
-               CONTROLES DE MÚSICA
-               ========================= */
-
-            #controlesMusica
-            {
-                position: fixed;
-
-                top: 2vh;
-                right: 2vw;
-
-                z-index: 10;
-
-                display: flex;
-
-                align-items: center;
-
-                justify-content: center;
-
-                gap: 1vh;
-
-                padding: 1.5vh;
-
-                background-color: white;
-
-                border-radius: 1vw;
-
-                box-shadow: 0 4px 16px gray;
-
-                width: clamp(180px, 20vw, 280px);
-
-                box-sizing: border-box;
-
-                flex-direction: column;
-            }
-
-            #controlesMusica button
-            {
-                font-size: clamp(10px, 1vw, 14px);
-
-                padding: 0.7vw 0.8vw;
-            }
-
-            #controlesMusica label
-            {
-                color: deeppink;
-
-                font-weight: bold;
-
-                font-size: clamp(10px, 1vw, 14px);
-            }
-
-            #volumen
-            {
-                accent-color: deeppink;
-
-                width: 100%;
-            }
-
-            #tituloMusica
-            {
-                margin: 0;
-
-                color: deeppink;
-
-                font-size: clamp(11px, 1.2vw, 16px);
-
-                font-weight: bold;
-            }
-
-            #botonesMusica
-            {
-                display: flex;
-
-                gap: 0.5vw;
-            }
-
-            /* =========================
-               CELULAR
-               ========================= */
-
-            @media (max-width: 600px)
-            {
-                h1
-                {
-                    font-size: 30px;
-                }
-
-                #tarjeta
-                {
-                    padding: 24px;
-                }
-
-                #contador
-                {
-                    width: 90%;
-
-                    font-size: 18px;
-
-                    padding: 16px;
-                }
-            }
-
-            /* =========================
-               MENÚ
-               ========================= */
-
-            #menu
-            {
-                display: none;
-
-                background-color: white;
-
-                padding: 30px;
-
-                border-radius: 20px;
-
-                box-shadow: 0 4px 16px gray;
-
-                width: 80%;
-
-                max-width: 400px;
-
-                box-sizing: border-box;
-            }
-
-            #menu h2
-            {
-                color: deeppink;
-
-                font-family: Georgia, 'Times New Roman', serif;
-
-                margin-top: 0;
-            }
-
-            #menu button
-            {
-                display: block;
-
-                width: 100%;
-
-                margin-top: 12px;
-
-                font-size: 20px;
-            }
-
-            /* =========================
-               CARTA
-               ========================= */
 
             #carta
             {
-                display: none;
-
-                position: relative;
-
-                background-color: #fff8e7;
-
-                padding: 40px;
-
-                border-radius: 8px;
-
-                width: 80%;
-
-                max-width: 550px;
-
-                box-sizing: border-box;
-
-                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-
-                color: #4a3525;
-
-                background-image: repeating-linear-gradient(
-                    0deg,
-                    rgba(150, 120, 80, 0.04) 0px,
-                    rgba(150, 120, 80, 0.04) 1px,
-                    transparent 1px,
-                    transparent 4px
-                );
-
-                animation: aparecerCarta 1s ease;
-            }
-
-            #carta h2
-            {
-                color: deeppink;
-
-                font-family: Georgia, 'Times New Roman', serif;
-            }
-
-            #carta p
-            {
-                font-size: 20px;
-            }
-
-            #carta #botonVolver
-            {
-                display: none;
-            }
-
-            #carta button
-            {
-                display: block;
-
                 width: 100%;
 
-                margin: 12px auto 0 auto;
-
-                font-size: 20px;
+                height: 470px;
             }
 
-            @keyframes aparecerCarta
+
+            #sobre
             {
-                from
-                {
-                    opacity: 0;
+                width: 320px;
 
-                    transform:
-                        translateY(30px)
-                        rotate(-2deg);
-                }
+                height: 210px;
 
-                to
-                {
-                    opacity: 1;
-
-                    transform:
-                        translateY(0)
-                        rotate(0deg);
-                }
+                bottom: 90px;
             }
 
-            /* =========================
-               FONDO ANIMADO
-               ========================= */
 
-            #fondoAnimado
+            #solapa
             {
-                position: fixed;
+                border-left-width:
+                    160px;
 
-                top: 0;
-                left: 0;
+                border-right-width:
+                    160px;
 
-                width: 100%;
-                height: 100%;
-
-                overflow: hidden;
-
-                pointer-events: none;
-
-                z-index: -1;
+                border-top-width:
+                    110px;
             }
 
-            #fondoAnimado span
+
+            #papel
             {
-                position: absolute;
+                width: 280px;
 
-                font-size: 30px;
+                height: 300px;
 
-                animation: flotar 8s linear infinite;
+                padding: 20px;
             }
 
-            @keyframes flotar
+
+            #carta.abierta #papel
             {
-                from
-                {
-                    transform: translateY(100vh);
-
-                    opacity: 0;
-                }
-
-                20%
-                {
-                    opacity: 1;
-                }
-
-                80%
-                {
-                    opacity: 1;
-                }
-
-                to
-                {
-                    transform: translateY(-100px);
-
-                    opacity: 0;
-                }
+                transform:
+                    translateX(-50%)
+                    translateY(-170px);
             }
 
-            #fondoAnimado span:nth-child(1)
+
+            #papel h2
             {
-                left: 10%;
-                font-size: 20px;
-                animation-duration: 7s;
+                font-size: 21px;
             }
 
-            #fondoAnimado span:nth-child(2)
+
+            #textoCarta
             {
-                left: 25%;
-                font-size: 30px;
-                animation-duration: 9s;
+                font-size: 16px;
+
+                max-height: 205px;
             }
+        }
 
-            #fondoAnimado span:nth-child(3)
-            {
-                left: 40%;
-                font-size: 25px;
-                animation-duration: 6s;
-            }
+    </style>
 
-            #fondoAnimado span:nth-child(4)
-            {
-                left: 55%;
-                animation-duration: 10s;
-            }
-
-            #fondoAnimado span:nth-child(5)
-            {
-                left: 70%;
-                animation-duration: 8s;
-            }
-
-            #fondoAnimado span:nth-child(6)
-            {
-                left: 85%;
-                animation-duration: 7s;
-            }
-
-            #fondoAnimado span:nth-child(7)
-            {
-                left: 35%;
-                animation-duration: 11s;
-            }
-
-            #fondoAnimado span:nth-child(8)
-            {
-                left: 65%;
-                animation-duration: 9s;
-            }
-
-            /* =========================
-               VIDEO
-               ========================= */
-
-            #videoFondo
-            {
-                position: fixed;
-
-                inset: 0;
-
-                width: 100vw;
-                height: 100vh;
-
-                object-fit: cover;
-
-                object-position: center;
-
-                z-index: -3;
-
-                filter: brightness(0.7);
-
-                display: none;
-            }
-
-            #capaFondo
-            {
-                position: fixed;
-
-                inset: 0;
-
-                width: 100vw;
-                height: 100vh;
-
-                background-color:
-                    rgba(255, 182, 193, 0.5);
-
-                z-index: -2;
-            }
-
-            /* =========================
-               IMAGEN DEL MENÚ
-               ========================= */
-
-            #imagenMenu
-            {
-                position: fixed;
-
-                top: 0;
-                left: 0;
-
-                width: 100vw;
-                height: 100vh;
-
-                object-fit: cover;
-
-                object-position: center;
-
-                z-index: -3;
-
-                display: none;
-            }
-
-        </style>
-    </head>
-
-    <body>
-
-        <!-- VIDEO -->
-
-        <video
-            id="videoFondo"
-            autoplay
-            muted
-            playsinline
-            preload="auto"
-        >
-            <source src="fondo.mp4" type="video/mp4">
-        </video>
+</head>
 
 
-        <!-- CAPA -->
-
-        <div id="capaFondo"></div>
+<body>
 
 
-        <!-- IMAGEN MENÚ -->
+    <!-- =========================
+         VIDEO
+         ========================= -->
 
-        <img
-            id="imagenMenu"
-            src="fondoMenu.png"
+    <video
+        id="videoFondo"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+    >
+
+        <source
+            src="fondo.mp4"
+            type="video/mp4"
         >
 
-
-        <!-- FONDO ANIMADO -->
-
-        <div id="fondoAnimado">
-
-            <span>💗</span>
-            <span>✨</span>
-            <span>💕</span>
-            <span>🌸</span>
-
-            <span>💗</span>
-            <span>✨</span>
-            <span>💕</span>
-            <span>🌸</span>
-
-        </div>
+    </video>
 
 
-        <!-- =========================
-             MENÚ
-             ========================= -->
+    <!-- =========================
+         CAPA
+         ========================= -->
 
-        <div id="menu">
+    <div id="capaFondo"></div>
+
+
+    <!-- =========================
+         IMAGEN MENÚ
+         ========================= -->
+
+    <img
+        id="imagenMenu"
+        src="fondoMenu.png"
+    >
+
+
+    <!-- =========================
+         FONDO ANIMADO
+         ========================= -->
+
+    <div id="fondoAnimado">
+
+        <span>💗</span>
+        <span>✨</span>
+        <span>💕</span>
+        <span>🌸</span>
+
+        <span>💗</span>
+        <span>✨</span>
+        <span>💕</span>
+        <span>🌸</span>
+
+    </div>
+
+
+    <!-- =========================
+         MENÚ
+         ========================= -->
+
+    <div id="menu">
+
+        <h2>
+            ¿Por dónde querés empezar? 💗
+        </h2>
+
+
+        <button id="botonMenuCarta">
+
+            💌 Carta
+
+        </button>
+
+
+        <button>
+
+            🔐 Juego de la Caja fuerte
+
+        </button>
+
+    </div>
+
+
+    <!-- =========================
+         CARTA
+         ========================= -->
+
+    <div id="carta">
+
+
+        <!-- PAPEL -->
+
+        <div id="papel">
 
             <h2>
-                ¿Por dónde querés empezar? 💗
-            </h2>
-
-            <button id="botonMenuCarta">
-                💌 Carta
-            </button>
-
-            <button>
-                🔐 Juego de la Caja fuerte
-            </button>
-
-        </div>
-
-
-        <!-- =========================
-             CARTA
-             ========================= -->
-
-        <div id="carta">
-
-            <h2>
-                💌 Para vos
+                ¡Feliz cumpleaños!
             </h2>
 
             <p id="textoCarta"></p>
 
-            <button id="botonCarta">
-                Abrir carta 💗
-            </button>
+        </div>
 
-            <button id="botonVolver">
-                Volver al menú
-            </button>
+
+        <!-- SOBRE -->
+
+        <div id="sobre">
+
+
+            <!-- PARTE TRASERA -->
+
+            <div id="parteTrasera"></div>
+
+
+            <!-- PAPEL SALE POR AQUÍ -->
+
+
+            <!-- SOLAPA -->
+
+            <div id="solapa"></div>
+
+
+            <!-- PARTE DELANTERA -->
+
+            <div id="parteDelantera"></div>
 
         </div>
 
 
-        <!-- =========================
-             MÚSICA
-             ========================= -->
+        <!-- BOTÓN -->
 
-        <div id="controlesMusica">
+        <button id="botonAbrirSobre">
 
-            <p id="tituloMusica">
-                🎵 Música
-            </p>
+            Abrir carta 💗
 
-            <div id="botonesMusica">
-
-                <button id="botonAnterior">
-                    ⏮
-                </button>
-
-                <button id="botonMusica">
-                    ▶
-                </button>
-
-                <button id="botonPausa">
-                    ⏸
-                </button>
-
-                <button id="botonSiguiente">
-                    ⏭
-                </button>
-
-            </div>
-
-            <label for="volumen">
-                Volumen 🔊
-            </label>
-
-            <input
-                id="volumen"
-                type="range"
-                min="0"
-                max="1"
-                step="0.1"
-                value="0.5"
-            >
-
-        </div>
+        </button>
 
 
-        <!-- AUDIO -->
+        <button id="botonVolver">
 
-        <audio id="musica"></audio>
+            Volver al menú
+
+        </button>
 
 
-        <!-- =========================
-             CONTADOR
-             ========================= -->
+    </div>
 
-        <p id="contador">
 
-            <span id="mensajeContador"></span>
+    <!-- =========================
+         CONTROLES DE MÚSICA
+         ========================= -->
 
-            <span id="tiempoContador"></span>
+    <div id="controlesMusica">
+
+        <p id="tituloMusica">
+
+            🎵 Música
 
         </p>
 
 
-        <script>
+        <div id="botonesMusica">
+
+
+            <button id="botonAnterior">
+
+                ⏮
+
+            </button>
+
+
+            <button id="botonMusica">
+
+                ▶
+
+            </button>
+
+
+            <button id="botonPausa">
+
+                ⏸
+
+            </button>
+
+
+            <button id="botonSiguiente">
+
+                ⏭
+
+            </button>
+
+
+        </div>
+
+
+        <label for="volumen">
+
+            Volumen 🔊
+
+        </label>
+
+
+        <input
+            id="volumen"
+            type="range"
+            min="0"
+            max="1"
+            step="0.1"
+            value="0.5"
+        >
+
+    </div>
+
+
+    <!-- =========================
+         AUDIO
+         ========================= -->
+
+    <audio id="musica"></audio>
+
+
+    <!-- =========================
+         CONTADOR
+         ========================= -->
+
+    <p id="contador">
+
+        <span id="mensajeContador"></span>
+
+        <span id="tiempoContador"></span>
+
+    </p>
+
+
+    <script>
+
+
+        /* =========================
+           FECHA
+           ========================= */
+
+        const fechaCumple =
+            new Date(
+                "2026-08-27T17:33:00-03:00"
+            );
+
+
+        const modoPrueba = false;
+
+        const probarMenu = false;
+
+
+        /* =========================
+           ELEMENTOS
+           ========================= */
+
+        const botonMusica =
+            document.getElementById(
+                "botonMusica"
+            );
+
+
+        const musica =
+            document.getElementById(
+                "musica"
+            );
+
+
+        const botonPausa =
+            document.getElementById(
+                "botonPausa"
+            );
+
+
+        const volumen =
+            document.getElementById(
+                "volumen"
+            );
+
+
+        const menu =
+            document.getElementById(
+                "menu"
+            );
+
+
+        const carta =
+            document.getElementById(
+                "carta"
+            );
+
+
+        const botonMenuCarta =
+            document.getElementById(
+                "botonMenuCarta"
+            );
+
+
+        const botonAbrirSobre =
+            document.getElementById(
+                "botonAbrirSobre"
+            );
+
+
+        const botonVolver =
+            document.getElementById(
+                "botonVolver"
+            );
+
+
+        const papel =
+            document.getElementById(
+                "papel"
+            );
+
+
+        const textoCarta =
+            document.getElementById(
+                "textoCarta"
+            );
+
+
+        const contador =
+            document.getElementById(
+                "contador"
+            );
+
+
+        const mensajeContador =
+            document.getElementById(
+                "mensajeContador"
+            );
+
+
+        const tiempoContador =
+            document.getElementById(
+                "tiempoContador"
+            );
+
+
+        const fondoAnimado =
+            document.getElementById(
+                "fondoAnimado"
+            );
+
+
+        const videoFondo =
+            document.getElementById(
+                "videoFondo"
+            );
+
+
+        const capaFondo =
+            document.getElementById(
+                "capaFondo"
+            );
+
+
+        const imagenMenu =
+            document.getElementById(
+                "imagenMenu"
+            );
+
+
+        const botonAnterior =
+            document.getElementById(
+                "botonAnterior"
+            );
+
+
+        const botonSiguiente =
+            document.getElementById(
+                "botonSiguiente"
+            );
+
+
+        const tituloMusica =
+            document.getElementById(
+                "tituloMusica"
+            );
+
+
+        /* =========================
+           TEXTOS
+           ========================= */
+
+        const textoReal =
+            "Eugenia, hoy es tu cumpleaños y espero que estas palabras alcancen por lo menos a reflejar lo mucho que te quiero. Gracias por siempre estar, por todos tus regalos y por los momentos lindos que generas.";
+
+
+        /* =========================
+           CANCIONES
+           ========================= */
+
+        const canciones =
+        [
+            "musica3.mp3",
+            "musica1.mp3",
+            "musica2.mp3",
+            "musica.mp3"
+        ];
+
+
+        /* =========================
+           ESTADO
+           ========================= */
+
+        let indiceCancion = 0;
+
+        let posicion = 0;
+
+        let pantalla = "menu";
+
+        let ahoraOficial;
+
+        let momentoConsulta;
+
+
+        /* =========================
+           MÚSICA INICIAL
+           ========================= */
+
+        musica.volume =
+            volumen.value;
+
+
+        musica.src =
+            canciones[indiceCancion];
+
+
+        /* =========================
+           OBTENER HORA
+           ========================= */
+
+        async function obtenerHora()
+        {
+            const respuesta =
+                await fetch(
+                    "https://timeapi.io/api/time/current/zone?timeZone=America/Argentina/Buenos_Aires"
+                );
+
+
+            const datos =
+                await respuesta.json();
+
+
+            ahoraOficial =
+                new Date(
+                    datos.dateTime
+                );
+
+
+            momentoConsulta =
+                Date.now();
+        }
+
+
+        /* =========================
+           CONTADOR
+           ========================= */
+
+        function actualizarContador()
+        {
+            const tiempoTranscurrido =
+                Date.now()
+                - momentoConsulta;
+
+
+            const ahora =
+                new Date(
+                    ahoraOficial.getTime()
+                    + tiempoTranscurrido
+                );
+
+
+            const diferencia =
+                fechaCumple - ahora;
+
 
             /* =========================
-               VARIABLES
+               MODO PRUEBA
                ========================= */
 
-            const fechaCumple =
-                new Date("2026-08-27T17:33:00-03:00")
-
-
-            const modoPrueba = false
-
-            const probarMenu = false
-
-
-            /* =========================
-               ELEMENTOS HTML
-               ========================= */
-
-            const botonMusica =
-                document.getElementById("botonMusica")
-
-            const musica =
-                document.getElementById("musica")
-
-            const botonPausa =
-                document.getElementById("botonPausa")
-
-            const volumen =
-                document.getElementById("volumen")
-
-            const menu =
-                document.getElementById("menu")
-
-            const botonCarta =
-                document.getElementById("botonCarta")
-
-            const carta =
-                document.getElementById("carta")
-
-            const botonMenuCarta =
-                document.getElementById("botonMenuCarta")
-
-            const fondoAnimado =
-                document.getElementById("fondoAnimado")
-
-            const videoFondo =
-                document.getElementById("videoFondo")
-
-            const capaFondo =
-                document.getElementById("capaFondo")
-
-            const textoCarta =
-                document.getElementById("textoCarta")
-
-            const botonVolver =
-                document.getElementById("botonVolver")
-
-            const imagenMenu =
-                document.getElementById("imagenMenu")
-
-            const botonAnterior =
-                document.getElementById("botonAnterior")
-
-            const botonSiguiente =
-                document.getElementById("botonSiguiente")
-
-            const tituloMusica =
-                document.getElementById("tituloMusica")
-
-            const mensajeContador =
-                document.getElementById("mensajeContador")
-
-            const tiempoContador =
-                document.getElementById("tiempoContador")
-
-            const contador =
-                document.getElementById("contador")
-
-
-            /* =========================
-               TEXTOS
-               ========================= */
-
-            const texto =
-                "Hay algo que quiero decirte..."
-
-
-            const textoReal =
-                "Eugenia, hoy es tu cumpleaños y espero que estas palabras alcancen por lo menos a reflejar lo mucho que te quiero. Gracias por siempre estar, por todos tus regalos y por los momentos lindos que generas."
-
-
-            /* =========================
-               CANCIONES
-               ========================= */
-
-            const canciones =
-            [
-                "musica3.mp3",
-                "musica1.mp3",
-                "musica2.mp3",
-                "musica.mp3"
-            ]
-
-
-            /* =========================
-               ESTADO
-               ========================= */
-
-            let indiceCancion = 0
-
-            let posicion = 0
-
-            let cartaEscrita = false
-
-            let pantalla = "menu"
-
-            let ahoraOficial
-
-            let momentoConsulta
-
-
-            /* =========================
-               CONFIGURACIÓN INICIAL
-               ========================= */
-
-            musica.volume = volumen.value
-
-            musica.src =
-                canciones[indiceCancion]
-
-
-            /* =========================
-               ESCRIBIR TEXTO INICIAL
-               ========================= */
-
-            function escribirCarta()
+            if(
+                probarMenu
+                ||
+                modoPrueba
+            )
             {
-                if(cartaEscrita)
+                if(
+                    pantalla
+                    ==
+                    "menu"
+                )
                 {
-                    return
+                    menu.style.display =
+                        "block";
+
+
+                    carta.style.display =
+                        "none";
+
+
+                    contador.style.display =
+                        "none";
+
+
+                    fondoAnimado.style.display =
+                        "block";
+
+
+                    videoFondo.style.display =
+                        "none";
+
+
+                    capaFondo.style.display =
+                        "none";
+
+
+                    elegirImagenMenu();
+
+
+                    imagenMenu.style.display =
+                        "block";
                 }
 
-                if(posicion < texto.length)
-                {
-                    textoCarta.textContent +=
-                        texto[posicion]
 
-                    posicion++
-
-                    setTimeout(
-                        escribirCarta,
-                        80
-                    )
-                }
-
-                else
-                {
-                    cartaEscrita = true
-                }
+                return;
             }
 
 
             /* =========================
-               ABRIR CARTA
+               TODAVÍA NO LLEGÓ
                ========================= */
 
-            function abrirCarta()
+            if(diferencia > 0)
             {
-                textoCarta.textContent = ""
-
-                posicion = 0
-
-                escribirTextoReal()
-            }
-
-
-            function escribirTextoReal()
-            {
-                if(posicion < textoReal.length)
+                if(
+                    pantalla
+                    ==
+                    "menu"
+                )
                 {
-                    textoCarta.textContent +=
-                        textoReal[posicion]
+                    menu.style.display =
+                        "none";
 
-                    posicion++
 
-                    setTimeout(
-                        escribirTextoReal,
-                        80
-                    )
+                    carta.style.display =
+                        "none";
+
+
+                    contador.style.display =
+                        "block";
                 }
+
+
+                if(
+                    pantalla
+                    ==
+                    "carta"
+                )
+                {
+                    menu.style.display =
+                        "none";
+
+
+                    carta.style.display =
+                        "block";
+
+
+                    contador.style.display =
+                        "none";
+                }
+
+
+                fondoAnimado.style.display =
+                    "block";
+
+
+                videoFondo.style.display =
+                    "block";
+
+
+                capaFondo.style.display =
+                    "block";
+
+
+                imagenMenu.style.display =
+                    "none";
+
+
+                tituloMusica.textContent =
+                    "¿Querés escuchar música mientras esperás?";
             }
 
 
             /* =========================
-               OBTENER HORA OFICIAL
+               YA LLEGÓ
                ========================= */
 
-            async function obtenerHora()
+            else
             {
-                const respuesta =
-                    await fetch(
-                        "https://timeapi.io/api/time/current/zone?timeZone=America/Argentina/Buenos_Aires"
-                    )
-
-                const datos =
-                    await respuesta.json()
-
-                ahoraOficial =
-                    new Date(datos.dateTime)
-
-                momentoConsulta =
-                    Date.now()
-            }
-
-
-            /* =========================
-               ACTUALIZAR CONTADOR
-               ========================= */
-
-            function actualizarContador()
-            {
-                const tiempoTranscurrido =
-                    Date.now() - momentoConsulta
-
-
-                const ahora =
-                    new Date(
-                        ahoraOficial.getTime()
-                        + tiempoTranscurrido
-                    )
-
-
-                const diferencia =
-                    fechaCumple - ahora
-
-
-                /* =========================
-                   MODO PRUEBA
-                   ========================= */
-
-                if(probarMenu || modoPrueba)
+                if(
+                    pantalla
+                    ==
+                    "menu"
+                )
                 {
-                    if(pantalla == "menu")
-                    {
-                        menu.style.display = "block"
-
-                        carta.style.display = "none"
-
-                        contador.style.display = "none"
-
-                        fondoAnimado.style.display = "block"
-
-                        videoFondo.style.display = "none"
-
-                        capaFondo.style.display = "none"
-
-                        elegirImagenMenu()
-
-                        imagenMenu.style.display = "block"
-                    }
-
-                    return
-                }
+                    menu.style.display =
+                        "block";
 
 
-                /* =========================
-                   TODAVÍA NO LLEGÓ
-                   ========================= */
-
-                if(diferencia > 0)
-                {
-                    /*
-                     * Si estamos en el menú,
-                     * mostramos el contador.
-                     */
-
-                    if(pantalla == "menu")
-                    {
-                        menu.style.display = "none"
-
-                        carta.style.display = "none"
-
-                        contador.style.display = "block"
-                    }
+                    carta.style.display =
+                        "none";
 
 
-                    /*
-                     * Si estamos en la carta,
-                     * NO LA CERRAMOS.
-                     */
-
-                    if(pantalla == "carta")
-                    {
-                        menu.style.display = "none"
-
-                        carta.style.display = "block"
-
-                        contador.style.display = "none"
-                    }
+                    contador.style.display =
+                        "none";
 
 
-                    fondoAnimado.style.display = "block"
+                    fondoAnimado.style.display =
+                        "none";
 
-                    videoFondo.style.display = "block"
 
-                    capaFondo.style.display = "block"
+                    videoFondo.style.display =
+                        "none";
+
+
+                    capaFondo.style.display =
+                        "none";
+
+
+                    elegirImagenMenu();
+
+
+                    imagenMenu.style.display =
+                        "block";
+
+
+                    musica.style.display =
+                        "none";
+
 
                     tituloMusica.textContent =
-                        "¿Querés escuchar música mientras esperás?"
+                        "🎵 Música";
                 }
 
 
-                /* =========================
-                   YA LLEGÓ EL CUMPLEAÑOS
-                   ========================= */
-
-                else
+                if(
+                    pantalla
+                    ==
+                    "carta"
+                )
                 {
+                    menu.style.display =
+                        "none";
+
+
+                    carta.style.display =
+                        "block";
+
+
+                    contador.style.display =
+                        "none";
+
+
+                    fondoAnimado.style.display =
+                        "none";
+
+
+                    videoFondo.style.display =
+                        "none";
+
+
+                    capaFondo.style.display =
+                        "none";
+
+
                     /*
-                     * SOLAMENTE cambiamos al menú
-                     * si todavía estamos en el menú.
+                     * IMPORTANTE:
                      *
-                     * Si estamos en la carta,
-                     * la dejamos abierta.
+                     * La imagen del menú
+                     * permanece como fondo.
                      */
 
-                    if(pantalla == "menu")
-                    {
-                        menu.style.display = "block"
-
-                        carta.style.display = "none"
-
-                        contador.style.display = "none"
-
-                        fondoAnimado.style.display = "none"
-
-                        videoFondo.style.display = "none"
-
-                        capaFondo.style.display = "none"
-
-                        elegirImagenMenu()
-
-                        imagenMenu.style.display = "block"
-
-                        musica.style.display = "none"
-
-                        tituloMusica.textContent =
-                            "🎵 Música"
-                    }
+                    elegirImagenMenu();
 
 
-                    /*
-                     * Si estamos en la carta,
-                     * NO hacemos nada con ella.
-                     */
-
-                    if(pantalla == "carta")
-                    {
-                        menu.style.display = "none"
-
-                        carta.style.display = "block"
-
-                        contador.style.display = "none"
-
-                        fondoAnimado.style.display = "none"
-
-                        videoFondo.style.display = "none"
-
-                        capaFondo.style.display = "none"
-
-                        elegirImagenMenu()
-
-                        imagenMenu.style.display = "block"
-
-                        musica.style.display = "none"
-                    }
+                    imagenMenu.style.display =
+                        "block";
 
 
-                    return
+                    musica.style.display =
+                        "none";
                 }
 
 
-                /* =========================
-                   CALCULAR TIEMPO
-                   ========================= */
-
-                const segundos =
-                    diferencia / 1000
-
-                const segundosEnteros =
-                    Math.floor(segundos)
-
-
-                const dias =
-                    segundosEnteros / 86400
-
-                const diasEnteros =
-                    Math.floor(dias)
-
-
-                const segundosRestantes =
-                    segundosEnteros % 86400
-
-
-                const horas =
-                    segundosRestantes / 3600
-
-                const horasEnteras =
-                    Math.floor(horas)
-
-
-                const segundosDespuesDeHoras =
-                    segundosRestantes % 3600
-
-
-                const minutos =
-                    segundosDespuesDeHoras / 60
-
-                const minutosEnteros =
-                    Math.floor(minutos)
-
-
-                const segundosEnterosRestantes =
-                    segundosDespuesDeHoras % 60
-
-
-                const diasTexto =
-                    String(diasEnteros).padStart(2, "0")
-
-                const horasTexto =
-                    String(horasEnteras).padStart(2, "0")
-
-                const minutosTexto =
-                    String(minutosEnteros).padStart(2, "0")
-
-                const segundosTexto =
-                    String(segundosEnterosRestantes).padStart(2, "0")
-
-
-                /* =========================
-                   MOSTRAR CONTADOR
-                   ========================= */
-
-                mensajeContador.textContent =
-                    "¡Falta poco para tu sorpresa!"
-
-
-                tiempoContador.textContent =
-                    diasTexto
-                    + " días, "
-                    + horasTexto
-                    + " horas, "
-                    + minutosTexto
-                    + " minutos y "
-                    + segundosTexto
-                    + " segundos"
+                return;
             }
 
 
             /* =========================
-               INICIAR RELOJ
+               CALCULAR TIEMPO
                ========================= */
 
-            obtenerHora().then(function()
+            const segundos =
+                diferencia / 1000;
+
+
+            const segundosEnteros =
+                Math.floor(
+                    segundos
+                );
+
+
+            const diasEnteros =
+                Math.floor(
+                    segundosEnteros
+                    / 86400
+                );
+
+
+            const segundosRestantes =
+                segundosEnteros
+                % 86400;
+
+
+            const horasEnteras =
+                Math.floor(
+                    segundosRestantes
+                    / 3600
+                );
+
+
+            const segundosDespuesDeHoras =
+                segundosRestantes
+                % 3600;
+
+
+            const minutosEnteros =
+                Math.floor(
+                    segundosDespuesDeHoras
+                    / 60
+                );
+
+
+            const segundosEnterosRestantes =
+                segundosDespuesDeHoras
+                % 60;
+
+
+            const diasTexto =
+                String(
+                    diasEnteros
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const horasTexto =
+                String(
+                    horasEnteras
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const minutosTexto =
+                String(
+                    minutosEnteros
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const segundosTexto =
+                String(
+                    segundosEnterosRestantes
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            mensajeContador.textContent =
+                "¡Falta poco para tu sorpresa!";
+
+
+            tiempoContador.textContent =
+                diasTexto
+                + " días, "
+                + horasTexto
+                + " horas, "
+                + minutosTexto
+                + " minutos y "
+                + segundosTexto
+                + " segundos";
+        }
+
+
+        /* =========================
+           INICIAR RELOJ
+           ========================= */
+
+        obtenerHora()
+        .then(
+            function()
             {
-                actualizarContador()
+                actualizarContador();
+
 
                 setInterval(
                     actualizarContador,
                     1000
-                )
+                );
 
 
                 setInterval(
                     function()
                     {
-                        obtenerHora()
+                        obtenerHora();
                     },
                     60000
-                )
-            })
-
-
-            /* =========================
-               MÚSICA
-               ========================= */
-
-            botonMusica.addEventListener(
-                "click",
-                function()
-                {
-                    musica.play()
-                }
-            )
-
-
-            botonPausa.addEventListener(
-                "click",
-                function()
-                {
-                    musica.pause()
-                }
-            )
-
-
-            volumen.addEventListener(
-                "input",
-                function()
-                {
-                    musica.volume =
-                        volumen.value
-                }
-            )
-
-
-            /* =========================
-               BOTÓN ABRIR CARTA
-               ========================= */
-
-            botonCarta.addEventListener(
-                "click",
-                function()
-                {
-                    botonCarta.style.display =
-                        "none"
-
-                    botonVolver.style.display =
-                        "block"
-
-                    abrirCarta()
-                }
-            )
-
-
-            /* =========================
-               IR A LA CARTA
-               ========================= */
-
-            botonMenuCarta.addEventListener(
-                "click",
-                function()
-                {
-                    /*
-                     * Primero cambiamos el estado.
-                     */
-
-                    pantalla = "carta"
-
-
-                    /*
-                     * Después mostramos la carta.
-                     */
-
-                    menu.style.display =
-                        "none"
-
-                    carta.style.display =
-                        "block"
-
-                    contador.style.display =
-                        "none"
-
-
-                    /*
-                     * Configuramos los botones.
-                     */
-
-                    botonCarta.style.display =
-                        "block"
-
-                    botonVolver.style.display =
-                        "none"
-
-
-                    /*
-                     * Reiniciamos el texto.
-                     */
-
-                    textoCarta.textContent =
-                        ""
-
-                    posicion = 0
-
-                    cartaEscrita = false
-
-
-                    /*
-                     * Escribimos:
-                     * "Hay algo que quiero decirte..."
-                     */
-
-                    escribirCarta()
-                }
-            )
-
-
-            /* =========================
-               VOLVER AL MENÚ
-               ========================= */
-
-            botonVolver.addEventListener(
-                "click",
-                function()
-                {
-                    pantalla = "menu"
-
-
-                    carta.style.display =
-                        "none"
-
-                    menu.style.display =
-                        "block"
-
-
-                    botonCarta.style.display =
-                        "block"
-
-                    botonVolver.style.display =
-                        "none"
-
-
-                    textoCarta.textContent =
-                        ""
-
-                    posicion = 0
-
-                    cartaEscrita = false
-                }
-            )
-
-
-            /* =========================
-               VIDEO
-               ========================= */
-
-            videoFondo.addEventListener(
-                "ended",
-                function()
-                {
-                    videoFondo.currentTime = 0
-
-                    videoFondo.play().catch(
-                        function(error)
-                        {
-                            console.error(
-                                "play() falló:",
-                                error
-                            )
-                        }
-                    )
-                }
-            )
-
-
-            videoFondo.addEventListener(
-                "timeupdate",
-                function()
-                {
-                    if(
-                        videoFondo.duration
-                        &&
-                        videoFondo.currentTime
-                        >=
-                        videoFondo.duration - 0.2
-                    )
-                    {
-                        videoFondo.currentTime = 0
-
-                        videoFondo.play().catch(
-                            function(error)
-                            {
-                                console.error(
-                                    "No se pudo reanudar el video:",
-                                    error
-                                )
-                            }
-                        )
-                    }
-                }
-            )
-
-
-            /* =========================
-               IMAGEN RESPONSIVE
-               ========================= */
-
-            function elegirImagenMenu()
-            {
-                if(window.innerWidth <= 600)
-                {
-                    imagenMenu.src =
-                        "fondoMenu1.png"
-                }
-
-                else
-                {
-                    imagenMenu.src =
-                        "fondoMenu.png"
-                }
+                );
             }
+        );
 
 
-            /* =========================
-               SIGUIENTE CANCIÓN
-               ========================= */
+        /* =========================
+           ENTRAR A CARTA
+           ========================= */
 
-            botonSiguiente.addEventListener(
-                "click",
-                function()
-                {
-                    indiceCancion++
-
-
-                    if(
-                        indiceCancion
-                        >=
-                        canciones.length
-                    )
-                    {
-                        indiceCancion = 0
-                    }
+        botonMenuCarta.addEventListener(
+            "click",
+            function()
+            {
+                pantalla =
+                    "carta";
 
 
-                    musica.src =
-                        canciones[indiceCancion]
+                menu.style.display =
+                    "none";
 
 
-                    musica.play()
-                }
+                contador.style.display =
+                    "none";
+
+
+                carta.style.display =
+                    "block";
+
+
+                imagenMenu.style.display =
+                    "block";
+
+
+                elegirImagenMenu();
+
+
+                /*
+                 * Reiniciamos la carta.
+                 */
+
+                carta.classList.remove(
+                    "abierta"
+                );
+
+
+                botonAbrirSobre.style.display =
+                    "block";
+
+
+                botonVolver.style.display =
+                    "none";
+
+
+                textoCarta.textContent =
+                    "";
+
+
+                posicion = 0;
+            }
+        );
+
+
+        /* =========================
+           ABRIR SOBRE
+           ========================= */
+
+        botonAbrirSobre.addEventListener(
+            "click",
+            function()
+            {
+                botonAbrirSobre.style.display =
+                    "none";
+
+
+                carta.classList.add(
+                    "abierta"
+                );
+
+
+                /*
+                 * Esperamos a que
+                 * el papel termine
+                 * de salir.
+                 */
+
+                setTimeout(
+                    escribirCarta,
+                    1500
+                );
+            }
+        );
+
+
+        /* =========================
+           ESCRIBIR CARTA
+           ========================= */
+
+        function escribirCarta()
+        {
+            if(
+                posicion
+                <
+                textoReal.length
             )
+            {
+                textoCarta.textContent +=
+                    textoReal[posicion];
 
 
-            /* =========================
-               CANCIÓN ANTERIOR
-               ========================= */
+                posicion++;
 
-            botonAnterior.addEventListener(
-                "click",
-                function()
+
+                setTimeout(
+                    escribirCarta,
+                    45
+                );
+            }
+            else
+            {
+                botonVolver.style.display =
+                    "block";
+            }
+        }
+
+
+        /* =========================
+           VOLVER
+           ========================= */
+
+        botonVolver.addEventListener(
+            "click",
+            function()
+            {
+                pantalla =
+                    "menu";
+
+
+                carta.style.display =
+                    "none";
+
+
+                menu.style.display =
+                    "block";
+
+
+                imagenMenu.style.display =
+                    "block";
+
+
+                elegirImagenMenu();
+
+
+                textoCarta.textContent =
+                    "";
+
+
+                posicion = 0;
+
+
+                carta.classList.remove(
+                    "abierta"
+                );
+
+
+                botonAbrirSobre.style.display =
+                    "block";
+
+
+                botonVolver.style.display =
+                    "none";
+            }
+        );
+
+
+        /* =========================
+           MÚSICA
+           ========================= */
+
+        botonMusica.addEventListener(
+            "click",
+            function()
+            {
+                musica.play();
+            }
+        );
+
+
+        botonPausa.addEventListener(
+            "click",
+            function()
+            {
+                musica.pause();
+            }
+        );
+
+
+        volumen.addEventListener(
+            "input",
+            function()
+            {
+                musica.volume =
+                    volumen.value;
+            }
+        );
+
+
+        /* =========================
+           SIGUIENTE CANCIÓN
+           ========================= */
+
+        botonSiguiente.addEventListener(
+            "click",
+            function()
+            {
+                indiceCancion++;
+
+
+                if(
+                    indiceCancion
+                    >=
+                    canciones.length
+                )
                 {
-                    indiceCancion--
-
-
-                    if(indiceCancion < 0)
-                    {
-                        indiceCancion =
-                            canciones.length - 1
-                    }
-
-
-                    musica.src =
-                        canciones[indiceCancion]
-
-
-                    musica.play()
+                    indiceCancion = 0;
                 }
-            )
 
 
-            /* =========================
-               TERMINÓ LA CANCIÓN
-               ========================= */
+                musica.src =
+                    canciones[indiceCancion];
 
-            musica.addEventListener(
-                "ended",
-                function()
+
+                musica.play();
+            }
+        );
+
+
+        /* =========================
+           CANCIÓN ANTERIOR
+           ========================= */
+
+        botonAnterior.addEventListener(
+            "click",
+            function()
+            {
+                indiceCancion--;
+
+
+                if(
+                    indiceCancion
+                    <
+                    0
+                )
                 {
-                    indiceCancion++
-
-
-                    if(
-                        indiceCancion
-                        >=
-                        canciones.length
-                    )
-                    {
-                        indiceCancion = 0
-                    }
-
-
-                    musica.src =
-                        canciones[indiceCancion]
-
-
-                    musica.play()
+                    indiceCancion =
+                        canciones.length - 1;
                 }
+
+
+                musica.src =
+                    canciones[indiceCancion];
+
+
+                musica.play();
+            }
+        );
+
+
+        /* =========================
+           TERMINÓ CANCIÓN
+           ========================= */
+
+        musica.addEventListener(
+            "ended",
+            function()
+            {
+                indiceCancion++;
+
+
+                if(
+                    indiceCancion
+                    >=
+                    canciones.length
+                )
+                {
+                    indiceCancion = 0;
+                }
+
+
+                musica.src =
+                    canciones[indiceCancion];
+
+
+                musica.play();
+            }
+        );
+
+
+        /* =========================
+           IMAGEN RESPONSIVE
+           ========================= */
+
+        function elegirImagenMenu()
+        {
+            if(
+                window.innerWidth
+                <=
+                600
             )
+            {
+                imagenMenu.src =
+                    "fondoMenu1.png";
+            }
+            else
+            {
+                imagenMenu.src =
+                    "fondoMenu.png";
+            }
+        }
 
-        </script>
 
-    </body>
+        /* =========================
+           VIDEO
+           ========================= */
+
+        videoFondo.addEventListener(
+            "ended",
+            function()
+            {
+                videoFondo.currentTime =
+                    0;
+
+
+                videoFondo.play()
+                .catch(
+                    function(error)
+                    {
+                        console.error(
+                            "No se pudo reproducir el video:",
+                            error
+                        );
+                    }
+                );
+            }
+        );
+
+
+        /* =========================
+           CAMBIO DE TAMAÑO
+           ========================= */
+
+        window.addEventListener(
+            "resize",
+            function()
+            {
+                elegirImagenMenu();
+            }
+        );
+
+    </script>
+
+</body>
+
 </html>
