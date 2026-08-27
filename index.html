@@ -5,9 +5,10 @@
 
     <title>Tarjeta para Eugenia</title>
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <style>
 
@@ -21,18 +22,17 @@
             height: 100%;
         }
 
-
         body
         {
             width: 100%;
 
-            min-height: 100vh;
-
-            margin: 0;
-
             background-color: lightpink;
 
             text-align: center;
+
+            margin: 0;
+
+            min-height: 100vh;
 
             overflow: hidden;
 
@@ -75,12 +75,6 @@
         }
 
 
-        button:hover
-        {
-            opacity: 0.9;
-        }
-
-
         /* =========================
            CONTADOR
            ========================= */
@@ -113,14 +107,12 @@
             text-align: center;
         }
 
-
         #mensajeContador
         {
             display: block;
 
             margin-bottom: 12px;
         }
-
 
         #tiempoContador
         {
@@ -152,7 +144,6 @@
             box-sizing: border-box;
         }
 
-
         #menu h2
         {
             color: deeppink;
@@ -164,7 +155,6 @@
 
             margin-top: 0;
         }
-
 
         #menu button
         {
@@ -179,316 +169,87 @@
 
 
         /* =========================
-           CARTA
+           CONTROLES DE MÚSICA
            ========================= */
 
-        #carta
+        #controlesMusica
         {
-            display: none;
+            position: fixed;
 
-            position: relative;
+            top: 2vh;
 
-            background-color: #fff8e7;
+            right: 2vw;
 
-            padding: 40px;
+            z-index: 20;
 
-            border-radius: 8px;
+            display: flex;
 
-            width: 80%;
+            align-items: center;
 
-            max-width: 550px;
+            justify-content: center;
 
-            box-sizing: border-box;
+            gap: 1vh;
 
-            box-shadow:
-                0 6px 20px
-                rgba(0, 0, 0, 0.3);
-
-            color: #4a3525;
-
-            background-image:
-                repeating-linear-gradient(
-                    0deg,
-                    rgba(150, 120, 80, 0.04)
-                    0px,
-                    rgba(150, 120, 80, 0.04)
-                    1px,
-                    transparent
-                    1px,
-                    transparent
-                    4px
-                );
-
-            animation:
-                aparecerCarta
-                1s ease;
-        }
-
-
-        #carta h2
-        {
-            color: deeppink;
-
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
-        }
-
-
-        #carta p
-        {
-            font-size: 20px;
-        }
-
-
-        #carta button
-        {
-            display: block;
-
-            width: 100%;
-
-            margin:
-                12px auto 0 auto;
-
-            font-size: 20px;
-        }
-
-
-        @keyframes aparecerCarta
-        {
-            from
-            {
-                opacity: 0;
-
-                transform:
-                    translateY(30px)
-                    rotate(-2deg);
-            }
-
-            to
-            {
-                opacity: 1;
-
-                transform:
-                    translateY(0)
-                    rotate(0deg);
-            }
-        }
-
-
-        /* =========================
-           JUEGO CAJA FUERTE
-           ========================= */
-
-        #juego
-        {
-            display: none;
+            padding: 1.5vh;
 
             background-color: white;
 
-            padding: 25px;
-
-            border-radius: 20px;
+            border-radius: 1vw;
 
             box-shadow:
-                0 6px 20px
-                rgba(0, 0, 0, 0.3);
+                0 4px 16px gray;
 
-            width: 85%;
-
-            max-width: 600px;
-
-            max-height: 90vh;
+            width:
+                clamp(180px, 20vw, 280px);
 
             box-sizing: border-box;
 
-            overflow-y: auto;
+            flex-direction: column;
         }
 
-
-        #juego h2
+        #controlesMusica button
         {
-            margin-top: 0;
+            font-size:
+                clamp(10px, 1vw, 14px);
 
+            padding:
+                0.7vw 0.8vw;
+        }
+
+        #controlesMusica label
+        {
             color: deeppink;
-
-            font-family:
-                Georgia,
-                "Times New Roman",
-                serif;
-        }
-
-
-        /* =========================
-           IMAGEN DE PREGUNTA
-           ========================= */
-
-        #imagenPregunta
-        {
-            display: block;
-
-            width: 100%;
-
-            max-width: 350px;
-
-            height: 220px;
-
-            object-fit: cover;
-
-            margin:
-                0 auto 20px auto;
-
-            border-radius: 15px;
-
-            box-shadow:
-                0 4px 12px
-                rgba(0, 0, 0, 0.25);
-        }
-
-
-        /* =========================
-           PREGUNTA
-           ========================= */
-
-        #pregunta
-        {
-            font-size: 22px;
 
             font-weight: bold;
 
-            color: #4a3525;
-
-            margin:
-                15px 0 20px 0;
+            font-size:
+                clamp(10px, 1vw, 14px);
         }
 
+        #volumen
+        {
+            accent-color: deeppink;
 
-        /* =========================
-           OPCIONES
-           ========================= */
+            width: 100%;
+        }
 
-        #opciones
+        #tituloMusica
+        {
+            margin: 0;
+
+            color: deeppink;
+
+            font-size:
+                clamp(11px, 1.2vw, 16px);
+
+            font-weight: bold;
+        }
+
+        #botonesMusica
         {
             display: flex;
 
-            flex-direction: column;
-
-            gap: 10px;
-        }
-
-
-        .opcion
-        {
-            width: 100%;
-
-            font-size: 18px;
-
-            padding: 12px;
-
-            background-color: #f6a6bd;
-
-            color: #4a3525;
-        }
-
-
-        .opcion:hover
-        {
-            background-color: #ed86a6;
-        }
-
-
-        .opcionCorrecta
-        {
-            background-color: #7ed957 !important;
-
-            color: white !important;
-        }
-
-
-        .opcionIncorrecta
-        {
-            background-color: #e74c3c !important;
-
-            color: white !important;
-        }
-
-
-        /* =========================
-           RESULTADO
-           ========================= */
-
-        #resultado
-        {
-            font-size: 20px;
-
-            font-weight: bold;
-
-            margin-top: 20px;
-
-            min-height: 30px;
-        }
-
-
-        /* =========================
-           SIGUIENTE
-           ========================= */
-
-        #botonSiguiente
-        {
-            display: none;
-
-            width: 100%;
-
-            margin-top: 15px;
-
-            font-size: 20px;
-        }
-
-
-        /* =========================
-           PREGUNTA ACTUAL
-           ========================= */
-
-        #numeroPregunta
-        {
-            color: deeppink;
-
-            font-weight: bold;
-
-            margin-bottom: 15px;
-        }
-
-
-        /* =========================
-           RESULTADO FINAL
-           ========================= */
-
-        #resultadoFinal
-        {
-            display: none;
-        }
-
-
-        #resultadoFinal h2
-        {
-            color: deeppink;
-        }
-
-
-        #cajaFuerteFinal
-        {
-            font-size: 90px;
-
-            margin: 20px;
-        }
-
-
-        #botonVolverJuego
-        {
-            width: 100%;
-
-            font-size: 20px;
+            gap: 0.5vw;
         }
 
 
@@ -515,7 +276,6 @@
             z-index: -1;
         }
 
-
         #fondoAnimado span
         {
             position: absolute;
@@ -523,10 +283,8 @@
             font-size: 30px;
 
             animation:
-                flotar
-                8s linear infinite;
+                flotar 8s linear infinite;
         }
-
 
         @keyframes flotar
         {
@@ -557,7 +315,6 @@
             }
         }
 
-
         #fondoAnimado span:nth-child(1)
         {
             left: 10%;
@@ -566,7 +323,6 @@
 
             animation-duration: 7s;
         }
-
 
         #fondoAnimado span:nth-child(2)
         {
@@ -577,7 +333,6 @@
             animation-duration: 9s;
         }
 
-
         #fondoAnimado span:nth-child(3)
         {
             left: 40%;
@@ -587,14 +342,12 @@
             animation-duration: 6s;
         }
 
-
         #fondoAnimado span:nth-child(4)
         {
             left: 55%;
 
             animation-duration: 10s;
         }
-
 
         #fondoAnimado span:nth-child(5)
         {
@@ -603,7 +356,6 @@
             animation-duration: 8s;
         }
 
-
         #fondoAnimado span:nth-child(6)
         {
             left: 85%;
@@ -611,14 +363,12 @@
             animation-duration: 7s;
         }
 
-
         #fondoAnimado span:nth-child(7)
         {
             left: 35%;
 
             animation-duration: 11s;
         }
-
 
         #fondoAnimado span:nth-child(8)
         {
@@ -655,6 +405,10 @@
         }
 
 
+        /* =========================
+           CAPA DEL VIDEO
+           ========================= */
+
         #capaFondo
         {
             position: fixed;
@@ -678,7 +432,7 @@
 
 
         /* =========================
-           IMAGEN MENÚ
+           IMAGEN DEL MENÚ
            ========================= */
 
         #imagenMenu
@@ -704,109 +458,344 @@
 
 
         /* =========================
-           MÚSICA
+           CARTA / SOBRE
            ========================= */
 
-        #controlesMusica
+        #carta
         {
-            position: fixed;
+            display: none;
 
-            top: 2vh;
+            position: relative;
 
-            right: 2vw;
+            width: 600px;
 
-            z-index: 10;
+            max-width: 90%;
 
-            display: flex;
+            height: 500px;
 
-            align-items: center;
+            z-index: 5;
+        }
 
-            justify-content: center;
 
-            gap: 1vh;
+        /* =========================
+           SOBRE
+           ========================= */
 
-            padding: 1.5vh;
+        #sobre
+        {
+            position: absolute;
 
-            background-color: white;
+            left: 50%;
 
-            border-radius: 1vw;
+            bottom: 80px;
+
+            transform:
+                translateX(-50%);
+
+            width: 420px;
+
+            height: 270px;
+
+            max-width: 90vw;
+
+            background-color:
+                #e89aaa;
+
+            border-radius: 8px;
 
             box-shadow:
-                0 4px 16px gray;
-
-            width:
-                clamp(
-                    180px,
-                    20vw,
-                    280px
+                0 8px 25px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.3
                 );
+
+            z-index: 2;
+        }
+
+
+        /* =========================
+           PARTE TRASERA DEL SOBRE
+           ========================= */
+
+        #parteTrasera
+        {
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 100%;
+
+            height: 100%;
+
+            background-color:
+                #e89aaa;
+
+            border-radius: 8px;
+
+            z-index: 1;
+        }
+
+
+        /* =========================
+           SOLAPA DEL SOBRE
+           ========================= */
+
+        #solapa
+        {
+            position: absolute;
+
+            top: 0;
+
+            left: 0;
+
+            width: 0;
+
+            height: 0;
+
+            border-left:
+                210px solid transparent;
+
+            border-right:
+                210px solid transparent;
+
+            border-top:
+                145px solid #d87991;
+
+            transform-origin: top center;
+
+            z-index: 5;
+
+            transition:
+                transform 1s ease;
+        }
+
+
+        /* =========================
+           PARTE DELANTERA DEL SOBRE
+           ========================= */
+
+        #parteDelantera
+        {
+            position: absolute;
+
+            left: 0;
+
+            bottom: 0;
+
+            width: 100%;
+
+            height: 55%;
+
+            background-color:
+                #d97991;
+
+            clip-path:
+                polygon(
+                    0 0,
+                    50% 60%,
+                    100% 0,
+                    100% 100%,
+                    0 100%
+                );
+
+            z-index: 4;
+        }
+
+
+        /* =========================
+           PAPEL
+           ========================= */
+
+        #papel
+        {
+            position: absolute;
+
+            left: 50%;
+
+            bottom: 35px;
+
+            transform:
+                translateX(-50%)
+                translateY(0);
+
+            width: 360px;
+
+            height: 330px;
+
+            max-width: 80vw;
+
+            background-color:
+                #fffdf4;
+
+            border-radius: 4px;
+
+            box-shadow:
+                0 4px 15px
+                rgba(
+                    0,
+                    0,
+                    0,
+                    0.25
+                );
+
+            z-index: 3;
+
+            padding: 25px;
 
             box-sizing: border-box;
 
-            flex-direction: column;
+            opacity: 0;
+
+            transition:
+                transform 1.5s ease,
+                opacity 0.5s ease;
         }
 
 
-        #controlesMusica button
+        /* =========================
+           PAPEL SALIENDO
+           ========================= */
+
+        #carta.abierta #papel
         {
-            font-size:
-                clamp(
-                    10px,
-                    1vw,
-                    14px
-                );
+            opacity: 1;
 
-            padding:
-                0.7vw
-                0.8vw;
+            transform:
+                translateX(-50%)
+                translateY(-210px);
         }
 
 
-        #controlesMusica label
+        /* =========================
+           ABRIR SOLAPA
+           ========================= */
+
+        #carta.abierta #solapa
+        {
+            transform:
+                rotateX(180deg);
+
+            z-index: 1;
+        }
+
+
+        /* =========================
+           TEXTO DEL PAPEL
+           ========================= */
+
+        #papel h2
         {
             color: deeppink;
 
-            font-weight: bold;
+            font-family:
+                Georgia,
+                "Times New Roman",
+                serif;
 
-            font-size:
-                clamp(
-                    10px,
-                    1vw,
-                    14px
-                );
+            margin-top: 0;
+
+            font-size: 24px;
         }
 
-
-        #volumen
+        #textoCarta
         {
-            accent-color: deeppink;
+            color: #4a3525;
 
-            width: 100%;
-        }
+            font-size: 18px;
 
+            line-height: 1.5;
 
-        #tituloMusica
-        {
+            text-align: left;
+
             margin: 0;
 
-            color: deeppink;
+            overflow-y: auto;
 
-            font-size:
-                clamp(
-                    11px,
-                    1.2vw,
-                    16px
-                );
-
-            font-weight: bold;
+            max-height: 220px;
         }
 
 
-        #botonesMusica
-        {
-            display: flex;
+        /* =========================
+           BOTÓN VOLVER
+           ========================= */
 
-            gap: 0.5vw;
+        #botonVolver
+        {
+            position: absolute;
+
+            left: 50%;
+
+            bottom: 15px;
+
+            transform:
+                translateX(-50%);
+
+            z-index: 10;
+
+            font-size: 18px;
+
+            padding: 10px 20px;
+
+            display: none;
+        }
+
+
+        /* =========================
+           SOBRE CERRADO
+           ========================= */
+
+        #carta:not(.abierta)
+        {
+            animation:
+                aparecerSobre 0.8s ease;
+        }
+
+        @keyframes aparecerSobre
+        {
+            from
+            {
+                opacity: 0;
+
+                transform:
+                    translateY(30px);
+            }
+
+            to
+            {
+                opacity: 1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+        /* =========================
+           BOTÓN ABRIR
+           ========================= */
+
+        #botonAbrirSobre
+        {
+            position: absolute;
+
+            left: 50%;
+
+            bottom: 20px;
+
+            transform:
+                translateX(-50%);
+
+            z-index: 10;
+
+            font-size: 18px;
+
+            padding:
+                10px 20px;
         }
 
 
@@ -814,40 +803,8 @@
            CELULAR
            ========================= */
 
-        @media (max-width: 600px)
+        @media(max-width: 600px)
         {
-            #juego
-            {
-                width: 92%;
-
-                padding: 20px;
-            }
-
-
-            #imagenPregunta
-            {
-                height: 180px;
-            }
-
-
-            #pregunta
-            {
-                font-size: 19px;
-            }
-
-
-            .opcion
-            {
-                font-size: 16px;
-            }
-
-
-            #carta
-            {
-                padding: 24px;
-            }
-
-
             #contador
             {
                 width: 90%;
@@ -855,6 +812,69 @@
                 font-size: 18px;
 
                 padding: 16px;
+            }
+
+
+            #carta
+            {
+                width: 100%;
+
+                height: 470px;
+            }
+
+
+            #sobre
+            {
+                width: 320px;
+
+                height: 210px;
+
+                bottom: 90px;
+            }
+
+
+            #solapa
+            {
+                border-left-width:
+                    160px;
+
+                border-right-width:
+                    160px;
+
+                border-top-width:
+                    110px;
+            }
+
+
+            #papel
+            {
+                width: 280px;
+
+                height: 300px;
+
+                padding: 20px;
+            }
+
+
+            #carta.abierta #papel
+            {
+                transform:
+                    translateX(-50%)
+                    translateY(-170px);
+            }
+
+
+            #papel h2
+            {
+                font-size: 21px;
+            }
+
+
+            #textoCarta
+            {
+                font-size: 16px;
+
+                max-height: 205px;
             }
         }
 
@@ -875,28 +895,37 @@
         autoplay
         muted
         playsinline
-        preload="auto">
+        preload="auto"
+    >
 
         <source
             src="fondo.mp4"
-            type="video/mp4">
+            type="video/mp4"
+        >
 
     </video>
 
 
-    <!-- CAPA -->
+    <!-- =========================
+         CAPA
+         ========================= -->
 
     <div id="capaFondo"></div>
 
 
-    <!-- IMAGEN MENÚ -->
+    <!-- =========================
+         IMAGEN MENÚ
+         ========================= -->
 
     <img
         id="imagenMenu"
-        src="fondoMenu.png">
+        src="fondoMenu.png"
+    >
 
 
-    <!-- FONDO -->
+    <!-- =========================
+         FONDO ANIMADO
+         ========================= -->
 
     <div id="fondoAnimado">
 
@@ -931,7 +960,7 @@
         </button>
 
 
-        <button id="botonMenuJuego">
+        <button>
 
             🔐 Juego de la Caja fuerte
 
@@ -946,160 +975,115 @@
 
     <div id="carta">
 
-        <h2>
-            💌 Para vos
-        </h2>
+
+        <!-- PAPEL -->
+
+        <div id="papel">
+
+            <h2>
+                💌 Para vos
+            </h2>
+
+            <p id="textoCarta"></p>
+
+        </div>
 
 
-        <p id="textoCarta"></p>
+        <!-- SOBRE -->
+
+        <div id="sobre">
 
 
-        <button id="botonCarta">
+            <!-- PARTE TRASERA -->
+
+            <div id="parteTrasera"></div>
+
+
+            <!-- PAPEL SALE POR AQUÍ -->
+
+
+            <!-- SOLAPA -->
+
+            <div id="solapa"></div>
+
+
+            <!-- PARTE DELANTERA -->
+
+            <div id="parteDelantera"></div>
+
+        </div>
+
+
+        <!-- BOTÓN -->
+
+        <button id="botonAbrirSobre">
 
             Abrir carta 💗
 
         </button>
 
 
-        <button id="botonVolverCarta">
+        <button id="botonVolver">
 
             Volver al menú
 
         </button>
 
-    </div>
-
-
-    <!-- =========================
-         JUEGO
-         ========================= -->
-
-    <div id="juego">
-
-
-        <!-- PREGUNTA -->
-
-        <div id="pantallaPregunta">
-
-            <div id="numeroPregunta">
-                Pregunta 1 de 5
-            </div>
-
-
-            <img
-                id="imagenPregunta"
-                src="pregunta1.jpg">
-
-
-            <div id="pregunta">
-                Pregunta
-            </div>
-
-
-            <div id="opciones">
-
-                <button
-                    class="opcion"
-                    id="opcion0">
-                </button>
-
-
-                <button
-                    class="opcion"
-                    id="opcion1">
-                </button>
-
-
-                <button
-                    class="opcion"
-                    id="opcion2">
-                </button>
-
-
-                <button
-                    class="opcion"
-                    id="opcion3">
-                </button>
-
-            </div>
-
-
-            <div id="resultado"></div>
-
-
-            <button id="botonSiguiente">
-
-                Siguiente →
-
-            </button>
-
-        </div>
-
-
-        <!-- RESULTADO FINAL -->
-
-        <div id="resultadoFinal">
-
-            <div id="cajaFuerteFinal">
-
-                🔐
-
-            </div>
-
-
-            <h2>
-                ¡Juego terminado! 🎉
-            </h2>
-
-
-            <p id="mensajeFinal"></p>
-
-
-            <button id="botonVolverJuego">
-
-                Volver al menú
-
-            </button>
-
-        </div>
 
     </div>
 
 
     <!-- =========================
-         MÚSICA
+         CONTROLES DE MÚSICA
          ========================= -->
 
     <div id="controlesMusica">
 
         <p id="tituloMusica">
+
             🎵 Música
+
         </p>
 
 
         <div id="botonesMusica">
 
+
             <button id="botonAnterior">
+
                 ⏮
+
             </button>
+
 
             <button id="botonMusica">
+
                 ▶
+
             </button>
+
 
             <button id="botonPausa">
+
                 ⏸
+
             </button>
 
+
             <button id="botonSiguiente">
+
                 ⏭
+
             </button>
+
 
         </div>
 
 
         <label for="volumen">
+
             Volumen 🔊
+
         </label>
 
 
@@ -1109,12 +1093,15 @@
             min="0"
             max="1"
             step="0.1"
-            value="0.5">
+            value="0.5"
+        >
 
     </div>
 
 
-    <!-- AUDIO -->
+    <!-- =========================
+         AUDIO
+         ========================= -->
 
     <audio id="musica"></audio>
 
@@ -1142,830 +1129,216 @@
         const fechaCumple =
             new Date(
                 "2026-08-27T17:33:00-03:00"
-            )
+            );
 
 
-        const modoPrueba = false
+        const modoPrueba = false;
 
-        const probarMenu = false
+        const probarMenu = false;
 
 
         /* =========================
            ELEMENTOS
            ========================= */
 
-        const contador =
+        const botonMusica =
             document.getElementById(
-                "contador"
-            )
+                "botonMusica"
+            );
 
 
-        const mensajeContador =
+        const musica =
             document.getElementById(
-                "mensajeContador"
-            )
+                "musica"
+            );
 
 
-        const tiempoContador =
+        const botonPausa =
             document.getElementById(
-                "tiempoContador"
-            )
+                "botonPausa"
+            );
+
+
+        const volumen =
+            document.getElementById(
+                "volumen"
+            );
 
 
         const menu =
             document.getElementById(
                 "menu"
-            )
+            );
 
 
         const carta =
             document.getElementById(
                 "carta"
-            )
+            );
 
-
-        const juego =
-            document.getElementById(
-                "juego"
-            )
-
-
-        const imagenMenu =
-            document.getElementById(
-                "imagenMenu"
-            )
-
-
-        const videoFondo =
-            document.getElementById(
-                "videoFondo"
-            )
-
-
-        const capaFondo =
-            document.getElementById(
-                "capaFondo"
-            )
-
-
-        const fondoAnimado =
-            document.getElementById(
-                "fondoAnimado"
-            )
-
-
-        /* =========================
-           CARTA
-           ========================= */
 
         const botonMenuCarta =
             document.getElementById(
                 "botonMenuCarta"
-            )
+            );
 
 
-        const botonCarta =
+        const botonAbrirSobre =
             document.getElementById(
-                "botonCarta"
-            )
+                "botonAbrirSobre"
+            );
 
 
-        const botonVolverCarta =
+        const botonVolver =
             document.getElementById(
-                "botonVolverCarta"
-            )
+                "botonVolver"
+            );
+
+
+        const papel =
+            document.getElementById(
+                "papel"
+            );
 
 
         const textoCarta =
             document.getElementById(
                 "textoCarta"
-            )
+            );
 
 
-        let posicion = 0
-
-        let cartaEscrita = false
-
-
-        const texto =
-            "Hay algo que quiero decirte..."
-
-
-        const textoReal =
-            "Eugenia, hoy es tu cumpleaños y espero que estas palabras alcancen por lo menos a reflejar lo mucho que te quiero. Gracias por siempre estar, por todos tus regalos y por los momentos lindos que generas."
-
-
-        /* =========================
-           JUEGO
-           ========================= */
-
-        const botonMenuJuego =
+        const contador =
             document.getElementById(
-                "botonMenuJuego"
-            )
+                "contador"
+            );
 
 
-        const imagenPregunta =
+        const mensajeContador =
             document.getElementById(
-                "imagenPregunta"
-            )
+                "mensajeContador"
+            );
 
 
-        const pregunta =
+        const tiempoContador =
             document.getElementById(
-                "pregunta"
-            )
+                "tiempoContador"
+            );
 
 
-        const numeroPregunta =
+        const fondoAnimado =
             document.getElementById(
-                "numeroPregunta"
-            )
+                "fondoAnimado"
+            );
 
 
-        const resultado =
+        const videoFondo =
             document.getElementById(
-                "resultado"
-            )
+                "videoFondo"
+            );
+
+
+        const capaFondo =
+            document.getElementById(
+                "capaFondo"
+            );
+
+
+        const imagenMenu =
+            document.getElementById(
+                "imagenMenu"
+            );
+
+
+        const botonAnterior =
+            document.getElementById(
+                "botonAnterior"
+            );
 
 
         const botonSiguiente =
             document.getElementById(
                 "botonSiguiente"
-            )
+            );
 
 
-        const pantallaPregunta =
+        const tituloMusica =
             document.getElementById(
-                "pantallaPregunta"
-            )
+                "tituloMusica"
+            );
 
 
-        const resultadoFinal =
-            document.getElementById(
-                "resultadoFinal"
-            )
+        /* =========================
+           TEXTOS
+           ========================= */
+
+        const textoReal =
+            "Eugenia, hoy es tu cumpleaños y espero que estas palabras alcancen por lo menos a reflejar lo mucho que te quiero. Gracias por siempre estar, por todos tus regalos y por los momentos lindos que generas.";
 
 
-        const mensajeFinal =
-            document.getElementById(
-                "mensajeFinal"
-            )
+        /* =========================
+           CANCIONES
+           ========================= */
 
-
-        const botonVolverJuego =
-            document.getElementById(
-                "botonVolverJuego"
-            )
-
-
-        const opciones =
+        const canciones =
         [
-            document.getElementById(
-                "opcion0"
-            ),
-
-            document.getElementById(
-                "opcion1"
-            ),
-
-            document.getElementById(
-                "opcion2"
-            ),
-
-            document.getElementById(
-                "opcion3"
-            )
-        ]
+            "musica3.mp3",
+            "musica1.mp3",
+            "musica2.mp3",
+            "musica.mp3"
+        ];
 
 
         /* =========================
-           PREGUNTAS
+           ESTADO
            ========================= */
 
-        const preguntas =
-        [
+        let indiceCancion = 0;
 
-            {
-                imagen: "pregunta1.jpg",
+        let posicion = 0;
 
-                pregunta:
-                    "¿Cuál de estas opciones es la correcta?",
+        let pantalla = "menu";
 
-                opciones:
-                [
-                    "Respuesta A",
-                    "Respuesta B",
-                    "Respuesta C",
-                    "Respuesta D"
-                ],
+        let ahoraOficial;
 
-                correcta: 0
-            },
-
-
-            {
-                imagen: "pregunta2.jpg",
-
-                pregunta:
-                    "¿Cuál de estas opciones elegirías?",
-
-                opciones:
-                [
-                    "Respuesta A",
-                    "Respuesta B",
-                    "Respuesta C",
-                    "Respuesta D"
-                ],
-
-                correcta: 1
-            },
-
-
-            {
-                imagen: "pregunta3.jpg",
-
-                pregunta:
-                    "¿Cuál es la respuesta correcta?",
-
-                opciones:
-                [
-                    "Respuesta A",
-                    "Respuesta B",
-                    "Respuesta C",
-                    "Respuesta D"
-                ],
-
-                correcta: 2
-            },
-
-
-            {
-                imagen: "pregunta4.jpg",
-
-                pregunta:
-                    "¿Qué opción corresponde?",
-
-                opciones:
-                [
-                    "Respuesta A",
-                    "Respuesta B",
-                    "Respuesta C",
-                    "Respuesta D"
-                ],
-
-                correcta: 3
-            },
-
-
-            {
-                imagen: "pregunta5.jpg",
-
-                pregunta:
-                    "Última pregunta. ¿Cuál es la correcta?",
-
-                opciones:
-                [
-                    "Respuesta A",
-                    "Respuesta B",
-                    "Respuesta C",
-                    "Respuesta D"
-                ],
-
-                correcta: 0
-            }
-
-        ]
-
-
-        let indicePregunta = 0
-
-        let respuestasCorrectas = 0
-
-        let respondio = false
+        let momentoConsulta;
 
 
         /* =========================
-           MOSTRAR PREGUNTA
+           MÚSICA INICIAL
            ========================= */
 
-        function mostrarPregunta()
-        {
-            const datos =
-                preguntas[indicePregunta]
+        musica.volume =
+            volumen.value;
 
 
-            numeroPregunta.textContent =
-                "Pregunta "
-                +
-                (indicePregunta + 1)
-                +
-                " de "
-                +
-                preguntas.length
-
-
-            imagenPregunta.src =
-                datos.imagen
-
-
-            pregunta.textContent =
-                datos.pregunta
-
-
-            opciones[0].textContent =
-                "A) " + datos.opciones[0]
-
-
-            opciones[1].textContent =
-                "B) " + datos.opciones[1]
-
-
-            opciones[2].textContent =
-                "C) " + datos.opciones[2]
-
-
-            opciones[3].textContent =
-                "D) " + datos.opciones[3]
-
-
-            resultado.textContent = ""
-
-
-            botonSiguiente.style.display =
-                "none"
-
-
-            respondio = false
-
-
-            opciones[0].disabled = false
-            opciones[1].disabled = false
-            opciones[2].disabled = false
-            opciones[3].disabled = false
-
-
-            opciones[0].classList.remove(
-                "opcionCorrecta"
-            )
-
-            opciones[1].classList.remove(
-                "opcionCorrecta"
-            )
-
-            opciones[2].classList.remove(
-                "opcionCorrecta"
-            )
-
-            opciones[3].classList.remove(
-                "opcionCorrecta"
-            )
-
-
-            opciones[0].classList.remove(
-                "opcionIncorrecta"
-            )
-
-            opciones[1].classList.remove(
-                "opcionIncorrecta"
-            )
-
-            opciones[2].classList.remove(
-                "opcionIncorrecta"
-            )
-
-            opciones[3].classList.remove(
-                "opcionIncorrecta"
-            )
-        }
+        musica.src =
+            canciones[indiceCancion];
 
 
         /* =========================
-           RESPONDER
+           OBTENER HORA
            ========================= */
-
-        function responder(numero)
-        {
-            if(respondio)
-            {
-                return
-            }
-
-
-            respondio = true
-
-
-            const datos =
-                preguntas[indicePregunta]
-
-
-            if(numero == datos.correcta)
-            {
-                respuestasCorrectas++
-
-
-                resultado.textContent =
-                    "¡Correcto! 💗"
-
-
-                opciones[numero]
-                    .classList.add(
-                        "opcionCorrecta"
-                    )
-            }
-
-            else
-            {
-                resultado.textContent =
-                    "Incorrecto 😢"
-
-
-                opciones[numero]
-                    .classList.add(
-                        "opcionIncorrecta"
-                    )
-
-
-                opciones[datos.correcta]
-                    .classList.add(
-                        "opcionCorrecta"
-                    )
-            }
-
-
-            opciones[0].disabled = true
-            opciones[1].disabled = true
-            opciones[2].disabled = true
-            opciones[3].disabled = true
-
-
-            botonSiguiente.style.display =
-                "block"
-        }
-
-
-        /* =========================
-           BOTONES OPCIONES
-           ========================= */
-
-        opciones[0].addEventListener(
-            "click",
-            function()
-            {
-                responder(0)
-            }
-        )
-
-
-        opciones[1].addEventListener(
-            "click",
-            function()
-            {
-                responder(1)
-            }
-        )
-
-
-        opciones[2].addEventListener(
-            "click",
-            function()
-            {
-                responder(2)
-            }
-        )
-
-
-        opciones[3].addEventListener(
-            "click",
-            function()
-            {
-                responder(3)
-            }
-        )
-
-
-        /* =========================
-           SIGUIENTE
-           ========================= */
-
-        botonSiguiente.addEventListener(
-            "click",
-            function()
-            {
-                indicePregunta++
-
-
-                if(
-                    indicePregunta
-                    >=
-                    preguntas.length
-                )
-                {
-                    mostrarResultadoFinal()
-                }
-
-                else
-                {
-                    mostrarPregunta()
-                }
-            }
-        )
-
-
-        /* =========================
-           RESULTADO FINAL
-           ========================= */
-
-        function mostrarResultadoFinal()
-        {
-            pantallaPregunta.style.display =
-                "none"
-
-
-            resultadoFinal.style.display =
-                "block"
-
-
-            mensajeFinal.textContent =
-                "Acertaste "
-                +
-                respuestasCorrectas
-                +
-                " de "
-                +
-                preguntas.length
-                +
-                " preguntas."
-
-
-            if(
-                respuestasCorrectas
-                ==
-                preguntas.length
-            )
-            {
-                document.getElementById(
-                    "cajaFuerteFinal"
-                ).textContent =
-                    "🔓"
-
-
-                mensajeFinal.textContent +=
-                    " ¡Abriste la caja fuerte! 💗"
-            }
-
-            else
-            {
-                mensajeFinal.textContent +=
-                    " La caja fuerte todavía está cerrada 🔒"
-            }
-        }
-
-
-        /* =========================
-           ABRIR JUEGO
-           ========================= */
-
-        botonMenuJuego.addEventListener(
-            "click",
-            function()
-            {
-                juego.style.display =
-                    "block"
-
-
-                menu.style.display =
-                    "none"
-
-
-                contador.style.display =
-                    "none"
-
-
-                imagenMenu.style.display =
-                    "none"
-
-
-                indicePregunta = 0
-
-                respuestasCorrectas = 0
-
-
-                pantallaPregunta.style.display =
-                    "block"
-
-
-                resultadoFinal.style.display =
-                    "none"
-
-
-                mostrarPregunta()
-            }
-        )
-
-
-        /* =========================
-           VOLVER DESDE JUEGO
-           ========================= */
-
-        botonVolverJuego.addEventListener(
-            "click",
-            function()
-            {
-                juego.style.display =
-                    "none"
-
-
-                menu.style.display =
-                    "block"
-
-
-                imagenMenu.style.display =
-                    "block"
-            }
-        )
-
-
-        /* =========================
-           CARTA
-           ========================= */
-
-        function escribirCarta()
-        {
-            if(
-                cartaEscrita
-            )
-            {
-                return
-            }
-
-
-            if(
-                posicion
-                <
-                texto.length
-            )
-            {
-                textoCarta.textContent +=
-                    texto[posicion]
-
-
-                posicion++
-
-
-                setTimeout(
-                    escribirCarta,
-                    80
-                )
-            }
-
-            else
-            {
-                cartaEscrita = true
-            }
-        }
-
-
-        botonMenuCarta.addEventListener(
-            "click",
-            function()
-            {
-                menu.style.display =
-                    "none"
-
-
-                carta.style.display =
-                    "block"
-
-
-                contador.style.display =
-                    "none"
-
-
-                imagenMenu.style.display =
-                    "none"
-
-
-                textoCarta.textContent =
-                    ""
-
-
-                posicion = 0
-
-                cartaEscrita = false
-
-
-                botonCarta.style.display =
-                    "block"
-
-
-                botonVolverCarta.style.display =
-                    "none"
-
-
-                escribirCarta()
-            }
-        )
-
-
-        botonCarta.addEventListener(
-            "click",
-            function()
-            {
-                textoCarta.textContent =
-                    ""
-
-
-                posicion = 0
-
-
-                escribirTextoReal()
-
-
-                botonCarta.style.display =
-                    "none"
-
-
-                botonVolverCarta.style.display =
-                    "block"
-            }
-        )
-
-
-        function escribirTextoReal()
-        {
-            if(
-                posicion
-                <
-                textoReal.length
-            )
-            {
-                textoCarta.textContent +=
-                    textoReal[posicion]
-
-
-                posicion++
-
-
-                setTimeout(
-                    escribirTextoReal,
-                    50
-                )
-            }
-        }
-
-
-        botonVolverCarta.addEventListener(
-            "click",
-            function()
-            {
-                carta.style.display =
-                    "none"
-
-
-                menu.style.display =
-                    "block"
-
-
-                imagenMenu.style.display =
-                    "block"
-
-
-                textoCarta.textContent =
-                    ""
-            }
-        )
-
-
-        /* =========================
-           HORA OFICIAL
-           ========================= */
-
-        let ahoraOficial
-
-        let momentoConsulta
-
 
         async function obtenerHora()
         {
             const respuesta =
                 await fetch(
                     "https://timeapi.io/api/time/current/zone?timeZone=America/Argentina/Buenos_Aires"
-                )
+                );
 
 
             const datos =
-                await respuesta.json()
+                await respuesta.json();
 
 
             ahoraOficial =
                 new Date(
                     datos.dateTime
-                )
+                );
 
 
             momentoConsulta =
-                Date.now()
+                Date.now();
         }
 
 
@@ -1975,219 +1348,664 @@
 
         function actualizarContador()
         {
-            if(
-                !ahoraOficial
-            )
-            {
-                return
-            }
-
-
             const tiempoTranscurrido =
                 Date.now()
-                -
-                momentoConsulta
+                - momentoConsulta;
 
 
             const ahora =
                 new Date(
                     ahoraOficial.getTime()
-                    +
-                    tiempoTranscurrido
-                )
+                    + tiempoTranscurrido
+                );
 
 
             const diferencia =
-                fechaCumple
-                -
-                ahora
+                fechaCumple - ahora;
 
+
+            /* =========================
+               MODO PRUEBA
+               ========================= */
 
             if(
-                diferencia > 0
+                probarMenu
+                ||
+                modoPrueba
             )
             {
                 if(
-                    menu.style.display
-                    !=
-                    "block"
-                    &&
-                    carta.style.display
-                    !=
-                    "block"
-                    &&
-                    juego.style.display
-                    !=
-                    "block"
+                    pantalla
+                    ==
+                    "menu"
                 )
                 {
+                    menu.style.display =
+                        "block";
+
+
+                    carta.style.display =
+                        "none";
+
+
                     contador.style.display =
-                        "block"
+                        "none";
+
+
+                    fondoAnimado.style.display =
+                        "block";
+
+
+                    videoFondo.style.display =
+                        "none";
+
+
+                    capaFondo.style.display =
+                        "none";
+
+
+                    elegirImagenMenu();
+
+
+                    imagenMenu.style.display =
+                        "block";
+                }
+
+
+                return;
+            }
+
+
+            /* =========================
+               TODAVÍA NO LLEGÓ
+               ========================= */
+
+            if(diferencia > 0)
+            {
+                if(
+                    pantalla
+                    ==
+                    "menu"
+                )
+                {
+                    menu.style.display =
+                        "none";
+
+
+                    carta.style.display =
+                        "none";
+
+
+                    contador.style.display =
+                        "block";
+                }
+
+
+                if(
+                    pantalla
+                    ==
+                    "carta"
+                )
+                {
+                    menu.style.display =
+                        "none";
+
+
+                    carta.style.display =
+                        "block";
+
+
+                    contador.style.display =
+                        "none";
                 }
 
 
                 fondoAnimado.style.display =
-                    "block"
+                    "block";
 
 
                 videoFondo.style.display =
-                    "block"
+                    "block";
 
 
                 capaFondo.style.display =
-                    "block"
+                    "block";
 
 
                 imagenMenu.style.display =
-                    "none"
+                    "none";
+
+
+                tituloMusica.textContent =
+                    "¿Querés escuchar música mientras esperás?";
             }
+
+
+            /* =========================
+               YA LLEGÓ
+               ========================= */
 
             else
             {
                 if(
-                    carta.style.display
-                    !=
-                    "block"
-                    &&
-                    juego.style.display
-                    !=
-                    "block"
+                    pantalla
+                    ==
+                    "menu"
                 )
                 {
                     menu.style.display =
-                        "block"
+                        "block";
+
+
+                    carta.style.display =
+                        "none";
 
 
                     contador.style.display =
-                        "none"
+                        "none";
 
 
                     fondoAnimado.style.display =
-                        "none"
+                        "none";
 
 
                     videoFondo.style.display =
-                        "none"
+                        "none";
 
 
                     capaFondo.style.display =
-                        "none"
+                        "none";
+
+
+                    elegirImagenMenu();
 
 
                     imagenMenu.style.display =
-                        "block"
+                        "block";
+
+
+                    musica.style.display =
+                        "none";
+
+
+                    tituloMusica.textContent =
+                        "🎵 Música";
                 }
+
+
+                if(
+                    pantalla
+                    ==
+                    "carta"
+                )
+                {
+                    menu.style.display =
+                        "none";
+
+
+                    carta.style.display =
+                        "block";
+
+
+                    contador.style.display =
+                        "none";
+
+
+                    fondoAnimado.style.display =
+                        "none";
+
+
+                    videoFondo.style.display =
+                        "none";
+
+
+                    capaFondo.style.display =
+                        "none";
+
+
+                    /*
+                     * IMPORTANTE:
+                     *
+                     * La imagen del menú
+                     * permanece como fondo.
+                     */
+
+                    elegirImagenMenu();
+
+
+                    imagenMenu.style.display =
+                        "block";
+
+
+                    musica.style.display =
+                        "none";
+                }
+
+
+                return;
             }
 
 
-            if(
-                diferencia <= 0
-            )
-            {
-                return
-            }
+            /* =========================
+               CALCULAR TIEMPO
+               ========================= */
+
+            const segundos =
+                diferencia / 1000;
 
 
             const segundosEnteros =
                 Math.floor(
-                    diferencia / 1000
-                )
+                    segundos
+                );
 
 
             const diasEnteros =
                 Math.floor(
                     segundosEnteros
-                    /
-                    86400
-                )
+                    / 86400
+                );
 
 
             const segundosRestantes =
                 segundosEnteros
-                %
-                86400
+                % 86400;
 
 
             const horasEnteras =
                 Math.floor(
                     segundosRestantes
-                    /
-                    3600
-                )
+                    / 3600
+                );
 
 
             const segundosDespuesDeHoras =
                 segundosRestantes
-                %
-                3600
+                % 3600;
 
 
             const minutosEnteros =
                 Math.floor(
                     segundosDespuesDeHoras
-                    /
-                    60
-                )
+                    / 60
+                );
 
 
-            const segundosRestantesFinal =
+            const segundosEnterosRestantes =
                 segundosDespuesDeHoras
-                %
-                60
+                % 60;
+
+
+            const diasTexto =
+                String(
+                    diasEnteros
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const horasTexto =
+                String(
+                    horasEnteras
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const minutosTexto =
+                String(
+                    minutosEnteros
+                ).padStart(
+                    2,
+                    "0"
+                );
+
+
+            const segundosTexto =
+                String(
+                    segundosEnterosRestantes
+                ).padStart(
+                    2,
+                    "0"
+                );
 
 
             mensajeContador.textContent =
-                "¡Falta poco para tu sorpresa!"
+                "¡Falta poco para tu sorpresa!";
 
 
             tiempoContador.textContent =
-                String(diasEnteros)
-                .padStart(2, "0")
-                +
-                " días, "
-                +
-                String(horasEnteras)
-                .padStart(2, "0")
-                +
-                " horas, "
-                +
-                String(minutosEnteros)
-                .padStart(2, "0")
-                +
-                " minutos y "
-                +
-                String(segundosRestantesFinal)
-                .padStart(2, "0")
-                +
-                " segundos"
+                diasTexto
+                + " días, "
+                + horasTexto
+                + " horas, "
+                + minutosTexto
+                + " minutos y "
+                + segundosTexto
+                + " segundos";
         }
 
 
         /* =========================
-           INICIAR CONTADOR
+           INICIAR RELOJ
            ========================= */
 
-        obtenerHora().then(
+        obtenerHora()
+        .then(
             function()
             {
-                actualizarContador()
+                actualizarContador();
 
 
                 setInterval(
                     actualizarContador,
                     1000
-                )
+                );
 
 
                 setInterval(
                     function()
                     {
-                        obtenerHora()
+                        obtenerHora();
                     },
                     60000
-                )
+                );
             }
-        )
+        );
+
+
+        /* =========================
+           ENTRAR A CARTA
+           ========================= */
+
+        botonMenuCarta.addEventListener(
+            "click",
+            function()
+            {
+                pantalla =
+                    "carta";
+
+
+                menu.style.display =
+                    "none";
+
+
+                contador.style.display =
+                    "none";
+
+
+                carta.style.display =
+                    "block";
+
+
+                imagenMenu.style.display =
+                    "block";
+
+
+                elegirImagenMenu();
+
+
+                /*
+                 * Reiniciamos la carta.
+                 */
+
+                carta.classList.remove(
+                    "abierta"
+                );
+
+
+                botonAbrirSobre.style.display =
+                    "block";
+
+
+                botonVolver.style.display =
+                    "none";
+
+
+                textoCarta.textContent =
+                    "";
+
+
+                posicion = 0;
+            }
+        );
+
+
+        /* =========================
+           ABRIR SOBRE
+           ========================= */
+
+        botonAbrirSobre.addEventListener(
+            "click",
+            function()
+            {
+                botonAbrirSobre.style.display =
+                    "none";
+
+
+                carta.classList.add(
+                    "abierta"
+                );
+
+
+                /*
+                 * Esperamos a que
+                 * el papel termine
+                 * de salir.
+                 */
+
+                setTimeout(
+                    escribirCarta,
+                    1500
+                );
+            }
+        );
+
+
+        /* =========================
+           ESCRIBIR CARTA
+           ========================= */
+
+        function escribirCarta()
+        {
+            if(
+                posicion
+                <
+                textoReal.length
+            )
+            {
+                textoCarta.textContent +=
+                    textoReal[posicion];
+
+
+                posicion++;
+
+
+                setTimeout(
+                    escribirCarta,
+                    45
+                );
+            }
+            else
+            {
+                botonVolver.style.display =
+                    "block";
+            }
+        }
+
+
+        /* =========================
+           VOLVER
+           ========================= */
+
+        botonVolver.addEventListener(
+            "click",
+            function()
+            {
+                pantalla =
+                    "menu";
+
+
+                carta.style.display =
+                    "none";
+
+
+                menu.style.display =
+                    "block";
+
+
+                imagenMenu.style.display =
+                    "block";
+
+
+                elegirImagenMenu();
+
+
+                textoCarta.textContent =
+                    "";
+
+
+                posicion = 0;
+
+
+                carta.classList.remove(
+                    "abierta"
+                );
+
+
+                botonAbrirSobre.style.display =
+                    "block";
+
+
+                botonVolver.style.display =
+                    "none";
+            }
+        );
+
+
+        /* =========================
+           MÚSICA
+           ========================= */
+
+        botonMusica.addEventListener(
+            "click",
+            function()
+            {
+                musica.play();
+            }
+        );
+
+
+        botonPausa.addEventListener(
+            "click",
+            function()
+            {
+                musica.pause();
+            }
+        );
+
+
+        volumen.addEventListener(
+            "input",
+            function()
+            {
+                musica.volume =
+                    volumen.value;
+            }
+        );
+
+
+        /* =========================
+           SIGUIENTE CANCIÓN
+           ========================= */
+
+        botonSiguiente.addEventListener(
+            "click",
+            function()
+            {
+                indiceCancion++;
+
+
+                if(
+                    indiceCancion
+                    >=
+                    canciones.length
+                )
+                {
+                    indiceCancion = 0;
+                }
+
+
+                musica.src =
+                    canciones[indiceCancion];
+
+
+                musica.play();
+            }
+        );
+
+
+        /* =========================
+           CANCIÓN ANTERIOR
+           ========================= */
+
+        botonAnterior.addEventListener(
+            "click",
+            function()
+            {
+                indiceCancion--;
+
+
+                if(
+                    indiceCancion
+                    <
+                    0
+                )
+                {
+                    indiceCancion =
+                        canciones.length - 1;
+                }
+
+
+                musica.src =
+                    canciones[indiceCancion];
+
+
+                musica.play();
+            }
+        );
+
+
+        /* =========================
+           TERMINÓ CANCIÓN
+           ========================= */
+
+        musica.addEventListener(
+            "ended",
+            function()
+            {
+                indiceCancion++;
+
+
+                if(
+                    indiceCancion
+                    >=
+                    canciones.length
+                )
+                {
+                    indiceCancion = 0;
+                }
+
+
+                musica.src =
+                    canciones[indiceCancion];
+
+
+                musica.play();
+            }
+        );
 
 
         /* =========================
@@ -2197,184 +2015,20 @@
         function elegirImagenMenu()
         {
             if(
-                window.innerWidth <= 600
+                window.innerWidth
+                <=
+                600
             )
             {
                 imagenMenu.src =
-                    "fondoMenu1.png"
+                    "fondoMenu1.png";
             }
-
             else
             {
                 imagenMenu.src =
-                    "fondoMenu.png"
+                    "fondoMenu.png";
             }
         }
-
-
-        /* =========================
-           MÚSICA
-           ========================= */
-
-        const musica =
-            document.getElementById(
-                "musica"
-            )
-
-
-        const volumen =
-            document.getElementById(
-                "volumen"
-            )
-
-
-        const botonMusica =
-            document.getElementById(
-                "botonMusica"
-            )
-
-
-        const botonPausa =
-            document.getElementById(
-                "botonPausa"
-            )
-
-
-        const botonAnterior =
-            document.getElementById(
-                "botonAnterior"
-            )
-
-
-        const botonSiguienteMusica =
-            document.getElementById(
-                "botonSiguiente"
-            )
-
-
-        const canciones =
-        [
-            "musica3.mp3",
-            "musica1.mp3",
-            "musica2.mp3",
-            "musica.mp3"
-        ]
-
-
-        let indiceCancion = 0
-
-
-        musica.volume =
-            volumen.value
-
-
-        musica.src =
-            canciones[indiceCancion]
-
-
-        botonMusica.addEventListener(
-            "click",
-            function()
-            {
-                musica.play()
-            }
-        )
-
-
-        botonPausa.addEventListener(
-            "click",
-            function()
-            {
-                musica.pause()
-            }
-        )
-
-
-        volumen.addEventListener(
-            "input",
-            function()
-            {
-                musica.volume =
-                    volumen.value
-            }
-        )
-
-
-        botonSiguienteMusica.addEventListener(
-            "click",
-            function()
-            {
-                indiceCancion++
-
-
-                if(
-                    indiceCancion
-                    >=
-                    canciones.length
-                )
-                {
-                    indiceCancion = 0
-                }
-
-
-                musica.src =
-                    canciones[indiceCancion]
-
-
-                musica.play()
-            }
-        )
-
-
-        botonAnterior.addEventListener(
-            "click",
-            function()
-            {
-                indiceCancion--
-
-
-                if(
-                    indiceCancion < 0
-                )
-                {
-                    indiceCancion =
-                        canciones.length - 1
-                }
-
-
-                musica.src =
-                    canciones[indiceCancion]
-
-
-                musica.play()
-            }
-        )
-
-
-        musica.addEventListener(
-            "ended",
-            function()
-            {
-                indiceCancion++
-
-
-                if(
-                    indiceCancion
-                    >=
-                    canciones.length
-                )
-                {
-                    indiceCancion = 0
-                }
-
-
-                musica.src =
-                    canciones[indiceCancion]
-
-
-                musica.play()
-            }
-        )
 
 
         /* =========================
@@ -2386,19 +2040,34 @@
             function()
             {
                 videoFondo.currentTime =
-                    0
+                    0;
 
 
                 videoFondo.play()
+                .catch(
+                    function(error)
+                    {
+                        console.error(
+                            "No se pudo reproducir el video:",
+                            error
+                        );
+                    }
+                );
             }
-        )
+        );
 
 
         /* =========================
-           INICIALIZAR IMAGEN
+           CAMBIO DE TAMAÑO
            ========================= */
 
-        elegirImagenMenu()
+        window.addEventListener(
+            "resize",
+            function()
+            {
+                elegirImagenMenu();
+            }
+        );
 
     </script>
 
