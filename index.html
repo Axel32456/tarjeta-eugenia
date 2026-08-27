@@ -2,7 +2,7 @@
 <html>
     <head> 
         <title> Tarjeta para Eugenia </title> 
-        <meta name="viewport" content="width-device-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <style>
             body
             {
@@ -186,18 +186,184 @@
                     padding: 8px;
                 }
             }
+
+            #menu
+            {
+                display: none;
+                background-color: white;
+                padding: 30px;
+                border-radius: 20px;
+                box-shadow: 0 4px 16px gray;
+                width: 80%;
+                max-width: 400px;
+                box-sizing: border-box;
+            }
+
+            #menu h2
+            {
+                color: deeppink;
+                font-family: Georgia, 'Times New Roman', serif;
+                margin-top: 0;
+            }
+
+            #menu button
+            {
+                display: block;
+                width: 100%;
+                margin-top: 12px;
+                font-size: 20px;
+            }
+
+            #carta
+            {
+                display: none;
+                background-color: white;
+                padding: 30px;
+                border-radius: 20px;
+                box-shadow: 0 4px 16px gray;
+                width: 80%;
+                max-width: 500px;
+                box-sizing: border-box;
+            }
+
+            #carta h2
+            {
+                color: deeppink;
+                font-family: Georgia, 'Times New Roman', serif;
+            }
+
+            #carta p
+            {
+                font-size: 20px;
+            }
+
+            #fondoAnimado
+            {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                overflow: hidden;
+                pointer-events: none;
+                z-index: -1;
+            }
+
+            #fondoAnimado span
+            {
+                position: absolute;
+                font-size: 30px;
+                animation: flotar 8s linear infinite;
+            }
+
+            @keyframes flotar
+            {
+                from
+                {
+                    transform: translateY(100vh);
+                    opacity: 0;
+                }
+
+                20%
+                {
+                    opacity: 1;
+                }
+
+                80%
+                {
+                    opacity: 1;
+                }
+
+                to
+                {
+                    transform: translateY(-100px);
+                    opacity: 0;
+                }
+            }
+
+#fondoAnimado span:nth-child(1)
+{
+    left: 10%;
+    font-size: 20px;
+    animation-duration: 7s;
+}
+
+#fondoAnimado span:nth-child(2)
+{
+    left: 25%;
+    font-size: 30px;
+    animation-duration: 9s;
+}
+
+#fondoAnimado span:nth-child(3)
+{
+    left: 40%;
+    font-size: 25px;
+    animation-duration: 6s;
+}
+            
+            #fondoAnimado span:nth-child(4)
+            {
+                left: 55%;
+                animation-duration: 10s;
+            }
+            #fondoAnimado span:nth-child(5)
+{
+    left: 70%;
+    animation-duration: 8s;
+}
+
+#fondoAnimado span:nth-child(6)
+{
+    left: 85%;
+    animation-duration: 7s;
+}
+
+#fondoAnimado span:nth-child(7)
+{
+    left: 35%;
+    animation-duration: 11s;
+}
+
+#fondoAnimado span:nth-child(8)
+{
+    left: 65%;
+    animation-duration: 9s;
+}
         </style>
 
     </head>
 
     <body>
-
+        <div id="fondoAnimado">
+            <span>💗</span>
+            <span>✨</span>
+            <span>💕</span>
+            <span>🌸</span>
+            <span>💗</span>
+            <span>✨</span>
+            <span>💕</span>
+            <span>🌸</span>
+        </div>
         <div id="tarjeta">
         
         <h1> Feliz cumpleaños </h1>
         <p> ¡Felices 23 años! </p>
         <button id="botonSorpresa">Abrí tu sorpresa ✨</button>
         <p id="mensajeSorpresa"> Llegó el día, feliz cumpleaños</p>
+        </div>
+
+        <div id="menu">
+            <h2>¿Por donde querés empezar 💗</h2>
+
+            <button id="botonMenuCarta">💌 Carta</button>
+            <button>🔐 Juego de la Caja fuerte</button>
+        </div>
+
+        <div id="carta">
+            <h2>💌 Para vos</h2>
+            <p>Hay algo que quiero decirte...</p>
+            <button id="botonCarta">Abrir carta 💗</button>
         </div>
 
         <div id="controlesMusica">
@@ -220,7 +386,7 @@
 
         </div>
         <script> 
-        const fechaCumple = new Date("2026-08-29T00:00:00")
+        const fechaCumple = new Date("2026-08-29T00:00:00-03:00")
         const tarjeta = document.getElementById("tarjeta")
         const botonSorpresa = document.getElementById("botonSorpresa")
         const mensajeSorpresa = document.getElementById("mensajeSorpresa")
@@ -229,13 +395,32 @@
         const musica = document.getElementById("musica")
         const botonPausa = document.getElementById("botonPausa")
         const volumen = document.getElementById("volumen")
+        const menu = document.getElementById("menu")
+        const botonCarta = document.getElementById("botonCarta")
+        const carta = document.getElementById("carta")
+        const botonMenuCarta = document.getElementById("botonMenuCarta")
+        const fondoAnimado  = document.getElementById("fondoAnimado")
+
+        let ahoraOficial
+        let momentoConsulta
+
+
+
         musica.volume = volumen.value
 
+        async function obtenerHora() 
+        {
+            const respuesta = await fetch("https://timeapi.io/api/time/current/zone?timeZone=America/Argentina/Buenos_Aires")
+            const datos = await respuesta.json()
 
+            ahoraOficial = new Date(datos.dateTime)
+            momentoConsulta = new Date()
+        }
 
         function actualizarContador()
         {
-            const ahora = new Date()
+            const tiempoTranscurrido = new Date() - momentoConsulta
+            const ahora = new Date(ahoraOficial.getTime() + tiempoTranscurrido)
 
             const diferencia = fechaCumple - ahora
             const contador = document.getElementById("contador")
@@ -243,12 +428,17 @@
             if(diferencia > 0)
             {
                 tarjeta.style.display = "none"
+                menu.style.display = "none"
+                contador.style.display = "block"
+                fondoAnimado.style.display = "block"
             }
 
             else
             {
-                tarjeta.style.display = "block"
-                contador.textContent="¡Ya podés abrir la sorpresa!"
+                tarjeta.style.display = "none"
+                menu.style.display = "block"
+                contador.style.display = "none"
+                fondoAnimado.style.display = "none"
                 return 
             }
 
@@ -276,8 +466,11 @@
             contador.textContent = "Faltan: " + diasTexto + " días, " + horasTexto + " horas, " + minutosTexto + " minutos y " + segundosTexto + " segundos"
         }   
 
-        actualizarContador()
-        setInterval(actualizarContador, 1000)
+        obtenerHora().then(function()
+        {
+            actualizarContador()
+            setInterval(actualizarContador, 1000)
+        })
 
         botonSorpresa.addEventListener("click", function()
         {
@@ -300,6 +493,18 @@
         volumen.addEventListener("input", function()
         {
             musica.volume = volumen.value
+        })
+
+        botonCarta.addEventListener("click", function()
+        {
+            menu.style.display = "none"
+            carta.style.display = "block"
+        })
+
+        botonMenuCarta.addEventListener("click", function()
+        {
+            menu.style.display = "none"
+            carta.style.display = "block"
         })
         
         </script>
