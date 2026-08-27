@@ -2,7 +2,7 @@
 <html>
     <head> 
         <title> Tarjeta para Eugenia </title> 
-
+        <meta name="viewport" content="width-device-width, initial-scale=1.0">
         <style>
             body
             {
@@ -21,6 +21,7 @@
             {
                 color: deeppink;
                 font-size: 36px;
+                max-width: 100%;
                 font-family: Georgia, "Times New Roman", serif;
             }
 
@@ -52,6 +53,9 @@
                 font-size: 24px;
                 font-weight: bold;
                 margin-top: 20px;
+                max-width: 80%;
+                box-sizing: border-box;
+                text-align: center;
             }
 
             #tarjeta
@@ -60,6 +64,9 @@
                 padding: 32px;
                 border-radius: 20px;
                 box-shadow: 0 4px 16px gray;
+                width: 80%;
+                max-width: 500px;
+                box-sizing: border-box;
             }
 
             #confeti
@@ -104,7 +111,9 @@
                 background-color: white;
                 border-radius: 16px;
                 box-shadow: 0 4px 16px gray;
-                width: 200px;
+                width: 80%;
+                max-width: 280px;
+                box-sizing: border-box;
                 flex-direction: column;
             }
 
@@ -138,6 +147,44 @@
             {
                 display: flex;
                 gap: 10px;
+            }
+
+            @media (max-width: 600px)
+            {
+                h1
+                {
+                    font-size: 30px;
+                }
+
+                #tarjeta
+                {
+                    padding: 24px;
+                }
+
+                #contador
+                {
+                    font-size: 18px;
+                    padding: 16px;
+                }
+
+                #controlesMusica
+                {
+                    top: 10px;
+                    right: 10px;
+                    width: 180px;
+                    padding: 12px;
+                }
+
+                #tituloMusica
+                {
+                    font-size: 14px;
+                }
+
+                #controlesMusica button
+                {       
+                    font-size: 12px;
+                    padding: 8px;
+                }
             }
         </style>
 
