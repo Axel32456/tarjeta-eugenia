@@ -449,19 +449,24 @@
         </div>
 
         <div id="controlesMusica">
-            <p id="tituloMusica">¿Querés escuchar algo de música mientras esperás?</p>
+
+            <p id="tituloMusica">🎵 Música</p>
+
             <div id="botonesMusica">
-                <button id="botonMusica">▶ Reproducir</button>
-                <button id="botonPausa">⏸ Pausar</button>
+
+                <button id="botonAnterior">⏮</button>
+                <button id="botonMusica">▶</button>
+                <button id="botonPausa">⏸</button>
+                <button id="botonSiguiente">⏭</button>
+
             </div>
 
-            <label for="volumen">Volumen</label>
+            <label for="volumen">Volumen 🔊</label>
+
             <input id="volumen" type="range" min="0" max="1" step="0.1" value="0.5">
         </div>
 
-        <audio id="musica" loop>
-            <source src="musica.mp3" type="audio/mpeg">
-        </audio>
+        <audio id="musica"></audio>
         <p id="contador"></p>
 
         <script> 
@@ -477,14 +482,23 @@
         const carta = document.getElementById("carta")
         const botonMenuCarta = document.getElementById("botonMenuCarta")
         const fondoAnimado  = document.getElementById("fondoAnimado")
-        const videoFondo   = document.getElementById("videoFondo")
-        const capaFondo    = document.getElementById("capaFondo")
-        const textoCarta     = document.getElementById("textoCarta")
+        const videoFondo = document.getElementById("videoFondo")
+        const capaFondo  = document.getElementById("capaFondo")
+        const textoCarta = document.getElementById("textoCarta")
         const botonVolver = document.getElementById("botonVolver")
         const imagenMenu = document.getElementById("imagenMenu")
         const texto = "Hay algo que quiero decirte..."
         const textoReal = "Eugenia, hoy es tu cumpleaños y espero que estas palabras alcancen por lo menos a reflejar lo mucho que te quiero. Gracias por siempre estar, por todos tus regalos y por lo momentos lindos que generas."
+        const botonAnterior = document.getElementById("botonAnterior")
+        const botonSiguiente = document.getElementById("botonSiguiente")
 
+        const canciones =
+        [
+            "musica.mp3",
+            "musica1.mp3"
+        ]
+
+        let indiceCancion = 0
         let posicion = 0
         let cartaEscrita = false
         let pantalla = "menu"
@@ -495,6 +509,7 @@
 
 
         musica.volume = volumen.value
+        musica.src = canciones[indiceCancion]
         
         function escribirCarta()
         {
@@ -755,6 +770,45 @@
             imagenMenu.src = "fondoMenu.png"
         }
     }
+
+    botonSiguiente.addEventListener("click", function()
+    {
+        indiceCancion++
+
+        if(indiceCancion >= canciones.length)
+        {
+            indiceCancion = 0
+        }
+
+        musica.src = canciones[indiceCancion]
+        musica.play()
+    })
+
+    botonAnterior.addEventListener("click", function()
+    {
+        indiceCancion--
+
+        if(indiceCancion < 0)
+        {
+            indiceCancion = canciones.length - 1
+        }
+
+        musica.src = canciones[indiceCancion]
+        musica.play()
+    })
+
+    musica.addEventListener("ended", function()
+    {
+        indiceCancion++
+
+        if(indiceCancion >= canciones.length)
+        {
+            indiceCancion = 0
+        }
+
+        musica.src = canciones[indiceCancion]
+        musica.play()
+    })
         
     </script>
 
