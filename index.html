@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+    <head> 
+        <title> Tarjeta para Eugenia </title> 
+
+        <style>
+            body
+            {
+                background-color: lightpink;
+                text-align: center;
+                margin: 0;
+                min-height: 100vh;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                font-family: "Trebuchet MS", Arial, sans-serif;;
+            }
+
+            h1
+            {
+                color: deeppink;
+                font-size: 36px;
+                font-family: Georgia, "Times New Roman", serif;
+            }
+
+            button
+            {
+                background-color: #d84b7a;
+                color: white;
+                font-size: 26px;
+                padding: 12px;
+                border-radius: 12px;
+                border: none;
+                cursor: pointer;
+            }
+
+            #mensajeSorpresa
+            {
+                display: none;
+                font-size: 22px;
+                margin-top: 24px;
+            }
+
+            #contador
+            {
+                background-color: white;
+                padding: 20px;
+                border-radius: 20px;
+                box-shadow: 0 4px 16px gray;
+                color: deeppink;
+                font-size: 24px;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+
+            #tarjeta
+            {
+                background-color: white;
+                padding: 32px;
+                border-radius: 20px;
+                box-shadow: 0 4px 16px gray;
+            }
+
+            #confeti
+            {
+                font-size: 40px;
+                margin-top: 24px;
+            }
+
+            .confetiAnimado
+            {
+                animation: saltar 2s ease forwards;
+            }
+
+            @keyframes saltar{
+                from
+                {
+                    opacity: 0;
+                    transform: translateY(0);
+                }
+
+                to
+                {
+                    opacity: 1;
+                    transform: translateY(-50px);
+                }
+            }
+
+            #controlesMusica {
+                position: fixed;
+                top: 16px;
+                right: 20px;
+                z-index: 10;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                flex-wrap: wrap;
+
+                max-width: 280px;
+                padding: 16px;
+                background-color: white;
+                border-radius: 16px;
+                box-shadow: 0 4px 16px gray;
+                width: 200px;
+                flex-direction: column;
+            }
+
+            #controlesMusica button
+            {
+                font-size: 14px;
+                padding: 10px 10px;
+            }
+
+            #controlesMusica label
+            {
+                color: deeppink;
+                font-weight: bold;
+            }
+
+            #volumen
+            {
+                accent-color: deeppink;
+                width: 100%;
+            }
+
+            #tituloMusica
+            {
+                margin: 0;
+                color: deeppink;
+                font-size: 16px;
+                font-weight: bold;
+            }
+
+            #botonesMusica
+            {
+                display: flex;
+                gap: 10px;
+            }
+        </style>
+
+    </head>
+
+    <body>
+
+        <div id="tarjeta">
+        
+        <h1> Feliz cumpleaños </h1>
+        <p> ¡Felices 23 años! </p>
+        <button id="botonSorpresa">Abrí tu sorpresa ✨</button>
+        <p id="mensajeSorpresa"> Llegó el día, feliz cumpleaños</p>
+        </div>
+
+        <div id="controlesMusica">
+            <p id="tituloMusica">¿Querés escuchar algo de música mientras esperás?</p>
+            <div id="botonesMusica">
+                <button id="botonMusica">▶ Reproducir</button>
+                <button id="botonPausa">⏸ Pausar</button>
+            </div>
+
+            <label for="volumen">Volumen</label>
+            <input id="volumen" type="range" min="0" max="1" step="0.1" value="0.5">
+
+        </div>
+        <audio id="musica" loop>
+            <source src="musica.mp3" type="audio/mpeg">
+        </audio>
+        <p id="contador"></p>
+
+        <div id="confeti">
+
+        </div>
+        <script> 
+        const fechaCumple = new Date("2026-08-29T00:00:00")
+        const tarjeta = document.getElementById("tarjeta")
+        const botonSorpresa = document.getElementById("botonSorpresa")
+        const mensajeSorpresa = document.getElementById("mensajeSorpresa")
+        const confeti = document.getElementById("confeti")
+        const botonMusica  = document.getElementById("botonMusica")
+        const musica = document.getElementById("musica")
+        const botonPausa = document.getElementById("botonPausa")
+        const volumen = document.getElementById("volumen")
+        musica.volume = volumen.value
+
+
+
+        function actualizarContador()
+        {
+            const ahora = new Date()
+
+            const diferencia = fechaCumple - ahora
+            const contador = document.getElementById("contador")
+
+            if(diferencia > 0)
+            {
+                tarjeta.style.display = "none"
+            }
+
+            else
+            {
+                tarjeta.style.display = "block"
+                contador.textContent="¡Ya podés abrir la sorpresa!"
+                return 
+            }
+
+            const segundos = diferencia/1000
+            const segundosEnteros = Math.floor(segundos)
+
+            const dias = segundosEnteros/86400
+            const diasEnteros = Math.floor(dias)
+
+            const segundosRestantes = segundosEnteros % 86400
+            const horas = segundosRestantes/3600
+            const horasEnteras = Math.floor(horas)
+            const segundosDespuesDeHoras = segundosRestantes % 3600
+
+            const minutos = segundosDespuesDeHoras / 60
+            const minutosEnteros = Math.floor(minutos)
+
+            const segundosEnterosRestantes = segundosDespuesDeHoras % 60
+
+            const diasTexto = String(diasEnteros).padStart(2, "0")
+            const horasTexto = String(horasEnteras).padStart(2, "0")
+            const minutosTexto = String(minutosEnteros).padStart(2, "0")
+            const segundosTexto = String(segundosEnterosRestantes).padStart(2, "0")
+
+            contador.textContent = "Faltan: " + diasTexto + " días, " + horasTexto + " horas, " + minutosTexto + " minutos y " + segundosTexto + " segundos"
+        }   
+
+        actualizarContador()
+        setInterval(actualizarContador, 1000)
+
+        botonSorpresa.addEventListener("click", function()
+        {
+            mensajeSorpresa.style.display = "block"
+            botonSorpresa.style.display = "none"
+            confeti.textContent = "🎉 🎊 ✨ 🎈 🎉 🎊 ✨"
+            confeti.classList.add("confetiAnimado")
+        })
+
+        botonMusica.addEventListener("click", function()
+        {
+            musica.play()
+        })
+
+        botonPausa.addEventListener("click", function()
+        {
+            musica.pause()
+        })
+
+        volumen.addEventListener("input", function()
+        {
+            musica.volume = volumen.value
+        })
+        
+        </script>
+
+    </body>
+</html>
