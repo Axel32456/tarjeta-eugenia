@@ -5,16 +5,9 @@
 
     <title>Tarjeta para Eugenia</title>
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
-
-        /* =========================
-           GENERAL
-           ========================= */
 
         html
         {
@@ -25,92 +18,49 @@
         body
         {
             width: 100%;
-
             background-color: lightpink;
-
             text-align: center;
-
             margin: 0;
-
             min-height: 100vh;
-
             overflow: hidden;
-
             box-sizing: border-box;
-
             display: flex;
-
             flex-direction: column;
-
             justify-content: center;
-
             align-items: center;
-
-            font-family:
-                "Trebuchet MS",
-                Arial,
-                sans-serif;
+            font-family: "Trebuchet MS", Arial, sans-serif;
         }
-
-
-        /* =========================
-           BOTONES
-           ========================= */
 
         button
         {
             background-color: #d84b7a;
-
             color: white;
-
             font-size: 26px;
-
             padding: 12px;
-
             border-radius: 12px;
-
             border: none;
-
             cursor: pointer;
         }
-
-
-        /* =========================
-           CONTADOR
-           ========================= */
 
         #contador
         {
             background-color: white;
-
             padding: 20px;
-
             border-radius: 20px;
-
-            box-shadow:
-                0 4px 16px gray;
-
+            box-shadow: 0 4px 16px gray;
             color: deeppink;
-
             font-size: 23px;
-
             font-weight: bold;
-
             margin: 0;
-
             width: 80%;
-
             max-width: 600px;
-
             box-sizing: border-box;
-
             text-align: center;
         }
 
         #mensajeContador
         {
             display: block;
-
             margin-bottom: 12px;
         }
 
@@ -119,132 +69,82 @@
             display: block;
         }
 
-
-        /* =========================
-           CONTROLES DE MÚSICA
-           ========================= */
-
         #controlesMusica
         {
             position: fixed;
-
             top: 2vh;
-
             right: 2vw;
-
             z-index: 20;
-
             display: flex;
-
             align-items: center;
-
             justify-content: center;
-
             gap: 1vh;
-
             padding: 1.5vh;
-
             background-color: white;
-
             border-radius: 1vw;
-
-            box-shadow:
-                0 4px 16px gray;
-
-            width:
-                clamp(180px, 20vw, 280px);
-
+            box-shadow: 0 4px 16px gray;
+            width: clamp(180px, 20vw, 280px);
             box-sizing: border-box;
-
             flex-direction: column;
         }
 
         #controlesMusica button
         {
-            font-size:
-                clamp(10px, 1vw, 14px);
-
-            padding:
-                0.7vw 0.8vw;
+            font-size: clamp(10px, 1vw, 14px);
+            padding: 0.7vw 0.8vw;
         }
 
         #controlesMusica label
         {
             color: deeppink;
-
             font-weight: bold;
-
-            font-size:
-                clamp(10px, 1vw, 14px);
+            font-size: clamp(10px, 1vw, 14px);
         }
 
         #volumen
         {
             accent-color: deeppink;
-
             width: 100%;
         }
 
         #tituloMusica
         {
             margin: 0;
-
             color: deeppink;
-
-            font-size:
-                clamp(11px, 1.2vw, 16px);
-
+            font-size: clamp(11px, 1.2vw, 16px);
             font-weight: bold;
         }
 
         #botonesMusica
         {
             display: flex;
-
             gap: 0.5vw;
         }
-
-
-        /* =========================
-           FONDO ANIMADO
-           ========================= */
 
         #fondoAnimado
         {
             position: fixed;
-
             top: 0;
-
             left: 0;
-
             width: 100%;
-
             height: 100%;
-
             overflow: hidden;
-
             pointer-events: none;
-
             z-index: -1;
         }
 
         #fondoAnimado span
         {
             position: absolute;
-
             font-size: 30px;
-
-            animation:
-                flotar 8s linear infinite;
+            animation: flotar 8s linear infinite;
         }
 
         @keyframes flotar
         {
             from
             {
-                transform:
-                    translateY(100vh);
-
+                transform: translateY(100vh);
                 opacity: 0;
             }
 
@@ -260,9 +160,7 @@
 
             to
             {
-                transform:
-                    translateY(-100px);
-
+                transform: translateY(-100px);
                 opacity: 0;
             }
         }
@@ -270,131 +168,83 @@
         #fondoAnimado span:nth-child(1)
         {
             left: 10%;
-
             font-size: 20px;
-
             animation-duration: 7s;
         }
 
         #fondoAnimado span:nth-child(2)
         {
             left: 25%;
-
             font-size: 30px;
-
             animation-duration: 9s;
         }
 
         #fondoAnimado span:nth-child(3)
         {
             left: 40%;
-
             font-size: 25px;
-
             animation-duration: 6s;
         }
 
         #fondoAnimado span:nth-child(4)
         {
             left: 55%;
-
             animation-duration: 10s;
         }
 
         #fondoAnimado span:nth-child(5)
         {
             left: 70%;
-
             animation-duration: 8s;
         }
 
         #fondoAnimado span:nth-child(6)
         {
             left: 85%;
-
             animation-duration: 7s;
         }
 
         #fondoAnimado span:nth-child(7)
         {
             left: 35%;
-
             animation-duration: 11s;
         }
 
         #fondoAnimado span:nth-child(8)
         {
             left: 65%;
-
             animation-duration: 9s;
         }
-
-
-        /* =========================
-           VIDEO
-           ========================= */
 
         #videoFondo
         {
             position: fixed;
-
             inset: 0;
-
             width: 100vw;
-
             height: 100vh;
-
             object-fit: cover;
-
             object-position: center;
-
             z-index: -3;
-
-            filter:
-                brightness(0.7);
-
+            filter: brightness(0.7);
             display: block;
         }
-
-
-        /* =========================
-           CAPA DEL VIDEO
-           ========================= */
 
         #capaFondo
         {
             position: fixed;
-
             inset: 0;
-
             width: 100vw;
-
             height: 100vh;
-
-            background-color:
-                rgba(
-                    255,
-                    182,
-                    193,
-                    0.5
-                );
-
+            background-color: rgba(255, 182, 193, 0.5);
             z-index: -2;
         }
-
-
-        /* =========================
-           CELULAR
-           ========================= */
 
         @media(max-width: 600px)
         {
             #contador
             {
                 width: 90%;
-
                 font-size: 18px;
-
                 padding: 16px;
             }
         }
@@ -403,40 +253,15 @@
 
 </head>
 
-
 <body>
 
+    <video id="videoFondo" autoplay muted playsinline preload="auto">
 
-    <!-- =========================
-         VIDEO
-         ========================= -->
-
-    <video
-        id="videoFondo"
-        autoplay
-        muted
-        playsinline
-        preload="auto"
-    >
-
-        <source
-            src="fondo.mp4"
-            type="video/mp4"
-        >
+        <source src="fondo.mp4" type="video/mp4">
 
     </video>
 
-
-    <!-- =========================
-         CAPA
-         ========================= -->
-
     <div id="capaFondo"></div>
-
-
-    <!-- =========================
-         FONDO ANIMADO
-         ========================= -->
 
     <div id="fondoAnimado">
 
@@ -444,7 +269,6 @@
         <span>✨</span>
         <span>💕</span>
         <span>🌸</span>
-
         <span>💗</span>
         <span>✨</span>
         <span>💕</span>
@@ -452,81 +276,41 @@
 
     </div>
 
-
-    <!-- =========================
-         CONTROLES DE MÚSICA
-         ========================= -->
-
     <div id="controlesMusica">
 
         <p id="tituloMusica">
-
             ¿Querés escuchar música mientras esperás?
-
         </p>
-
 
         <div id="botonesMusica">
 
             <button id="botonAnterior">
-
                 ⏮
-
             </button>
-
 
             <button id="botonMusica">
-
                 ▶
-
             </button>
-
 
             <button id="botonPausa">
-
                 ⏸
-
             </button>
 
-
             <button id="botonSiguiente">
-
                 ⏭
-
             </button>
 
         </div>
 
-
         <label for="volumen">
-
             Volumen 🔊
-
         </label>
 
-
-        <input
-            id="volumen"
-            type="range"
-            min="0"
-            max="1"
-            step="0.1"
-            value="0.5"
-        >
+        <input id="volumen" type="range" min="0" max="1" step="0.1" value="0.5">
 
     </div>
 
-
-    <!-- =========================
-         AUDIO
-         ========================= -->
-
     <audio id="musica"></audio>
-
-
-    <!-- =========================
-         CONTADOR
-         ========================= -->
 
     <p id="contador">
 
@@ -536,95 +320,33 @@
 
     </p>
 
-
     <script>
 
-
-        /* =========================
-           FECHA
-           ========================= */
-
-        const fechaCumple =
-            new Date("2026-08-29T00:00:00-03:00"
-            );
-
+        const fechaCumple = new Date("2026-08-27T00:00:00-03:00");
 
         const modoPrueba = false;
 
+        const botonMusica = document.getElementById("botonMusica");
 
-        /* =========================
-           ELEMENTOS
-           ========================= */
+        const musica = document.getElementById("musica");
 
-        const botonMusica =
-            document.getElementById(
-                "botonMusica"
-            );
+        const botonPausa = document.getElementById("botonPausa");
 
+        const volumen = document.getElementById("volumen");
 
-        const musica =
-            document.getElementById(
-                "musica"
-            );
+        const contador = document.getElementById("contador");
 
+        const mensajeContador = document.getElementById("mensajeContador");
 
-        const botonPausa =
-            document.getElementById(
-                "botonPausa"
-            );
+        const tiempoContador = document.getElementById("tiempoContador");
 
+        const videoFondo = document.getElementById("videoFondo");
 
-        const volumen =
-            document.getElementById(
-                "volumen"
-            );
+        const botonAnterior = document.getElementById("botonAnterior");
 
+        const botonSiguiente = document.getElementById("botonSiguiente");
 
-        const contador =
-            document.getElementById(
-                "contador"
-            );
-
-
-        const mensajeContador =
-            document.getElementById(
-                "mensajeContador"
-            );
-
-
-        const tiempoContador =
-            document.getElementById(
-                "tiempoContador"
-            );
-
-
-        const videoFondo =
-            document.getElementById(
-                "videoFondo"
-            );
-
-
-        const botonAnterior =
-            document.getElementById(
-                "botonAnterior"
-            );
-
-
-        const botonSiguiente =
-            document.getElementById(
-                "botonSiguiente"
-            );
-
-
-        const tituloMusica =
-            document.getElementById(
-                "tituloMusica"
-            );
-
-
-        /* =========================
-           CANCIONES
-           ========================= */
+        const tituloMusica = document.getElementById("tituloMusica");
 
         const canciones =
         [
@@ -634,228 +356,86 @@
             "musica.mp3"
         ];
 
-
-        /* =========================
-           ESTADO
-           ========================= */
-
         let indiceCancion = 0;
 
         let ahoraOficial;
 
         let momentoConsulta;
 
+        musica.volume = volumen.value;
 
-        /* =========================
-           MÚSICA INICIAL
-           ========================= */
-
-        musica.volume =
-            volumen.value;
-
-
-        musica.src =
-            canciones[indiceCancion];
-
-
-        /* =========================
-           OBTENER HORA
-           ========================= */
+        musica.src = canciones[indiceCancion];
 
         async function obtenerHora()
         {
-            const respuesta =
-                await fetch(
-                    "https://timeapi.io/api/time/current/zone?timeZone=America/Argentina/Buenos_Aires"
-                );
+            const respuesta = await fetch("https://timeapi.io/api/time/current/zone?timeZone=America/Argentina/Buenos_Aires");
 
+            const datos = await respuesta.json();
 
-            const datos =
-                await respuesta.json();
+            ahoraOficial = new Date(datos.dateTime);
 
-
-            ahoraOficial =
-                new Date(
-                    datos.dateTime
-                );
-
-
-            momentoConsulta =
-                Date.now();
+            momentoConsulta = Date.now();
         }
-
-
-        /* =========================
-           CONTADOR
-           ========================= */
 
         function actualizarContador()
         {
-            const tiempoTranscurrido =
-                Date.now()
-                - momentoConsulta;
+            const tiempoTranscurrido = Date.now() - momentoConsulta;
 
+            const ahora = new Date(ahoraOficial.getTime() + tiempoTranscurrido);
 
-            const ahora =
-                new Date(
-                    ahoraOficial.getTime()
-                    + tiempoTranscurrido
-                );
-
-
-            const diferencia =
-                fechaCumple - ahora;
-
-
-            /* =========================
-               MODO PRUEBA
-               ========================= */
+            const diferencia = fechaCumple - ahora;
 
             if(modoPrueba)
             {
-                contador.style.display =
-                    "block";
+                contador.style.display = "block";
 
                 return;
             }
-
-
-            /* =========================
-               YA LLEGÓ
-               ========================= */
 
             if(diferencia <= 0)
             {
-                mensajeContador.textContent =
-                    "¡Ya llegó el momento! 💗";
+                mensajeContador.textContent = "Si estás viendo esto es porque adelantes el reloj, pesimo la verdad....🙄🙄🙄";
 
-
-                tiempoContador.textContent =
-                    "";
-
+                tiempoContador.textContent = "";
 
                 return;
             }
 
+            const segundos = diferencia / 1000;
 
-            /* =========================
-               CALCULAR TIEMPO
-               ========================= */
+            const segundosEnteros = Math.floor(segundos);
 
-            const segundos =
-                diferencia / 1000;
+            const diasEnteros = Math.floor(segundosEnteros / 86400);
 
+            const segundosRestantes = segundosEnteros % 86400;
 
-            const segundosEnteros =
-                Math.floor(
-                    segundos
-                );
+            const horasEnteras = Math.floor(segundosRestantes / 3600);
 
+            const segundosDespuesDeHoras = segundosRestantes % 3600;
 
-            const diasEnteros =
-                Math.floor(
-                    segundosEnteros
-                    / 86400
-                );
+            const minutosEnteros = Math.floor(segundosDespuesDeHoras / 60);
 
+            const segundosEnterosRestantes = segundosDespuesDeHoras % 60;
 
-            const segundosRestantes =
-                segundosEnteros
-                % 86400;
+            const diasTexto = String(diasEnteros).padStart(2, "0");
 
+            const horasTexto = String(horasEnteras).padStart(2, "0");
 
-            const horasEnteras =
-                Math.floor(
-                    segundosRestantes
-                    / 3600
-                );
+            const minutosTexto = String(minutosEnteros).padStart(2, "0");
 
+            const segundosTexto = String(segundosEnterosRestantes).padStart(2, "0");
 
-            const segundosDespuesDeHoras =
-                segundosRestantes
-                % 3600;
+            mensajeContador.textContent = "¡Falta poco para tu sorpresa!";
 
-
-            const minutosEnteros =
-                Math.floor(
-                    segundosDespuesDeHoras
-                    / 60
-                );
-
-
-            const segundosEnterosRestantes =
-                segundosDespuesDeHoras
-                % 60;
-
-
-            const diasTexto =
-                String(
-                    diasEnteros
-                ).padStart(
-                    2,
-                    "0"
-                );
-
-
-            const horasTexto =
-                String(
-                    horasEnteras
-                ).padStart(
-                    2,
-                    "0"
-                );
-
-
-            const minutosTexto =
-                String(
-                    minutosEnteros
-                ).padStart(
-                    2,
-                    "0"
-                );
-
-
-            const segundosTexto =
-                String(
-                    segundosEnterosRestantes
-                ).padStart(
-                    2,
-                    "0"
-                );
-
-
-            mensajeContador.textContent =
-                "¡Falta poco para tu sorpresa!";
-
-
-            tiempoContador.textContent =
-                diasTexto
-                + " días, "
-                + horasTexto
-                + " horas, "
-                + minutosTexto
-                + " minutos y "
-                + segundosTexto
-                + " segundos";
+            tiempoContador.textContent = diasTexto + " días, " + horasTexto + " horas, " + minutosTexto + " minutos y " + segundosTexto + " segundos";
         }
 
-
-        /* =========================
-           INICIAR RELOJ
-           ========================= */
-
-        obtenerHora()
-        .then(
+        obtenerHora().then(
             function()
             {
                 actualizarContador();
 
-
-                setInterval(
-                    actualizarContador,
-                    1000
-                );
-
+                setInterval(actualizarContador,1000);
 
                 setInterval(
                     function()
@@ -867,19 +447,12 @@
             }
         );
 
-
-        /* =========================
-           MÚSICA
-           ========================= */
-
-        botonMusica.addEventListener(
-            "click",
+        botonMusica.addEventListener("click",
             function()
             {
                 musica.play();
             }
         );
-
 
         botonPausa.addEventListener(
             "click",
@@ -889,20 +462,13 @@
             }
         );
 
-
         volumen.addEventListener(
             "input",
             function()
             {
-                musica.volume =
-                    volumen.value;
+                musica.volume = volumen.value;
             }
         );
-
-
-        /* =========================
-           SIGUIENTE CANCIÓN
-           ========================= */
 
         botonSiguiente.addEventListener(
             "click",
@@ -910,29 +476,16 @@
             {
                 indiceCancion++;
 
-
-                if(
-                    indiceCancion
-                    >=
-                    canciones.length
-                )
+                if(indiceCancion >= canciones.length)
                 {
                     indiceCancion = 0;
                 }
 
-
-                musica.src =
-                    canciones[indiceCancion];
-
+                musica.src = canciones[indiceCancion];
 
                 musica.play();
             }
         );
-
-
-        /* =========================
-           CANCIÓN ANTERIOR
-           ========================= */
 
         botonAnterior.addEventListener(
             "click",
@@ -940,77 +493,42 @@
             {
                 indiceCancion--;
 
-
-                if(
-                    indiceCancion
-                    <
-                    0
-                )
+                if(indiceCancion < 0)
                 {
-                    indiceCancion =
-                        canciones.length - 1;
+                    indiceCancion = canciones.length - 1;
                 }
 
-
-                musica.src =
-                    canciones[indiceCancion];
-
+                musica.src = canciones[indiceCancion];
 
                 musica.play();
             }
         );
 
-
-        /* =========================
-           TERMINÓ CANCIÓN
-           ========================= */
-
-        musica.addEventListener(
-            "ended",
+        musica.addEventListener("ended",
             function()
             {
                 indiceCancion++;
 
-
-                if(
-                    indiceCancion
-                    >=
-                    canciones.length
-                )
+                if(indiceCancion >= canciones.length)
                 {
                     indiceCancion = 0;
                 }
 
-
-                musica.src =
-                    canciones[indiceCancion];
-
+                musica.src = canciones[indiceCancion];
 
                 musica.play();
             }
         );
 
-
-        /* =========================
-           VIDEO
-           ========================= */
-
-        videoFondo.addEventListener(
-            "ended",
+        videoFondo.addEventListener("ended",
             function()
             {
-                videoFondo.currentTime =
-                    0;
+                videoFondo.currentTime = 0;
 
-
-                videoFondo.play()
-                .catch(
+                videoFondo.play().catch(
                     function(error)
                     {
-                        console.error(
-                            "No se pudo reproducir el video:",
-                            error
-                        );
+                        console.error("No se pudo reproducir el video:", error);
                     }
                 );
             }
