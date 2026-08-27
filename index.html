@@ -225,13 +225,21 @@
             #carta
             {
                 display: none;
-                background-color: white;
-                padding: 30px;
-                border-radius: 20px;
+                position: relative;
+                background-color: #fff8e7;
+                padding: 40px;
+                border-radius: 8px;
                 box-shadow: 0 4px 16px gray;
                 width: 80%;
-                max-width: 500px;
+                max-width: 550px;
                 box-sizing: border-box;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+                color: #4a3525;
+
+                background-image: repeating-linear-gradient(
+                    0deg, rgba(150, 120, 80, 0.04) 0px, rgba(150, 120, 80, 0.04)1px, transparent 1px, transparent 4px);
+
+                animation: aparecerCarta 1s ease;
             }
 
             #carta h2
@@ -286,6 +294,21 @@
                 {
                     transform: translateY(-100px);
                     opacity: 0;
+                }
+            }
+
+            @keyframes aparecerCarta
+            {
+                from
+                {
+                    opacity: 0;
+                    transform: translateY(30px) rotate(-2deg);
+                }
+
+                to
+                {
+                    opacity: 1;
+                    transform: translateY(0) rotate(0deg);
                 }
             }
 
@@ -361,9 +384,22 @@
                 width: 100%;
                 height: 100%;
 
-                background-color: rgba(255, 182, 193, 0.75);
+                background-color: rgba(255, 182, 193, 0.5);
 
                 z-index: -2;
+            }
+
+            #botonVolver
+            {
+                display: none;
+            }
+
+            #carta button
+            {
+                display: block;
+                width: 100%;
+                margin: 12px auto 0 auto;
+                font-size: 20px;
             }
         </style>
 
@@ -396,8 +432,11 @@
 
         <div id="carta">
             <h2>💌 Para vos</h2>
-            <p>Hay algo que quiero decirte...</p>
+
+            <p id="textoCarta"></p>
+
             <button id="botonCarta">Abrir carta 💗</button>
+            <button id="botonVolver">Volver al menú</button>
         </div>
 
         <div id="controlesMusica">
@@ -417,8 +456,9 @@
         <p id="contador"></p>
 
         <script> 
-        const fechaCumple = new Date("2026-08-29T00:00:00-03:00")
-        const modoPrueba = false
+        const fechaCumple = new Date("2026-08-22T00:00:00-03:00")
+        const modoPrueba = true
+        const probarMenu = false
         const botonMusica  = document.getElementById("botonMusica")
         const musica = document.getElementById("musica")
         const botonPausa = document.getElementById("botonPausa")
@@ -430,15 +470,63 @@
         const fondoAnimado  = document.getElementById("fondoAnimado")
         const videoFondo   = document.getElementById("videoFondo")
         const capaFondo    = document.getElementById("capaFondo")
+        const textoCarta     = document.getElementById("textoCarta")
+        const botonVolver = document.getElementById("botonVolver")
+        const texto = "Hay algo que quiero decirte..."
+        const textoReal = "Eugenia, hoy es tu cumpleaños y espero que estas palabras alcancen por lo menos a reflejar lo mucho que te quiero. Gracias por siempre estar, por todos tus regalos y por lo momentos lindos que generas."
 
-
-
+        let posicion = 0
+        let cartaEscrita = false
+        let pantalla = "menu"
         let ahoraOficial
         let momentoConsulta
+        
 
 
 
         musica.volume = volumen.value
+        
+        function escribirCarta()
+        {
+            if(cartaEscrita)
+            {
+                return
+            }
+
+            if(posicion < texto.length)
+            {
+                textoCarta.textContent += texto[posicion]
+
+                posicion++
+
+                setTimeout(escribirCarta, 80)
+            }
+
+            else
+            {
+                cartaEscrita = true
+            }
+        }
+
+        function abrirCarta()
+        {
+            textoCarta.textContent = ""
+            posicion = 0
+
+            escribirTextoReal()
+        }
+
+        function escribirTextoReal()
+        {
+            if(posicion < textoReal.length)
+            {
+                textoCarta.textContent += textoReal[posicion]
+
+                posicion++
+
+                setTimeout(escribirTextoReal, 80);
+            }
+        }
 
         async function obtenerHora() 
         {
@@ -457,9 +545,40 @@
             const diferencia = fechaCumple - ahora
             const contador = document.getElementById("contador")
 
-            if(diferencia > 0 || modoPrueba)
+            if(probarMenu)
+            {
+                if(pantalla == "menu")
+                {
+                    menu.style.display = "block"
+                    carta.style.display = "none"
+                    contador.style.display = "none"
+                    fondoAnimado.style.display = "block"
+                    videoFondo.style.display = "block"
+                    capaFondo.style.display = "block"
+                }
+
+                return
+            }
+
+            if(modoPrueba)
+            {
+                if(pantalla == "menu")
+                {
+                    menu.style.display = "block"
+                    carta.style.display = "none"
+                    contador.style.display = "none"
+                    fondoAnimado.style.display = "block"
+                    videoFondo.style.display = "block"
+                    capaFondo.style.display = "block"
+                }
+
+                return 
+            }
+
+            if(diferencia > 0)
             {
                 menu.style.display = "none"
+                carta.style.display = "none"
                 contador.style.display = "block"
                 fondoAnimado.style.display = "block"
                 videoFondo.style.display = "block"
@@ -469,11 +588,13 @@
             else
             {
                 menu.style.display = "block"
+                carta.style.display = "none"
                 contador.style.display = "none"
                 fondoAnimado.style.display = "none"
                 videoFondo.style.display = "none"
                 capaFondo.style.display = "none"
                 musica.style.display = "none"
+
                 return 
             }
 
@@ -498,7 +619,7 @@
             const minutosTexto = String(minutosEnteros).padStart(2, "0")
             const segundosTexto = String(segundosEnterosRestantes).padStart(2, "0")
             
-            contador.textContent = "Aunque tu cumpleaños está cada vez más cerca "+"Faltan: " + diasTexto + " días, " + horasTexto + " horas, " + minutosTexto + " minutos y " + segundosTexto + " segundos"
+            contador.textContent = "Aunque tu cumpleaños está cada vez más cerca faltan: " + diasTexto + " días, " + horasTexto + " horas, " + minutosTexto + " minutos y " + segundosTexto + " segundos"
         }   
 
         obtenerHora().then(function()
@@ -529,14 +650,38 @@
 
         botonCarta.addEventListener("click", function()
         {
-            menu.style.display = "none"
-            carta.style.display = "block"
+            botonCarta.style.display = "none"
+            botonVolver.style.display = "block"
+
+            abrirCarta()
         })
 
         botonMenuCarta.addEventListener("click", function()
         {
+            pantalla = "carta"
+
             menu.style.display = "none"
             carta.style.display = "block"
+
+            if(!cartaEscrita)
+            {
+                escribirCarta()
+            }
+        })
+
+        botonVolver.addEventListener("click", function()
+        {
+            pantalla = "menu"
+
+            carta.style.display = "none"
+            menu.style.display = "block"
+
+            botonCarta.style.display = "block"
+            botonVolver.style.display = "none"
+
+            textoCarta.textContent = ""
+            posicion = 0
+            cartaEscrita = false
         })
         
         </script>
