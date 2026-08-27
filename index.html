@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head> 
-        <title> Tarjeta para Eugenia </title> 
+        <title>Tarjeta para Eugenia</title> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
         <style>
+
             html
             {
                 width: 100%;
@@ -12,17 +14,20 @@
 
             body
             {
+                width: 100%;
                 background-color: lightpink;
                 text-align: center;
                 margin: 0;
                 min-height: 100vh;
                 overflow: hidden;
-                
+                box-sizing: border-box;
+
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                font-family: "Trebuchet MS", Arial, sans-serif;;
+
+                font-family: "Trebuchet MS", Arial, sans-serif;
             }
 
             h1
@@ -51,37 +56,81 @@
                 margin-top: 24px;
             }
 
+            /* =========================
+               CONTADOR
+               ========================= */
+
             #contador
             {
                 background-color: white;
+
                 padding: 20px;
+
                 border-radius: 20px;
+
                 box-shadow: 0 4px 16px gray;
+
                 color: deeppink;
+
                 font-size: 23px;
+
                 font-weight: bold;
-                margin-top: 20px;
-                max-width: 80%;
+
+                margin: 0;
+
+                width: 80%;
+
+                max-width: 600px;
+
                 box-sizing: border-box;
+
                 text-align: center;
             }
+
+            #mensajeContador
+            {
+                display: block;
+                margin-bottom: 12px;
+            }
+
+            #tiempoContador
+            {
+                display: block;
+            }
+
+            /* =========================
+               TARJETA
+               ========================= */
 
             #tarjeta
             {
                 display: none;
+
                 background-color: white;
+
                 padding: 32px;
+
                 border-radius: 20px;
+
                 box-shadow: 0 4px 16px gray;
+
                 width: 80%;
+
                 max-width: 500px;
+
                 box-sizing: border-box;
             }
+
+            /* =========================
+               CONFETI
+               ========================= */
 
             #confeti
             {
                 display: none;
+
                 font-size: 40px;
+
                 margin-top: 24px;
             }
 
@@ -90,7 +139,8 @@
                 animation: saltar 2s ease forwards;
             }
 
-            @keyframes saltar{
+            @keyframes saltar
+            {
                 from
                 {
                     opacity: 0;
@@ -104,60 +154,86 @@
                 }
             }
 
-            #controlesMusica {
+            /* =========================
+               CONTROLES DE MÚSICA
+               ========================= */
+
+            #controlesMusica
+            {
                 position: fixed;
+
                 top: 2vh;
                 right: 2vw;
+
                 z-index: 10;
 
                 display: flex;
+
                 align-items: center;
+
                 justify-content: center;
+
                 gap: 1vh;
 
                 padding: 1.5vh;
+
                 background-color: white;
+
                 border-radius: 1vw;
+
                 box-shadow: 0 4px 16px gray;
 
                 width: clamp(180px, 20vw, 280px);
 
                 box-sizing: border-box;
+
                 flex-direction: column;
             }
 
             #controlesMusica button
             {
                 font-size: clamp(10px, 1vw, 14px);
+
                 padding: 0.7vw 0.8vw;
             }
 
             #controlesMusica label
             {
                 color: deeppink;
+
                 font-weight: bold;
+
                 font-size: clamp(10px, 1vw, 14px);
             }
 
             #volumen
             {
                 accent-color: deeppink;
+
                 width: 100%;
             }
 
             #tituloMusica
             {
                 margin: 0;
+
                 color: deeppink;
+
                 font-size: clamp(11px, 1.2vw, 16px);
+
                 font-weight: bold;
             }
 
             #botonesMusica
             {
                 display: flex;
+
                 gap: 0.5vw;
             }
+
+            /* =========================
+               CELULAR
+               ========================= */
 
             @media (max-width: 600px)
             {
@@ -173,54 +249,90 @@
 
                 #contador
                 {
+                    width: 90%;
+
                     font-size: 18px;
+
                     padding: 16px;
                 }
             }
 
+            /* =========================
+               MENÚ
+               ========================= */
+
             #menu
             {
                 display: none;
+
                 background-color: white;
+
                 padding: 30px;
+
                 border-radius: 20px;
+
                 box-shadow: 0 4px 16px gray;
+
                 width: 80%;
+
                 max-width: 400px;
+
                 box-sizing: border-box;
             }
 
             #menu h2
             {
                 color: deeppink;
+
                 font-family: Georgia, 'Times New Roman', serif;
+
                 margin-top: 0;
             }
 
             #menu button
             {
                 display: block;
+
                 width: 100%;
+
                 margin-top: 12px;
+
                 font-size: 20px;
             }
+
+            /* =========================
+               CARTA
+               ========================= */
 
             #carta
             {
                 display: none;
+
                 position: relative;
+
                 background-color: #fff8e7;
+
                 padding: 40px;
+
                 border-radius: 8px;
-                box-shadow: 0 4px 16px gray;
+
                 width: 80%;
+
                 max-width: 550px;
+
                 box-sizing: border-box;
+
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+
                 color: #4a3525;
 
                 background-image: repeating-linear-gradient(
-                    0deg, rgba(150, 120, 80, 0.04) 0px, rgba(150, 120, 80, 0.04)1px, transparent 1px, transparent 4px);
+                    0deg,
+                    rgba(150, 120, 80, 0.04) 0px,
+                    rgba(150, 120, 80, 0.04) 1px,
+                    transparent 1px,
+                    transparent 4px
+                );
 
                 animation: aparecerCarta 1s ease;
             }
@@ -228,6 +340,7 @@
             #carta h2
             {
                 color: deeppink;
+
                 font-family: Georgia, 'Times New Roman', serif;
             }
 
@@ -236,22 +349,70 @@
                 font-size: 20px;
             }
 
+            #carta #botonVolver
+            {
+                display: none;
+            }
+
+            #carta button
+            {
+                display: block;
+
+                width: 100%;
+
+                margin: 12px auto 0 auto;
+
+                font-size: 20px;
+            }
+
+            @keyframes aparecerCarta
+            {
+                from
+                {
+                    opacity: 0;
+
+                    transform:
+                        translateY(30px)
+                        rotate(-2deg);
+                }
+
+                to
+                {
+                    opacity: 1;
+
+                    transform:
+                        translateY(0)
+                        rotate(0deg);
+                }
+            }
+
+            /* =========================
+               FONDO ANIMADO
+               ========================= */
+
             #fondoAnimado
             {
                 position: fixed;
+
                 top: 0;
                 left: 0;
+
                 width: 100%;
                 height: 100%;
+
                 overflow: hidden;
+
                 pointer-events: none;
+
                 z-index: -1;
             }
 
             #fondoAnimado span
             {
                 position: absolute;
+
                 font-size: 30px;
+
                 animation: flotar 8s linear infinite;
             }
 
@@ -260,6 +421,7 @@
                 from
                 {
                     transform: translateY(100vh);
+
                     opacity: 0;
                 }
 
@@ -276,22 +438,8 @@
                 to
                 {
                     transform: translateY(-100px);
-                    opacity: 0;
-                }
-            }
 
-            @keyframes aparecerCarta
-            {
-                from
-                {
                     opacity: 0;
-                    transform: translateY(30px) rotate(-2deg);
-                }
-
-                to
-                {
-                    opacity: 1;
-                    transform: translateY(0) rotate(0deg);
                 }
             }
 
@@ -315,12 +463,13 @@
                 font-size: 25px;
                 animation-duration: 6s;
             }
-            
+
             #fondoAnimado span:nth-child(4)
             {
                 left: 55%;
                 animation-duration: 10s;
             }
+
             #fondoAnimado span:nth-child(5)
             {
                 left: 70%;
@@ -345,16 +494,21 @@
                 animation-duration: 9s;
             }
 
+            /* =========================
+               VIDEO
+               ========================= */
+
             #videoFondo
             {
                 position: fixed;
+
                 inset: 0;
-                left: 0;
 
                 width: 100vw;
                 height: 100vh;
 
                 object-fit: cover;
+
                 object-position: center;
 
                 z-index: -3;
@@ -368,33 +522,25 @@
             {
                 position: fixed;
 
-                top: 0;
                 inset: 0;
 
                 width: 100vw;
                 height: 100vh;
 
-                background-color: rgba(255, 182, 193, 0.5);
+                background-color:
+                    rgba(255, 182, 193, 0.5);
 
                 z-index: -2;
             }
 
-            #carta #botonVolver
-            {
-                display: none;
-            }
-
-            #carta button
-            {
-                display: block;
-                width: 100%;
-                margin: 12px auto 0 auto;
-                font-size: 20px;
-            }
+            /* =========================
+               IMAGEN DEL MENÚ
+               ========================= */
 
             #imagenMenu
             {
                 position: fixed;
+
                 top: 0;
                 left: 0;
 
@@ -402,417 +548,960 @@
                 height: 100vh;
 
                 object-fit: cover;
+
                 object-position: center;
 
                 z-index: -3;
 
                 display: none;
             }
-        </style>
 
+        </style>
     </head>
 
     <body>
-        <video id="videoFondo" autoplay muted playsinline preload="auto">
+
+        <!-- VIDEO -->
+
+        <video
+            id="videoFondo"
+            autoplay
+            muted
+            playsinline
+            preload="auto"
+        >
             <source src="fondo.mp4" type="video/mp4">
         </video>
 
+
+        <!-- CAPA -->
+
         <div id="capaFondo"></div>
-        
-        <img id="imagenMenu" src="fondoMenu.png">
+
+
+        <!-- IMAGEN MENÚ -->
+
+        <img
+            id="imagenMenu"
+            src="fondoMenu.png"
+        >
+
+
+        <!-- FONDO ANIMADO -->
 
         <div id="fondoAnimado">
+
             <span>💗</span>
             <span>✨</span>
             <span>💕</span>
             <span>🌸</span>
+
             <span>💗</span>
             <span>✨</span>
             <span>💕</span>
             <span>🌸</span>
+
         </div>
+
+
+        <!-- =========================
+             MENÚ
+             ========================= -->
 
         <div id="menu">
-            <h2>¿Por donde querés empezar 💗</h2>
 
-            <button id="botonMenuCarta">💌 Carta</button>
-            <button>🔐 Juego de la Caja fuerte</button>
+            <h2>
+                ¿Por dónde querés empezar? 💗
+            </h2>
+
+            <button id="botonMenuCarta">
+                💌 Carta
+            </button>
+
+            <button>
+                🔐 Juego de la Caja fuerte
+            </button>
+
         </div>
 
+
+        <!-- =========================
+             CARTA
+             ========================= -->
+
         <div id="carta">
-            <h2>💌 Para vos</h2>
+
+            <h2>
+                💌 Para vos
+            </h2>
 
             <p id="textoCarta"></p>
 
-            <button id="botonCarta">Abrir carta 💗</button>
-            <button id="botonVolver">Volver al menú</button>
+            <button id="botonCarta">
+                Abrir carta 💗
+            </button>
+
+            <button id="botonVolver">
+                Volver al menú
+            </button>
+
         </div>
+
+
+        <!-- =========================
+             MÚSICA
+             ========================= -->
 
         <div id="controlesMusica">
 
-            <p id="tituloMusica">🎵 Música</p>
+            <p id="tituloMusica">
+                🎵 Música
+            </p>
 
             <div id="botonesMusica">
 
-                <button id="botonAnterior">⏮</button>
-                <button id="botonMusica">▶</button>
-                <button id="botonPausa">⏸</button>
-                <button id="botonSiguiente">⏭</button>
+                <button id="botonAnterior">
+                    ⏮
+                </button>
+
+                <button id="botonMusica">
+                    ▶
+                </button>
+
+                <button id="botonPausa">
+                    ⏸
+                </button>
+
+                <button id="botonSiguiente">
+                    ⏭
+                </button>
 
             </div>
 
-            <label for="volumen">Volumen 🔊</label>
+            <label for="volumen">
+                Volumen 🔊
+            </label>
 
-            <input id="volumen" type="range" min="0" max="1" step="0.1" value="0.5">
+            <input
+                id="volumen"
+                type="range"
+                min="0"
+                max="1"
+                step="0.1"
+                value="0.5"
+            >
+
         </div>
 
+
+        <!-- AUDIO -->
+
         <audio id="musica"></audio>
-        <p id="contador"></p>
-
-        <script> 
-        const fechaCumple = new Date("2026-08-29T00:00:00-03:00")
-        const modoPrueba = false
-        const probarMenu = false
-        const botonMusica  = document.getElementById("botonMusica")
-        const musica = document.getElementById("musica")
-        const botonPausa = document.getElementById("botonPausa")
-        const volumen = document.getElementById("volumen")
-        const menu = document.getElementById("menu")
-        const botonCarta = document.getElementById("botonCarta")
-        const carta = document.getElementById("carta")
-        const botonMenuCarta = document.getElementById("botonMenuCarta")
-        const fondoAnimado  = document.getElementById("fondoAnimado")
-        const videoFondo = document.getElementById("videoFondo")
-        const capaFondo  = document.getElementById("capaFondo")
-        const textoCarta = document.getElementById("textoCarta")
-        const botonVolver = document.getElementById("botonVolver")
-        const imagenMenu = document.getElementById("imagenMenu")
-        const texto = "Hay algo que quiero decirte..."
-        const textoReal = "Eugenia, hoy es tu cumpleaños y espero que estas palabras alcancen por lo menos a reflejar lo mucho que te quiero. Gracias por siempre estar, por todos tus regalos y por lo momentos lindos que generas."
-        const botonAnterior = document.getElementById("botonAnterior")
-        const botonSiguiente = document.getElementById("botonSiguiente")
-
-        const canciones =
-        [
-            "musica3.mp3",
-            "musica1.mp3",
-            "musica2.mp3",
-            "musica.mp3"
-        ]
-
-        let indiceCancion = 0
-        let posicion = 0
-        let cartaEscrita = false
-        let pantalla = "menu"
-        let ahoraOficial
-        let momentoConsulta
-        
 
 
+        <!-- =========================
+             CONTADOR
+             ========================= -->
 
-        musica.volume = volumen.value
-        musica.src = canciones[indiceCancion]
-        
-        function escribirCarta()
-        {
-            if(cartaEscrita)
+        <p id="contador">
+
+            <span id="mensajeContador"></span>
+
+            <span id="tiempoContador"></span>
+
+        </p>
+
+
+        <script>
+
+            /* =========================
+               VARIABLES
+               ========================= */
+
+            const fechaCumple =
+                new Date("2026-08-27T17:33:00-03:00")
+
+
+            const modoPrueba = false
+
+            const probarMenu = false
+
+
+            /* =========================
+               ELEMENTOS HTML
+               ========================= */
+
+            const botonMusica =
+                document.getElementById("botonMusica")
+
+            const musica =
+                document.getElementById("musica")
+
+            const botonPausa =
+                document.getElementById("botonPausa")
+
+            const volumen =
+                document.getElementById("volumen")
+
+            const menu =
+                document.getElementById("menu")
+
+            const botonCarta =
+                document.getElementById("botonCarta")
+
+            const carta =
+                document.getElementById("carta")
+
+            const botonMenuCarta =
+                document.getElementById("botonMenuCarta")
+
+            const fondoAnimado =
+                document.getElementById("fondoAnimado")
+
+            const videoFondo =
+                document.getElementById("videoFondo")
+
+            const capaFondo =
+                document.getElementById("capaFondo")
+
+            const textoCarta =
+                document.getElementById("textoCarta")
+
+            const botonVolver =
+                document.getElementById("botonVolver")
+
+            const imagenMenu =
+                document.getElementById("imagenMenu")
+
+            const botonAnterior =
+                document.getElementById("botonAnterior")
+
+            const botonSiguiente =
+                document.getElementById("botonSiguiente")
+
+            const tituloMusica =
+                document.getElementById("tituloMusica")
+
+            const mensajeContador =
+                document.getElementById("mensajeContador")
+
+            const tiempoContador =
+                document.getElementById("tiempoContador")
+
+            const contador =
+                document.getElementById("contador")
+
+
+            /* =========================
+               TEXTOS
+               ========================= */
+
+            const texto =
+                "Hay algo que quiero decirte..."
+
+
+            const textoReal =
+                "Eugenia, hoy es tu cumpleaños y espero que estas palabras alcancen por lo menos a reflejar lo mucho que te quiero. Gracias por siempre estar, por todos tus regalos y por los momentos lindos que generas."
+
+
+            /* =========================
+               CANCIONES
+               ========================= */
+
+            const canciones =
+            [
+                "musica3.mp3",
+                "musica1.mp3",
+                "musica2.mp3",
+                "musica.mp3"
+            ]
+
+
+            /* =========================
+               ESTADO
+               ========================= */
+
+            let indiceCancion = 0
+
+            let posicion = 0
+
+            let cartaEscrita = false
+
+            let pantalla = "menu"
+
+            let ahoraOficial
+
+            let momentoConsulta
+
+
+            /* =========================
+               CONFIGURACIÓN INICIAL
+               ========================= */
+
+            musica.volume = volumen.value
+
+            musica.src =
+                canciones[indiceCancion]
+
+
+            /* =========================
+               ESCRIBIR TEXTO INICIAL
+               ========================= */
+
+            function escribirCarta()
             {
-                return
-            }
-
-            if(posicion < texto.length)
-            {
-                textoCarta.textContent += texto[posicion]
-
-                posicion++
-
-                setTimeout(escribirCarta, 80)
-            }
-
-            else
-            {
-                cartaEscrita = true
-            }
-        }
-
-        function abrirCarta()
-        {
-            textoCarta.textContent = ""
-            posicion = 0
-
-            escribirTextoReal()
-        }
-
-        function escribirTextoReal()
-        {
-            if(posicion < textoReal.length)
-            {
-                textoCarta.textContent += textoReal[posicion]
-
-                posicion++
-
-                setTimeout(escribirTextoReal, 80);
-            }
-        }
-
-        async function obtenerHora() 
-        {
-            const respuesta = await fetch("https://timeapi.io/api/time/current/zone?timeZone=America/Argentina/Buenos_Aires")
-            const datos = await respuesta.json()
-
-            ahoraOficial = new Date(datos.dateTime)
-            momentoConsulta = Date.now()
-        }
-
-        function actualizarContador()
-        {
-            const tiempoTranscurrido = new Date() - momentoConsulta
-            const ahora = new Date(ahoraOficial.getTime() + tiempoTranscurrido)
-
-            const diferencia = fechaCumple - ahora
-            const contador = document.getElementById("contador")
-
-            if(probarMenu)
-            {
-                if(pantalla == "menu")
+                if(cartaEscrita)
                 {
-                    menu.style.display = "block"
-                    carta.style.display = "none"
-                    contador.style.display = "none"
-
-                    fondoAnimado.style.display = "block"
-
-                    videoFondo.style.display = "none"
-                    capaFondo.style.display = "none"
-                    
-                    elegirImagenMenu()
-
-                    imagenMenu.style.display = "block"
+                    return
                 }
 
-                return
+                if(posicion < texto.length)
+                {
+                    textoCarta.textContent +=
+                        texto[posicion]
+
+                    posicion++
+
+                    setTimeout(
+                        escribirCarta,
+                        80
+                    )
+                }
+
+                else
+                {
+                    cartaEscrita = true
+                }
             }
 
-            if(modoPrueba)
+
+            /* =========================
+               ABRIR CARTA
+               ========================= */
+
+            function abrirCarta()
             {
-                if(pantalla == "menu")
+                textoCarta.textContent = ""
+
+                posicion = 0
+
+                escribirTextoReal()
+            }
+
+
+            function escribirTextoReal()
+            {
+                if(posicion < textoReal.length)
                 {
-                    menu.style.display = "block"
-                    carta.style.display = "none"
-                    contador.style.display = "none"
+                    textoCarta.textContent +=
+                        textoReal[posicion]
+
+                    posicion++
+
+                    setTimeout(
+                        escribirTextoReal,
+                        80
+                    )
+                }
+            }
+
+
+            /* =========================
+               OBTENER HORA OFICIAL
+               ========================= */
+
+            async function obtenerHora()
+            {
+                const respuesta =
+                    await fetch(
+                        "https://timeapi.io/api/time/current/zone?timeZone=America/Argentina/Buenos_Aires"
+                    )
+
+                const datos =
+                    await respuesta.json()
+
+                ahoraOficial =
+                    new Date(datos.dateTime)
+
+                momentoConsulta =
+                    Date.now()
+            }
+
+
+            /* =========================
+               ACTUALIZAR CONTADOR
+               ========================= */
+
+            function actualizarContador()
+            {
+                const tiempoTranscurrido =
+                    Date.now() - momentoConsulta
+
+
+                const ahora =
+                    new Date(
+                        ahoraOficial.getTime()
+                        + tiempoTranscurrido
+                    )
+
+
+                const diferencia =
+                    fechaCumple - ahora
+
+
+                /* =========================
+                   MODO PRUEBA
+                   ========================= */
+
+                if(probarMenu || modoPrueba)
+                {
+                    if(pantalla == "menu")
+                    {
+                        menu.style.display = "block"
+
+                        carta.style.display = "none"
+
+                        contador.style.display = "none"
+
+                        fondoAnimado.style.display = "block"
+
+                        videoFondo.style.display = "none"
+
+                        capaFondo.style.display = "none"
+
+                        elegirImagenMenu()
+
+                        imagenMenu.style.display = "block"
+                    }
+
+                    return
+                }
+
+
+                /* =========================
+                   TODAVÍA NO LLEGÓ
+                   ========================= */
+
+                if(diferencia > 0)
+                {
+                    /*
+                     * Si estamos en el menú,
+                     * mostramos el contador.
+                     */
+
+                    if(pantalla == "menu")
+                    {
+                        menu.style.display = "none"
+
+                        carta.style.display = "none"
+
+                        contador.style.display = "block"
+                    }
+
+
+                    /*
+                     * Si estamos en la carta,
+                     * NO LA CERRAMOS.
+                     */
+
+                    if(pantalla == "carta")
+                    {
+                        menu.style.display = "none"
+
+                        carta.style.display = "block"
+
+                        contador.style.display = "none"
+                    }
+
 
                     fondoAnimado.style.display = "block"
 
-                    videoFondo.style.display = "none"
+                    videoFondo.style.display = "block"
+
                     capaFondo.style.display = "block"
 
-                    elegirImagenMenu()
-                    imagenMenu.style.display = "block"
+                    tituloMusica.textContent =
+                        "¿Querés escuchar música mientras esperás?"
                 }
 
-                return 
+
+                /* =========================
+                   YA LLEGÓ EL CUMPLEAÑOS
+                   ========================= */
+
+                else
+                {
+                    /*
+                     * SOLAMENTE cambiamos al menú
+                     * si todavía estamos en el menú.
+                     *
+                     * Si estamos en la carta,
+                     * la dejamos abierta.
+                     */
+
+                    if(pantalla == "menu")
+                    {
+                        menu.style.display = "block"
+
+                        carta.style.display = "none"
+
+                        contador.style.display = "none"
+
+                        fondoAnimado.style.display = "none"
+
+                        videoFondo.style.display = "none"
+
+                        capaFondo.style.display = "none"
+
+                        elegirImagenMenu()
+
+                        imagenMenu.style.display = "block"
+
+                        musica.style.display = "none"
+
+                        tituloMusica.textContent =
+                            "🎵 Música"
+                    }
+
+
+                    /*
+                     * Si estamos en la carta,
+                     * NO hacemos nada con ella.
+                     */
+
+                    if(pantalla == "carta")
+                    {
+                        menu.style.display = "none"
+
+                        carta.style.display = "block"
+
+                        contador.style.display = "none"
+
+                        fondoAnimado.style.display = "none"
+
+                        videoFondo.style.display = "none"
+
+                        capaFondo.style.display = "none"
+
+                        elegirImagenMenu()
+
+                        imagenMenu.style.display = "block"
+
+                        musica.style.display = "none"
+                    }
+
+
+                    return
+                }
+
+
+                /* =========================
+                   CALCULAR TIEMPO
+                   ========================= */
+
+                const segundos =
+                    diferencia / 1000
+
+                const segundosEnteros =
+                    Math.floor(segundos)
+
+
+                const dias =
+                    segundosEnteros / 86400
+
+                const diasEnteros =
+                    Math.floor(dias)
+
+
+                const segundosRestantes =
+                    segundosEnteros % 86400
+
+
+                const horas =
+                    segundosRestantes / 3600
+
+                const horasEnteras =
+                    Math.floor(horas)
+
+
+                const segundosDespuesDeHoras =
+                    segundosRestantes % 3600
+
+
+                const minutos =
+                    segundosDespuesDeHoras / 60
+
+                const minutosEnteros =
+                    Math.floor(minutos)
+
+
+                const segundosEnterosRestantes =
+                    segundosDespuesDeHoras % 60
+
+
+                const diasTexto =
+                    String(diasEnteros).padStart(2, "0")
+
+                const horasTexto =
+                    String(horasEnteras).padStart(2, "0")
+
+                const minutosTexto =
+                    String(minutosEnteros).padStart(2, "0")
+
+                const segundosTexto =
+                    String(segundosEnterosRestantes).padStart(2, "0")
+
+
+                /* =========================
+                   MOSTRAR CONTADOR
+                   ========================= */
+
+                mensajeContador.textContent =
+                    "¡Falta poco para tu sorpresa!"
+
+
+                tiempoContador.textContent =
+                    diasTexto
+                    + " días, "
+                    + horasTexto
+                    + " horas, "
+                    + minutosTexto
+                    + " minutos y "
+                    + segundosTexto
+                    + " segundos"
             }
 
-            if(diferencia > 0)
+
+            /* =========================
+               INICIAR RELOJ
+               ========================= */
+
+            obtenerHora().then(function()
             {
-                menu.style.display = "none"
-                carta.style.display = "none"
-                contador.style.display = "block"
-                fondoAnimado.style.display = "block"
-                videoFondo.style.display = "block"
-                capaFondo.style.display = "block"
-            }
+                actualizarContador()
 
-            else
-            {
-                menu.style.display = "block"
-                carta.style.display = "none"
-                contador.style.display = "none"
-                fondoAnimado.style.display = "none"
-                videoFondo.style.display = "none"
-                capaFondo.style.display = "none"
+                setInterval(
+                    actualizarContador,
+                    1000
+                )
 
-                elegirImagenMenu()
-                imagenMenu.style.display = "block"
-                
-                musica.style.display = "none"
 
-                return 
-            }
-
-            const segundos = diferencia/1000
-            const segundosEnteros = Math.floor(segundos)
-
-            const dias = segundosEnteros/86400
-            const diasEnteros = Math.floor(dias)
-
-            const segundosRestantes = segundosEnteros % 86400
-            const horas = segundosRestantes/3600
-            const horasEnteras = Math.floor(horas)
-            const segundosDespuesDeHoras = segundosRestantes % 3600
-
-            const minutos = segundosDespuesDeHoras / 60
-            const minutosEnteros = Math.floor(minutos)
-
-            const segundosEnterosRestantes = segundosDespuesDeHoras % 60
-
-            const diasTexto = String(diasEnteros).padStart(2, "0")
-            const horasTexto = String(horasEnteras).padStart(2, "0")
-            const minutosTexto = String(minutosEnteros).padStart(2, "0")
-            const segundosTexto = String(segundosEnterosRestantes).padStart(2, "0")
-            
-            contador.textContent = "Aunque tu cumpleaños está cada vez más cerca faltan: " + diasTexto + " días, " + horasTexto + " horas, " + minutosTexto + " minutos y " + segundosTexto + " segundos"
-        }   
-
-        obtenerHora().then(function()
-        {
-            actualizarContador()
-            setInterval(actualizarContador, 1000)
-
-            setInterval(function()
-            {
-                obtenerHora()
-            }, 60000)
-        })
-
-        botonMusica.addEventListener("click", function()
-        {
-            musica.play()
-        })
-
-        botonPausa.addEventListener("click", function()
-        {
-            musica.pause()
-        })
-
-        volumen.addEventListener("input", function()
-        {
-            musica.volume = volumen.value
-        })
-
-        botonCarta.addEventListener("click", function()
-        {
-            botonCarta.style.display = "none"
-            botonVolver.style.display = "block"
-
-            abrirCarta()
-        })
-
-        botonMenuCarta.addEventListener("click", function()
-        {
-            pantalla = "carta"
-
-            menu.style.display = "none"
-            carta.style.display = "block"
-
-            botonCarta.style.display = "block"
-            botonVolver.style.display = "none"
-
-            textoCarta.textContent = ""
-            posicion = 0
-
-            if(!cartaEscrita)
-            {
-                escribirCarta()
-            }
-        })
-
-        botonVolver.addEventListener("click", function()
-        {
-            pantalla = "menu"
-
-            carta.style.display = "none"
-            menu.style.display = "block"
-
-            botonCarta.style.display = "block"
-            botonVolver.style.display = "none"
-
-            textoCarta.textContent = ""
-            posicion = 0
-            cartaEscrita = false
-        })
-
-        videoFondo.addEventListener("ended", function()
-        {
-            console.log("Evento ended disparado")
-
-            videoFondo.currentTime = 0
-
-            videoFondo.play().then(function()
-            {
-                console.log("play() exitoso")
-            }).catch(function(error)
-        {
-            console.error("play() falló:", error)
-        })
-    })
-
-    videoFondo.addEventListener("timeupdate", function()
-    {
-        if(videoFondo.duration && videoFondo.currentTime >= videoFondo.duration - 0.2)
-        {
-            videoFondo.currentTime = 0
-
-            videoFondo.play().catch(function(error)
-            {
-                console.error("No se pudo reanudar el video:", error)
+                setInterval(
+                    function()
+                    {
+                        obtenerHora()
+                    },
+                    60000
+                )
             })
-        }
-    })
 
-    function elegirImagenMenu()
-    {
-        if(window.innerWidth <= 600)
-        {
-            imagenMenu.src = "fondoMenu1.png"
-        }
 
-        else
-        {
-            imagenMenu.src = "fondoMenu.png"
-        }
-    }
+            /* =========================
+               MÚSICA
+               ========================= */
 
-    botonSiguiente.addEventListener("click", function()
-    {
-        indiceCancion++
+            botonMusica.addEventListener(
+                "click",
+                function()
+                {
+                    musica.play()
+                }
+            )
 
-        if(indiceCancion >= canciones.length)
-        {
-            indiceCancion = 0
-        }
 
-        musica.src = canciones[indiceCancion]
-        musica.play()
-    })
+            botonPausa.addEventListener(
+                "click",
+                function()
+                {
+                    musica.pause()
+                }
+            )
 
-    botonAnterior.addEventListener("click", function()
-    {
-        indiceCancion--
 
-        if(indiceCancion < 0)
-        {
-            indiceCancion = canciones.length - 1
-        }
+            volumen.addEventListener(
+                "input",
+                function()
+                {
+                    musica.volume =
+                        volumen.value
+                }
+            )
 
-        musica.src = canciones[indiceCancion]
-        musica.play()
-    })
 
-    musica.addEventListener("ended", function()
-    {
-        indiceCancion++
+            /* =========================
+               BOTÓN ABRIR CARTA
+               ========================= */
 
-        if(indiceCancion >= canciones.length)
-        {
-            indiceCancion = 0
-        }
+            botonCarta.addEventListener(
+                "click",
+                function()
+                {
+                    botonCarta.style.display =
+                        "none"
 
-        musica.src = canciones[indiceCancion]
-        musica.play()
-    })
-        
-    </script>
+                    botonVolver.style.display =
+                        "block"
+
+                    abrirCarta()
+                }
+            )
+
+
+            /* =========================
+               IR A LA CARTA
+               ========================= */
+
+            botonMenuCarta.addEventListener(
+                "click",
+                function()
+                {
+                    /*
+                     * Primero cambiamos el estado.
+                     */
+
+                    pantalla = "carta"
+
+
+                    /*
+                     * Después mostramos la carta.
+                     */
+
+                    menu.style.display =
+                        "none"
+
+                    carta.style.display =
+                        "block"
+
+                    contador.style.display =
+                        "none"
+
+
+                    /*
+                     * Configuramos los botones.
+                     */
+
+                    botonCarta.style.display =
+                        "block"
+
+                    botonVolver.style.display =
+                        "none"
+
+
+                    /*
+                     * Reiniciamos el texto.
+                     */
+
+                    textoCarta.textContent =
+                        ""
+
+                    posicion = 0
+
+                    cartaEscrita = false
+
+
+                    /*
+                     * Escribimos:
+                     * "Hay algo que quiero decirte..."
+                     */
+
+                    escribirCarta()
+                }
+            )
+
+
+            /* =========================
+               VOLVER AL MENÚ
+               ========================= */
+
+            botonVolver.addEventListener(
+                "click",
+                function()
+                {
+                    pantalla = "menu"
+
+
+                    carta.style.display =
+                        "none"
+
+                    menu.style.display =
+                        "block"
+
+
+                    botonCarta.style.display =
+                        "block"
+
+                    botonVolver.style.display =
+                        "none"
+
+
+                    textoCarta.textContent =
+                        ""
+
+                    posicion = 0
+
+                    cartaEscrita = false
+                }
+            )
+
+
+            /* =========================
+               VIDEO
+               ========================= */
+
+            videoFondo.addEventListener(
+                "ended",
+                function()
+                {
+                    videoFondo.currentTime = 0
+
+                    videoFondo.play().catch(
+                        function(error)
+                        {
+                            console.error(
+                                "play() falló:",
+                                error
+                            )
+                        }
+                    )
+                }
+            )
+
+
+            videoFondo.addEventListener(
+                "timeupdate",
+                function()
+                {
+                    if(
+                        videoFondo.duration
+                        &&
+                        videoFondo.currentTime
+                        >=
+                        videoFondo.duration - 0.2
+                    )
+                    {
+                        videoFondo.currentTime = 0
+
+                        videoFondo.play().catch(
+                            function(error)
+                            {
+                                console.error(
+                                    "No se pudo reanudar el video:",
+                                    error
+                                )
+                            }
+                        )
+                    }
+                }
+            )
+
+
+            /* =========================
+               IMAGEN RESPONSIVE
+               ========================= */
+
+            function elegirImagenMenu()
+            {
+                if(window.innerWidth <= 600)
+                {
+                    imagenMenu.src =
+                        "fondoMenu1.png"
+                }
+
+                else
+                {
+                    imagenMenu.src =
+                        "fondoMenu.png"
+                }
+            }
+
+
+            /* =========================
+               SIGUIENTE CANCIÓN
+               ========================= */
+
+            botonSiguiente.addEventListener(
+                "click",
+                function()
+                {
+                    indiceCancion++
+
+
+                    if(
+                        indiceCancion
+                        >=
+                        canciones.length
+                    )
+                    {
+                        indiceCancion = 0
+                    }
+
+
+                    musica.src =
+                        canciones[indiceCancion]
+
+
+                    musica.play()
+                }
+            )
+
+
+            /* =========================
+               CANCIÓN ANTERIOR
+               ========================= */
+
+            botonAnterior.addEventListener(
+                "click",
+                function()
+                {
+                    indiceCancion--
+
+
+                    if(indiceCancion < 0)
+                    {
+                        indiceCancion =
+                            canciones.length - 1
+                    }
+
+
+                    musica.src =
+                        canciones[indiceCancion]
+
+
+                    musica.play()
+                }
+            )
+
+
+            /* =========================
+               TERMINÓ LA CANCIÓN
+               ========================= */
+
+            musica.addEventListener(
+                "ended",
+                function()
+                {
+                    indiceCancion++
+
+
+                    if(
+                        indiceCancion
+                        >=
+                        canciones.length
+                    )
+                    {
+                        indiceCancion = 0
+                    }
+
+
+                    musica.src =
+                        canciones[indiceCancion]
+
+
+                    musica.play()
+                }
+            )
+
+        </script>
 
     </body>
 </html>
