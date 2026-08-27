@@ -106,37 +106,37 @@
 
             #controlesMusica {
                 position: fixed;
-                top: 16px;
-                right: 20px;
+                top: 2vh;
+                right: 2vw;
                 z-index: 10;
 
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                gap: 10px;
-                flex-wrap: wrap;
+                gap: 1vh;
 
-                max-width: 280px;
-                padding: 16px;
+                padding: 1.5vh;
                 background-color: white;
-                border-radius: 16px;
+                border-radius: 1vw;
                 box-shadow: 0 4px 16px gray;
-                width: 80%;
-                max-width: 280px;
+
+                width: clamp(180px, 20vw, 280px);
+
                 box-sizing: border-box;
                 flex-direction: column;
             }
 
             #controlesMusica button
             {
-                font-size: 14px;
-                padding: 10px 10px;
+                font-size: clamp(10px, 1vw, 14px);
+                padding: 0.7vw 0.8vw;
             }
 
             #controlesMusica label
             {
                 color: deeppink;
                 font-weight: bold;
+                font-size: clamp(10px, 1vw, 14px);
             }
 
             #volumen
@@ -149,14 +149,14 @@
             {
                 margin: 0;
                 color: deeppink;
-                font-size: 16px;
+                font-size: clamp(11px, 1.2vw, 16px);
                 font-weight: bold;
             }
 
             #botonesMusica
             {
                 display: flex;
-                gap: 10px;
+                gap: 0.5vw;
             }
 
             @media (max-width: 600px)
@@ -175,25 +175,6 @@
                 {
                     font-size: 18px;
                     padding: 16px;
-                }
-
-                #controlesMusica
-                {
-                    top: 10px;
-                    right: 10px;
-                    width: 180px;
-                    padding: 12px;
-                }
-
-                #tituloMusica
-                {
-                    font-size: 14px;
-                }
-
-                #controlesMusica button
-                {       
-                    font-size: 12px;
-                    padding: 8px;
                 }
             }
 
