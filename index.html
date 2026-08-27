@@ -16,6 +16,8 @@
                 text-align: center;
                 margin: 0;
                 min-height: 100vh;
+                overflow: hidden;
+                
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -406,16 +408,36 @@
                 margin: 12px auto 0 auto;
                 font-size: 20px;
             }
+
+            #imagenMenu
+            {
+                position: fixed;
+                inset: 0;
+
+                width: 100%;
+                height: 100%;
+
+                background-image: url("fondoMenu.png");
+                background-size: cover;
+                background-position: center;
+                background-repeat: no-repeat;
+
+                z-index: -3;
+
+                display: none;
+            }
         </style>
 
     </head>
 
     <body>
-        <video id="videoFondo" autoplay muted loop playsinline>
+        <video id="videoFondo" autoplay muted playsinline preload="auto">
             <source src="fondo.mp4" type="video/mp4">
         </video>
 
         <div id="capaFondo"></div>
+        
+        <img id="imagenMenu" src="fondoMenu.png">
 
         <div id="fondoAnimado">
             <span>💗</span>
@@ -462,8 +484,8 @@
 
         <script> 
         const fechaCumple = new Date("2026-08-22T00:00:00-03:00")
-        const modoPrueba = true
-        const probarMenu = false
+        const modoPrueba = false
+        const probarMenu = true
         const botonMusica  = document.getElementById("botonMusica")
         const musica = document.getElementById("musica")
         const botonPausa = document.getElementById("botonPausa")
@@ -477,6 +499,7 @@
         const capaFondo    = document.getElementById("capaFondo")
         const textoCarta     = document.getElementById("textoCarta")
         const botonVolver = document.getElementById("botonVolver")
+        const imagenMenu = document.getElementById("imagenMenu")
         const texto = "Hay algo que quiero decirte..."
         const textoReal = "Eugenia, hoy es tu cumpleaños y espero que estas palabras alcancen por lo menos a reflejar lo mucho que te quiero. Gracias por siempre estar, por todos tus regalos y por lo momentos lindos que generas."
 
@@ -557,9 +580,13 @@
                     menu.style.display = "block"
                     carta.style.display = "none"
                     contador.style.display = "none"
+
                     fondoAnimado.style.display = "block"
+
                     videoFondo.style.display = "block"
                     capaFondo.style.display = "block"
+
+                    imagenMenu.style.display = "block"
                 }
 
                 return
@@ -575,6 +602,7 @@
                     fondoAnimado.style.display = "block"
                     videoFondo.style.display = "block"
                     capaFondo.style.display = "block"
+                    imagenMenu.style.display = "block"
                 }
 
                 return 
@@ -598,6 +626,7 @@
                 fondoAnimado.style.display = "none"
                 videoFondo.style.display = "none"
                 capaFondo.style.display = "none"
+                imagenMenu.style.display = "block"
                 musica.style.display = "none"
 
                 return 
@@ -696,10 +725,32 @@
         })
 
         videoFondo.addEventListener("ended", function()
+{
+    console.log("Evento ended disparado")
+
+    videoFondo.currentTime = 0
+
+    videoFondo.play().then(function()
+    {
+        console.log("play() exitoso")
+    }).catch(function(error)
+    {
+        console.error("play() falló:", error)
+    })
+})
+
+videoFondo.addEventListener("timeupdate", function()
+{
+    if(videoFondo.duration && videoFondo.currentTime >= videoFondo.duration - 0.2)
+    {
+        videoFondo.currentTime = 0
+
+        videoFondo.play().catch(function(error)
         {
-            videoFondo.currentTime = 0
-            videoFondo.play()
+            console.error("No se pudo reanudar el video:", error)
         })
+    }
+})
         
         </script>
 
