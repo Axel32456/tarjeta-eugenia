@@ -1,540 +1,6147 @@
 <!DOCTYPE html>
+
 <html>
 
 <head>
 
-    <title>Cumpleaños Eugenia</title>
+<title>Cumpleaños Eugenia</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
 
-    <style>
+>
 
-        html
-        {
-            width: 100%;
-            height: 100%;
-        }
+<style>
 
-        body
-        {
-            width: 100%;
-            background-color: lightpink;
-            text-align: center;
-            margin: 0;
-            min-height: 100vh;
-            overflow: hidden;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-family: "Trebuchet MS", Arial, sans-serif;
-        }
+/* =====================================================
+   GENERAL
+   ===================================================== */
 
-        button
-        {
-            background-color: #d84b7a;
-            color: white;
-            font-size: 26px;
-            padding: 12px;
-            border-radius: 12px;
-            border: none;
-            cursor: pointer;
-        }
+html
+{
+    width: 100%;
+    height: 100%;
+}
 
-        #contador
-        {
-            background-color: white;
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 0 4px 16px gray;
-            color: deeppink;
-            font-size: 23px;
-            font-weight: bold;
-            margin: 0;
-            width: 80%;
-            max-width: 600px;
-            box-sizing: border-box;
-            text-align: center;
-        }
+body
+{
+    width: 100%;
+    min-height: 100vh;
 
-        #mensajeContador
-        {
-            display: block;
-            margin-bottom: 12px;
-        }
+    margin: 0;
 
-        #tiempoContador
-        {
-            display: block;
-        }
+    background-color: lightpink;
 
-        #controlesMusica
-        {
-            position: fixed;
-            top: 2vh;
-            right: 2vw;
-            z-index: 20;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 1vh;
-            padding: 1.5vh;
-            background-color: white;
-            border-radius: 1vw;
-            box-shadow: 0 4px 16px gray;
-            width: clamp(180px, 20vw, 280px);
-            box-sizing: border-box;
-            flex-direction: column;
-        }
+    text-align: center;
 
-        #controlesMusica button
-        {
-            font-size: clamp(10px, 1vw, 14px);
-            padding: 0.7vw 0.8vw;
-        }
+    box-sizing: border-box;
 
-        #controlesMusica label
-        {
-            color: deeppink;
-            font-weight: bold;
-            font-size: clamp(10px, 1vw, 14px);
-        }
+    display: flex;
 
-        #volumen
-        {
-            accent-color: deeppink;
-            width: 100%;
-        }
+    flex-direction: column;
 
-        #tituloMusica
-        {
-            margin: 0;
-            color: deeppink;
-            font-size: clamp(11px, 1.2vw, 16px);
-            font-weight: bold;
-        }
+    justify-content: center;
 
-        #botonesMusica
-        {
-            display: flex;
-            gap: 0.5vw;
-        }
+    align-items: center;
 
-        #fondoAnimado
-        {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: -1;
-        }
+    font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
 
-        #fondoAnimado span
-        {
-            position: absolute;
-            font-size: 30px;
-            animation: flotar 8s linear infinite;
-        }
+    overflow: hidden;
+}
 
-        @keyframes flotar
-        {
-            from
-            {
-                transform: translateY(100vh);
-                opacity: 0;
-            }
+button
+{
+    background-color: #d84b7a;
 
-            20%
-            {
-                opacity: 1;
-            }
+    color: white;
 
-            80%
-            {
-                opacity: 1;
-            }
+    font-size: 20px;
 
-            to
-            {
-                transform: translateY(-100px);
-                opacity: 0;
-            }
-        }
+    padding: 10px 18px;
 
-        #fondoAnimado span:nth-child(1)
-        {
-            left: 10%;
-            font-size: 20px;
-            animation-duration: 7s;
-        }
+    border-radius: 12px;
 
-        #fondoAnimado span:nth-child(2)
-        {
-            left: 25%;
-            font-size: 30px;
-            animation-duration: 9s;
-        }
+    border: none;
 
-        #fondoAnimado span:nth-child(3)
-        {
-            left: 40%;
-            font-size: 25px;
-            animation-duration: 6s;
-        }
+    cursor: pointer;
 
-        #fondoAnimado span:nth-child(4)
-        {
-            left: 55%;
-            animation-duration: 10s;
-        }
+    transition:
+        transform 0.2s ease,
+        background-color 0.2s ease;
+}
 
-        #fondoAnimado span:nth-child(5)
-        {
-            left: 70%;
-            animation-duration: 8s;
-        }
+button:hover
+{
+    transform: scale(1.03);
 
-        #fondoAnimado span:nth-child(6)
-        {
-            left: 85%;
-            animation-duration: 7s;
-        }
+    background-color: #c83e6d;
+}
 
-        #fondoAnimado span:nth-child(7)
-        {
-            left: 35%;
-            animation-duration: 11s;
-        }
+button:disabled
+{
+    opacity: 0.5;
 
-        #fondoAnimado span:nth-child(8)
-        {
-            left: 65%;
-            animation-duration: 9s;
-        }
+    cursor: default;
 
-        #videoFondo
-        {
-            position: fixed;
-            inset: 0;
-            width: 100vw;
-            height: 100vh;
-            object-fit: cover;
-            object-position: center;
-            z-index: -3;
-            filter: brightness(0.7);
-            display: block;
-        }
+    transform: none;
+}
 
-        #capaFondo
-        {
-            position: fixed;
-            inset: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(255, 182, 193, 0.5);
-            z-index: -2;
-        }
 
-        @media(max-width: 600px)
-        {
-            #contador
-            {
-                width: 90%;
-                font-size: 18px;
-                padding: 16px;
-            }
-        }
+/* =====================================================
+   VIDEO DEL CONTADOR
+   ===================================================== */
 
-    </style>
+#videoFondo
+{
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    z-index: -3;
+
+    filter:
+        brightness(0.7);
+
+    display: block;
+}
+
+#capaFondo
+{
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    background-color:
+        rgba(
+            255,
+            182,
+            193,
+            0.5
+        );
+
+    z-index: -2;
+
+    display: block;
+}
+
+
+/* =====================================================
+   FONDO DEL MENÚ
+   ===================================================== */
+
+#imagenMenu
+{
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    object-fit: cover;
+
+    object-position: center;
+
+    z-index: -3;
+
+    display: none;
+}
+
+
+/* =====================================================
+   FONDO ANIMADO
+   ===================================================== */
+
+#fondoAnimado
+{
+    position: fixed;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    overflow: hidden;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    display: none;
+}
+
+#fondoAnimado span
+{
+    position: absolute;
+
+    font-size: 30px;
+
+    animation:
+        flotar
+        8s
+        linear
+        infinite;
+}
+
+@keyframes flotar
+{
+    from
+    {
+        transform:
+            translateY(100vh);
+
+        opacity: 0;
+    }
+
+    20%
+    {
+        opacity: 1;
+    }
+
+    80%
+    {
+        opacity: 1;
+    }
+
+    to
+    {
+        transform:
+            translateY(-100px);
+
+        opacity: 0;
+    }
+}
+
+#fondoAnimado span:nth-child(1)
+{
+    left: 10%;
+
+    font-size: 20px;
+
+    animation-duration: 7s;
+}
+
+#fondoAnimado span:nth-child(2)
+{
+    left: 25%;
+
+    font-size: 30px;
+
+    animation-duration: 9s;
+}
+
+#fondoAnimado span:nth-child(3)
+{
+    left: 40%;
+
+    font-size: 25px;
+
+    animation-duration: 6s;
+}
+
+#fondoAnimado span:nth-child(4)
+{
+    left: 55%;
+
+    animation-duration: 10s;
+}
+
+#fondoAnimado span:nth-child(5)
+{
+    left: 70%;
+
+    animation-duration: 8s;
+}
+
+#fondoAnimado span:nth-child(6)
+{
+    left: 85%;
+
+    animation-duration: 7s;
+}
+
+#fondoAnimado span:nth-child(7)
+{
+    left: 35%;
+
+    animation-duration: 11s;
+}
+
+#fondoAnimado span:nth-child(8)
+{
+    left: 65%;
+
+    animation-duration: 9s;
+}
+
+
+/* =====================================================
+   TRANSICIÓN DE CUMPLEAÑOS
+   ===================================================== */
+
+#transicionCumple
+{
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+
+    height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #3d1425 0%,
+            #1b0911 42%,
+            #000000 100%
+        );
+
+    z-index: 1000;
+
+    display: none;
+
+    justify-content: center;
+
+    align-items: center;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    transition:
+        opacity 1.5s ease;
+}
+
+#transicionCumple.mostrar
+{
+    display: flex;
+
+    opacity: 1;
+
+    pointer-events: auto;
+}
+
+
+/* =====================================================
+   LUZ CENTRAL
+   ===================================================== */
+
+#transicionCumple .luzCentral
+{
+    position: absolute;
+
+    left: 50%;
+
+    top: 48%;
+
+    width: 400px;
+
+    height: 400px;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(
+                255,
+                192,
+                203,
+                0.35
+            ) 0%,
+
+            rgba(
+                255,
+                105,
+                180,
+                0.18
+            ) 30%,
+
+            transparent 70%
+        );
+
+    filter:
+        blur(20px);
+
+    opacity: 0;
+
+    animation:
+        aparecerLuz
+        2s
+        0.5s
+        ease
+        forwards,
+
+        pulsarLuz
+        3s
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes aparecerLuz
+{
+    from
+    {
+        opacity: 0;
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(0.3);
+    }
+
+    to
+    {
+        opacity: 1;
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(1);
+    }
+}
+
+@keyframes pulsarLuz
+{
+    0%
+    {
+        opacity: 0.5;
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(0.9);
+    }
+
+    50%
+    {
+        opacity: 1;
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(1.15);
+    }
+
+    100%
+    {
+        opacity: 0.5;
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            scale(0.9);
+    }
+}
+
+
+/* =====================================================
+   CONTENIDO PRINCIPAL
+   ===================================================== */
+
+#contenidoCumple
+{
+    position: relative;
+
+    z-index: 20;
+
+    width: 100%;
+
+    text-align: center;
+
+    opacity: 0;
+
+    transform:
+        scale(0.75)
+        translateY(40px);
+
+    transition:
+        opacity 1.2s ease,
+
+        transform 1.2s
+        cubic-bezier(
+            0.17,
+            0.89,
+            0.32,
+            1.28
+        );
+}
+
+#transicionCumple.mostrar #contenidoCumple
+{
+    opacity: 1;
+
+    transform:
+        scale(1)
+        translateY(0);
+}
+
+
+/* =====================================================
+   TORTA
+   ===================================================== */
+
+#tortaCumple
+{
+    position: relative;
+
+    z-index: 10;
+
+    display: inline-block;
+
+    font-size:
+        clamp(
+            100px,
+            18vw,
+            180px
+        );
+
+    line-height: 1;
+
+    opacity: 0;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(
+                255,
+                182,
+                193,
+                0.7
+            )
+        );
+
+    animation:
+        aparecerTorta
+        1.6s
+        0.8s
+        cubic-bezier(
+            0.17,
+            0.89,
+            0.32,
+            1.28
+        )
+        forwards,
+
+        flotarTorta
+        3s
+        2.5s
+        ease-in-out
+        infinite;
+}
+
+@keyframes aparecerTorta
+{
+    0%
+    {
+        opacity: 0;
+
+        transform:
+            translateY(180px)
+            scale(0.2)
+            rotate(-25deg);
+    }
+
+    45%
+    {
+        opacity: 1;
+
+        transform:
+            translateY(-30px)
+            scale(1.18)
+            rotate(8deg);
+    }
+
+    65%
+    {
+        transform:
+            translateY(10px)
+            scale(0.92)
+            rotate(-4deg);
+    }
+
+    80%
+    {
+        transform:
+            translateY(-8px)
+            scale(1.06)
+            rotate(2deg);
+    }
+
+    100%
+    {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0deg);
+    }
+}
+
+@keyframes flotarTorta
+{
+    0%
+    {
+        transform:
+            translateY(0);
+    }
+
+    50%
+    {
+        transform:
+            translateY(-12px);
+    }
+
+    100%
+    {
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   TEXTO PRINCIPAL
+   ===================================================== */
+
+#textoCumple
+{
+    position: relative;
+
+    z-index: 15;
+
+    margin-top: 25px;
+
+    padding:
+        0 20px;
+
+    color: white;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            25px,
+            4vw,
+            46px
+        );
+
+    font-weight: bold;
+
+    text-shadow:
+        0 0 10px
+        rgba(
+            255,
+            105,
+            180,
+            0.8
+        ),
+
+        0 0 25px
+        rgba(
+            255,
+            105,
+            180,
+            0.5
+        );
+
+    opacity: 0;
+
+    animation:
+        aparecerTexto
+        1.2s
+        2s
+        ease
+        forwards;
+}
+
+@keyframes aparecerTexto
+{
+    0%
+    {
+        opacity: 0;
+
+        transform:
+            translateY(30px)
+            scale(0.9);
+    }
+
+    60%
+    {
+        opacity: 1;
+
+        transform:
+            translateY(-5px)
+            scale(1.03);
+    }
+
+    100%
+    {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+
+/* =====================================================
+   SUBTEXTO
+   ===================================================== */
+
+#subtextoCumple
+{
+    position: relative;
+
+    z-index: 15;
+
+    margin-top: 12px;
+
+    padding:
+        0 20px;
+
+    color:
+        #ffb6c1;
+
+    font-size:
+        clamp(
+            16px,
+            2vw,
+            23px
+        );
+
+    text-shadow:
+        0 0 10px
+        rgba(
+            255,
+            182,
+            193,
+            0.6
+        );
+
+    opacity: 0;
+
+    animation:
+        aparecerSubtexto
+        1s
+        2.8s
+        ease
+        forwards;
+}
+
+@keyframes aparecerSubtexto
+{
+    0%
+    {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    100%
+    {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+
+/* =====================================================
+   BRILLOS
+   ===================================================== */
+
+#brillosCumple
+{
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+#brillosCumple span
+{
+    position: absolute;
+
+    color: white;
+
+    font-size:
+        clamp(
+            16px,
+            3vw,
+            32px
+        );
+
+    opacity: 0;
+
+    animation:
+        aparecerBrillo
+        2s
+        ease-in-out
+        infinite;
+}
+
+#brillosCumple span:nth-child(1)
+{
+    left: 10%;
+    top: 20%;
+    animation-delay: 0.3s;
+}
+
+#brillosCumple span:nth-child(2)
+{
+    left: 22%;
+    top: 70%;
+    animation-delay: 1.2s;
+}
+
+#brillosCumple span:nth-child(3)
+{
+    left: 35%;
+    top: 15%;
+    animation-delay: 0.8s;
+}
+
+#brillosCumple span:nth-child(4)
+{
+    left: 48%;
+    top: 75%;
+    animation-delay: 1.8s;
+}
+
+#brillosCumple span:nth-child(5)
+{
+    left: 62%;
+    top: 18%;
+    animation-delay: 0.5s;
+}
+
+#brillosCumple span:nth-child(6)
+{
+    left: 75%;
+    top: 65%;
+    animation-delay: 1.5s;
+}
+
+#brillosCumple span:nth-child(7)
+{
+    left: 87%;
+    top: 25%;
+    animation-delay: 0.9s;
+}
+
+#brillosCumple span:nth-child(8)
+{
+    left: 15%;
+    top: 48%;
+    animation-delay: 2s;
+}
+
+#brillosCumple span:nth-child(9)
+{
+    left: 82%;
+    top: 50%;
+    animation-delay: 1.3s;
+}
+
+#brillosCumple span:nth-child(10)
+{
+    left: 55%;
+    top: 30%;
+    animation-delay: 2.2s;
+}
+
+@keyframes aparecerBrillo
+{
+    0%
+    {
+        opacity: 0;
+
+        transform:
+            scale(0.2)
+            rotate(0deg);
+    }
+
+    40%
+    {
+        opacity: 1;
+
+        transform:
+            scale(1.3)
+            rotate(90deg);
+    }
+
+    70%
+    {
+        opacity: 0.8;
+
+        transform:
+            scale(0.8)
+            rotate(180deg);
+    }
+
+    100%
+    {
+        opacity: 0;
+
+        transform:
+            scale(0.2)
+            rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   GLOBOS
+   ===================================================== */
+
+#globosCumple
+{
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 4;
+
+    pointer-events: none;
+}
+
+#globosCumple span
+{
+    position: absolute;
+
+    bottom: -120px;
+
+    font-size:
+        clamp(
+            40px,
+            7vw,
+            75px
+        );
+
+    opacity: 0;
+
+    animation:
+        subirGlobo
+        7s
+        linear
+        infinite;
+}
+
+#globosCumple span:nth-child(1)
+{
+    left: 5%;
+
+    animation-delay: 1s;
+
+    animation-duration: 7s;
+}
+
+#globosCumple span:nth-child(2)
+{
+    left: 25%;
+
+    animation-delay: 2.5s;
+
+    animation-duration: 8s;
+}
+
+#globosCumple span:nth-child(3)
+{
+    right: 25%;
+
+    animation-delay: 1.8s;
+
+    animation-duration: 7.5s;
+}
+
+#globosCumple span:nth-child(4)
+{
+    right: 5%;
+
+    animation-delay: 3s;
+
+    animation-duration: 8.5s;
+}
+
+@keyframes subirGlobo
+{
+    0%
+    {
+        opacity: 0;
+
+        transform:
+            translateY(0)
+            translateX(0)
+            rotate(-5deg);
+    }
+
+    10%
+    {
+        opacity: 0.8;
+    }
+
+    50%
+    {
+        transform:
+            translateY(-55vh)
+            translateX(20px)
+            rotate(8deg);
+    }
+
+    90%
+    {
+        opacity: 0.7;
+    }
+
+    100%
+    {
+        opacity: 0;
+
+        transform:
+            translateY(-120vh)
+            translateX(-20px)
+            rotate(-8deg);
+    }
+}
+
+
+/* =====================================================
+   CONFETI
+   ===================================================== */
+
+#confetiCumple
+{
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 25;
+
+    pointer-events: none;
+
+    overflow: hidden;
+}
+
+#confetiCumple span
+{
+    position: absolute;
+
+    top: -80px;
+
+    font-size:
+        clamp(
+            18px,
+            3vw,
+            30px
+        );
+
+    opacity: 0;
+
+    animation:
+        caerConfeti
+        5s
+        linear
+        infinite;
+}
+
+#confetiCumple span:nth-child(1)
+{
+    left: 5%;
+    animation-delay: 4.4s;
+}
+
+#confetiCumple span:nth-child(2)
+{
+    left: 17%;
+    animation-delay: 4.8s;
+}
+
+#confetiCumple span:nth-child(3)
+{
+    left: 29%;
+    animation-delay: 4.2s;
+}
+
+#confetiCumple span:nth-child(4)
+{
+    left: 42%;
+    animation-delay: 4.9s;
+}
+
+#confetiCumple span:nth-child(5)
+{
+    left: 56%;
+    animation-delay: 4.5s;
+}
+
+#confetiCumple span:nth-child(6)
+{
+    left: 68%;
+    animation-delay: 5.1s;
+}
+
+#confetiCumple span:nth-child(7)
+{
+    left: 81%;
+    animation-delay: 4.3s;
+}
+
+#confetiCumple span:nth-child(8)
+{
+    left: 94%;
+    animation-delay: 4.7s;
+}
+
+@keyframes caerConfeti
+{
+    0%
+    {
+        opacity: 0;
+
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
+
+    10%
+    {
+        opacity: 1;
+    }
+
+    100%
+    {
+        opacity: 0;
+
+        transform:
+            translateY(120vh)
+            rotate(720deg);
+    }
+}
+
+
+/* =====================================================
+   DESTELLO FINAL
+   ===================================================== */
+
+#destelloCumple
+{
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 100;
+
+    background-color: white;
+
+    opacity: 0;
+
+    pointer-events: none;
+}
+
+#transicionCumple.destello #destelloCumple
+{
+    animation:
+        destelloFinal
+        1.4s
+        ease
+        forwards;
+}
+
+@keyframes destelloFinal
+{
+    0%
+    {
+        opacity: 0;
+    }
+
+    35%
+    {
+        opacity: 0.75;
+    }
+
+    100%
+    {
+        opacity: 0;
+    }
+}
+
+
+/* =====================================================
+   SALIDA
+   ===================================================== */
+
+#transicionCumple.salir
+{
+    opacity: 0;
+
+    transition:
+        opacity 1.5s ease;
+}
+
+
+/* =====================================================
+   CONTADOR
+   ===================================================== */
+
+#contador
+{
+    background-color: white;
+
+    padding: 20px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 16px gray;
+
+    color: deeppink;
+
+    font-size: 23px;
+
+    font-weight: bold;
+
+    margin: 0;
+
+    width: 80%;
+
+    max-width: 600px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    z-index: 5;
+}
+
+#mensajeContador
+{
+    display: block;
+
+    margin-bottom: 12px;
+}
+
+#tiempoContador
+{
+    display: block;
+}
+
+
+/* =====================================================
+   MÚSICA
+   ===================================================== */
+
+#controlesMusica
+{
+    position: fixed;
+
+    top: 2vh;
+
+    right: 2vw;
+
+    z-index: 20;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 1vh;
+
+    padding: 1.5vh;
+
+    background-color: white;
+
+    border-radius: 1vw;
+
+    box-shadow:
+        0 4px 16px gray;
+
+    width:
+        clamp(
+            180px,
+            20vw,
+            280px
+        );
+
+    box-sizing: border-box;
+
+    flex-direction: column;
+}
+
+#controlesMusica button
+{
+    font-size:
+        clamp(
+            10px,
+            1vw,
+            14px
+        );
+
+    padding:
+        0.7vw 0.8vw;
+}
+
+#controlesMusica label
+{
+    color: deeppink;
+
+    font-weight: bold;
+
+    font-size:
+        clamp(
+            10px,
+            1vw,
+            14px
+        );
+}
+
+#volumen
+{
+    accent-color: deeppink;
+
+    width: 100%;
+}
+
+#tituloMusica
+{
+    margin: 0;
+
+    color: deeppink;
+
+    font-size:
+        clamp(
+            11px,
+            1.2vw,
+            16px
+        );
+
+    font-weight: bold;
+}
+
+#botonesMusica
+{
+    display: flex;
+
+    gap: 0.5vw;
+}
+
+
+/* =====================================================
+   MENÚ
+   ===================================================== */
+
+#menu
+{
+    display: none;
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 16px gray;
+
+    width: 80%;
+
+    max-width: 400px;
+
+    box-sizing: border-box;
+
+    z-index: 5;
+}
+
+#menu h2
+{
+    color: deeppink;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    margin-top: 0;
+}
+
+#menu button
+{
+    display: block;
+
+    width: 100%;
+
+    margin-top: 12px;
+
+    font-size: 20px;
+}
+
+
+/* =====================================================
+   VIDAS
+   ===================================================== */
+
+#vidas
+{
+    position: fixed;
+
+    top: 20px;
+
+    left: 20px;
+
+    z-index: 30;
+
+    background-color: white;
+
+    padding:
+        10px 15px;
+
+    border-radius: 15px;
+
+    box-shadow:
+        0 4px 12px
+        rgba(
+            0,
+            0,
+            0,
+            0.25
+        );
+
+    color:
+        #d84b7a;
+
+    font-size:
+        20px;
+
+    font-weight:
+        bold;
+
+    display:
+        none;
+}
+
+
+/* =====================================================
+   CARTA
+   ===================================================== */
+
+#carta
+{
+    display: none;
+
+    position: relative;
+
+    width: 600px;
+
+    max-width: 90%;
+
+    height: 600px;
+
+    z-index: 5;
+}
+
+#sobre
+{
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 20px;
+
+    transform:
+        translateX(-50%);
+
+    width: 420px;
+
+    height: 270px;
+
+    max-width: 90vw;
+
+    background-color:
+        #e89aaa;
+
+    border-radius: 8px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(
+            0,
+            0,
+            0,
+            0.3
+        );
+
+    z-index: 2;
+}
+
+#parteTrasera
+{
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    background-color:
+        #e89aaa;
+
+    border-radius: 8px;
+
+    z-index: 1;
+}
+
+#solapa
+{
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 0;
+
+    height: 0;
+
+    border-left:
+        210px solid transparent;
+
+    border-right:
+        210px solid transparent;
+
+    border-top:
+        145px solid #d87991;
+
+    transform-origin:
+        top center;
+
+    z-index: 5;
+
+    transition:
+        transform 1s ease;
+}
+
+#parteDelantera
+{
+    position: absolute;
+
+    left: 0;
+
+    bottom: 0;
+
+    width: 100%;
+
+    height: 55%;
+
+    background-color:
+        #d97991;
+
+    clip-path:
+        polygon(
+            0 0,
+            50% 60%,
+            100% 0,
+            100% 100%,
+            0 100%
+        );
+
+    z-index: 4;
+}
+
+#papel
+{
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 35px;
+
+    transform:
+        translateX(-50%)
+        translateY(0);
+
+    width: 390px;
+
+    height: 400px;
+
+    max-width: 82vw;
+
+    background-color:
+        #fffdf4;
+
+    border-radius: 4px;
+
+    box-shadow:
+        0 4px 15px
+        rgba(
+            0,
+            0,
+            0,
+            0.25
+        );
+
+    z-index: 3;
+
+    padding: 30px;
+
+    box-sizing: border-box;
+
+    opacity: 0;
+
+    transition:
+        transform 1.5s ease,
+        opacity 0.5s ease;
+
+    overflow-y: auto;
+
+    text-align: left;
+}
+
+#carta.abierta #papel
+{
+    opacity: 1;
+
+    transform:
+        translateX(-50%)
+        translateY(-150px);
+}
+
+#carta.abierta #solapa
+{
+    transform:
+        rotateX(180deg);
+
+    z-index: 1;
+}
+
+#papel h2
+{
+    color: deeppink;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    margin-top: 0;
+
+    margin-bottom: 25px;
+
+    font-size: 26px;
+
+    text-align: center;
+}
+
+#textoCarta
+{
+    color: #4a3525;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 18px;
+
+    line-height: 1.65;
+
+    white-space: pre-line;
+}
+
+#firmaZuko
+{
+    display: none;
+
+    margin-top: 30px;
+
+    text-align: right;
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    color: #9b2d20;
+
+    font-size: 32px;
+}
+
+#firmaZuko span
+{
+    display: block;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 13px;
+
+    color: #6b4b3e;
+}
+
+#botonAbrirSobre
+{
+    position: absolute;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    z-index: 10;
+
+    font-size: 18px;
+}
+
+#botonVolver
+{
+    position: absolute;
+
+    left: 50%;
+
+    bottom: 15px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 10;
+
+    display: none;
+
+    font-size: 18px;
+}
+
+
+/* =====================================================
+   INTRODUCCIÓN CAJA
+   ===================================================== */
+
+#introduccionJuego
+{
+    display: none;
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 16px gray;
+
+    width: 80%;
+
+    max-width: 550px;
+
+    box-sizing: border-box;
+
+    z-index: 5;
+}
+
+#introduccionJuego h2
+{
+    color: deeppink;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+#introduccionJuego p
+{
+    color: #4a3525;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+}
+
+#botonesIntroduccion
+{
+    display: flex;
+
+    justify-content: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =====================================================
+   JUEGO CAJA
+   ===================================================== */
+
+#juegoCaja
+{
+    display: none;
+
+    background-color: white;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 16px gray;
+
+    width: 80%;
+
+    max-width: 500px;
+
+    box-sizing: border-box;
+
+    z-index: 5;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+}
+
+#imagenPregunta
+{
+    width: 100%;
+
+    height: 180px;
+
+    object-fit: cover;
+
+    border-radius: 12px;
+}
+
+#pregunta
+{
+    color: #4a3525;
+
+    font-size: 20px;
+
+    font-weight: bold;
+}
+
+#opciones button
+{
+    display: block;
+
+    width: 100%;
+
+    margin-top: 10px;
+
+    font-size: 17px;
+}
+
+#opciones button.correcta
+{
+    background-color:
+        #2e8b57;
+}
+
+#opciones button.incorrecta
+{
+    background-color:
+        #c0392b;
+}
+
+#explicacion
+{
+    display: none;
+
+    background-color:
+        #fff3f7;
+
+    border-radius: 12px;
+
+    padding: 15px;
+
+    margin-top: 20px;
+
+    text-align: left;
+
+    border:
+        2px solid
+        #f3a6bc;
+}
+
+#botonSiguientePregunta
+{
+    display: none;
+
+    margin:
+        15px auto;
+}
+
+#resultadoJuego
+{
+    display: none;
+
+    text-align: center;
+
+    width: 100%;
+
+    box-sizing: border-box;
+}
+
+#resultadoJuego h2
+{
+    color: deeppink;
+
+    margin:
+        0 0 15px 0;
+}
+
+#resultadoJuego > p
+{
+    color: #4a3525;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+
+    margin:
+        0 0 5px 0;
+}
+
+#botonJugarDeNuevo
+{
+    display: none;
+
+    margin:
+        25px auto 10px auto;
+
+    font-size:
+        20px;
+}
+
+#codigoPremio
+{
+    display: none;
+
+    background-color:
+        #fff3f7;
+
+    border:
+        3px dashed
+        #d84b7a;
+
+    border-radius: 15px;
+
+    padding: 20px;
+
+    margin-top: 20px;
+
+    margin-bottom: 25px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+}
+
+#codigoPremio p
+{
+    margin:
+        0 0 10px 0;
+
+    font-size: 18px;
+}
+
+#codigo
+{
+    color:
+        #d84b7a;
+
+    font-size:
+        36px;
+
+    font-weight:
+        bold;
+
+    letter-spacing:
+        6px;
+
+    margin:
+        10px 0;
+}
+
+#codigoPremio small
+{
+    display: block;
+
+    color: #4a3525;
+
+    font-size: 14px;
+
+    line-height: 1.4;
+}
+
+#botonVolverJuego
+{
+    position: relative;
+
+    display: block;
+
+    margin:
+        45px auto 10px auto;
+
+    font-size:
+        20px;
+}
+
+
+/* =====================================================
+   INTRODUCCIÓN PIZARRA
+   ===================================================== */
+
+#introduccionDibujo
+{
+    display: none;
+
+    background-color: white;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 16px gray;
+
+    width: 85%;
+
+    max-width: 600px;
+
+    box-sizing: border-box;
+
+    z-index: 5;
+}
+
+#introduccionDibujo h2
+{
+    color: deeppink;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+#introduccionDibujo p
+{
+    color: #4a3525;
+
+    font-size: 18px;
+
+    line-height: 1.5;
+}
+
+#seleccionDificultad
+{
+    display: flex;
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    margin:
+        20px 0;
+}
+
+#seleccionDificultad button
+{
+    font-size: 16px;
+
+    padding:
+        10px 14px;
+}
+
+#seleccionDificultad button.seleccionado
+{
+    background-color:
+        #9b2d65;
+
+    transform:
+        scale(1.05);
+}
+
+#pizarraJuego
+{
+    display: none;
+
+    width: 95%;
+
+    max-width: 1100px;
+
+    height: 92vh;
+
+    background-color: white;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 20px gray;
+
+    padding: 15px;
+
+    box-sizing: border-box;
+
+    z-index: 5;
+
+    overflow-y: auto;
+}
+
+#pizarraTitulo
+{
+    color: deeppink;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    margin:
+        5px 0 12px;
+}
+
+#zonaReferencia
+{
+    display: none;
+
+    margin-bottom: 15px;
+}
+
+#zonaReferencia h3
+{
+    color: #d84b7a;
+
+    margin:
+        5px 0 8px;
+}
+
+#imagenReferencia
+{
+    display: block;
+
+    width: 100%;
+
+    max-width: 500px;
+
+    height: 260px;
+
+    object-fit: contain;
+
+    background-color:
+        #f8f8f8;
+
+    border:
+        2px solid
+        #f3a6bc;
+
+    border-radius: 12px;
+
+    margin:
+        0 auto;
+}
+
+#herramientas
+{
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    background-color:
+        #fff3f7;
+
+    padding: 12px;
+
+    border-radius: 15px;
+
+    margin-bottom: 12px;
+}
+
+#herramientas label
+{
+    color:
+        #4a3525;
+
+    font-weight:
+        bold;
+}
+
+#colorPincel
+{
+    width: 45px;
+
+    height: 35px;
+
+    border: none;
+
+    cursor: pointer;
+
+    background: none;
+}
+
+#tamanoPincel
+{
+    width: 100px;
+
+    accent-color:
+        deeppink;
+}
+
+#contenedorCanvas
+{
+    width: 100%;
+
+    display: flex;
+
+    justify-content: center;
+
+    overflow: hidden;
+}
+
+#canvasDibujo
+{
+    display: block;
+
+    background-color:
+        white;
+
+    border:
+        3px solid
+        #d84b7a;
+
+    border-radius: 10px;
+
+    cursor: crosshair;
+
+    touch-action: none;
+
+    width: 100%;
+
+    max-width: 900px;
+
+    height: auto;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+}
+
+#botonesPizarra
+{
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 12px;
+}
+
+#botonesPizarra button
+{
+    font-size: 16px;
+
+    padding:
+        9px 14px;
+}
+
+#botonGoma
+{
+    background-color:
+        #777;
+}
+
+#botonLimpiar
+{
+    background-color:
+        #555;
+}
+
+#botonDeshacer
+{
+    background-color:
+        #8e44ad;
+}
+
+#botonTerminarDibujo
+{
+    background-color:
+        #2e8b57;
+}
+
+#resultadoDibujo
+{
+    display: none;
+
+    background-color: white;
+
+    width: 90%;
+
+    max-width: 900px;
+
+    max-height: 90vh;
+
+    overflow-y: auto;
+
+    padding: 25px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 4px 20px gray;
+
+    box-sizing: border-box;
+
+    z-index: 5;
+}
+
+#resultadoDibujo h2
+{
+    color:
+        deeppink;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+}
+
+#dibujoFinal
+{
+    width: 100%;
+
+    max-width: 700px;
+
+    border:
+        3px solid
+        #d84b7a;
+
+    border-radius: 12px;
+
+    display: block;
+
+    margin:
+        15px auto;
+}
+
+#resultadoReferencia
+{
+    width: 100%;
+
+    max-width: 700px;
+
+    max-height: 400px;
+
+    object-fit: contain;
+
+    border:
+        3px solid
+        #f3a6bc;
+
+    border-radius: 12px;
+
+    display: none;
+
+    margin:
+        15px auto;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media(max-width: 600px)
+{
+    body
+    {
+        overflow: hidden;
+    }
+
+    #contador
+    {
+        width: 90%;
+
+        font-size: 18px;
+
+        padding: 16px;
+    }
+
+    #controlesMusica
+    {
+        width: 150px;
+
+        padding: 8px;
+
+        top: 8px;
+
+        right: 8px;
+    }
+
+    #controlesMusica button
+    {
+        font-size: 12px;
+
+        padding: 6px;
+    }
+
+    #menu
+    {
+        width: 90%;
+
+        padding: 20px;
+    }
+
+    #introduccionJuego
+    {
+        width: 92%;
+
+        padding: 20px;
+    }
+
+    #introduccionJuego p
+    {
+        font-size: 16px;
+    }
+
+    #juegoCaja
+    {
+        width: 92%;
+
+        padding: 20px;
+
+        max-height: 88vh;
+    }
+
+    #resultadoJuego h2
+    {
+        font-size: 24px;
+    }
+
+    #resultadoJuego > p
+    {
+        font-size: 16px;
+    }
+
+    #botonJugarDeNuevo
+    {
+        font-size: 18px;
+
+        margin-top: 20px;
+    }
+
+    #codigoPremio
+    {
+        padding: 15px;
+
+        margin-top: 18px;
+
+        margin-bottom: 20px;
+    }
+
+    #codigoPremio p
+    {
+        font-size: 16px;
+    }
+
+    #codigo
+    {
+        font-size: 30px;
+
+        letter-spacing: 5px;
+    }
+
+    #codigoPremio small
+    {
+        font-size: 13px;
+    }
+
+    #botonVolverJuego
+    {
+        font-size: 18px;
+
+        margin-top: 35px;
+
+        margin-bottom: 5px;
+    }
+
+    #introduccionDibujo
+    {
+        width: 92%;
+
+        padding: 20px;
+    }
+
+    #introduccionDibujo p
+    {
+        font-size: 16px;
+    }
+
+    #pizarraJuego
+    {
+        width: 96%;
+
+        height: 94vh;
+
+        padding: 10px;
+    }
+
+    #imagenReferencia
+    {
+        height: 180px;
+    }
+
+    #herramientas
+    {
+        gap: 6px;
+
+        padding: 8px;
+    }
+
+    #herramientas button
+    {
+        font-size: 14px;
+
+        padding: 7px 9px;
+    }
+
+    #herramientas label
+    {
+        font-size: 13px;
+    }
+
+    #botonesPizarra button
+    {
+        font-size: 14px;
+
+        padding: 8px 10px;
+    }
+
+    #resultadoDibujo
+    {
+        width: 94%;
+
+        padding: 15px;
+    }
+
+    #tortaCumple
+    {
+        font-size: 110px;
+    }
+
+    #textoCumple
+    {
+        padding:
+            0 20px;
+
+        font-size: 26px;
+    }
+
+    #subtextoCumple
+    {
+        padding:
+            0 20px;
+
+        font-size: 17px;
+    }
+
+    #transicionCumple .luzCentral
+    {
+        width: 260px;
+
+        height: 260px;
+    }
+
+    #globosCumple span
+    {
+        font-size: 42px;
+    }
+
+    #brillosCumple span
+    {
+        font-size: 18px;
+    }
+}
+
+</style>
 
 </head>
 
 <body>
 
-    <video id="videoFondo" autoplay muted playsinline preload="auto">
+<!-- =====================================================
+     VIDEO DEL CONTADOR
+     ===================================================== -->
 
-        <source src="fondo.mp4" type="video/mp4">
+<video
+id="videoFondo"
+autoplay
+muted
+playsinline
+preload="auto"
 
-    </video>
+>
 
-    <div id="capaFondo"></div>
+<source
+    src="fondo.mp4"
+    type="video/mp4"
+>
 
-    <div id="fondoAnimado">
+</video>
 
-        <span>💗</span>
-        <span>✨</span>
-        <span>💕</span>
-        <span>🌸</span>
-        <span>💗</span>
-        <span>✨</span>
-        <span>💕</span>
-        <span>🌸</span>
+<div id="capaFondo"></div>
 
+<!-- =====================================================
+     FONDO DEL MENÚ
+     ===================================================== -->
+
+<img
+id="imagenMenu"
+src="fondoMenu.png"
+
+>
+
+<!-- =====================================================
+     FONDO ANIMADO
+     ===================================================== -->
+
+<div id="fondoAnimado">
+
+<span>💗</span>
+<span>✨</span>
+<span>💕</span>
+<span>🌸</span>
+<span>💗</span>
+<span>✨</span>
+<span>💕</span>
+<span>🌸</span>
+
+
+</div>
+
+<!-- =====================================================
+     TRANSICIÓN DE CUMPLEAÑOS
+     ===================================================== -->
+
+<div id="transicionCumple">
+
+
+<div class="luzCentral"></div>
+
+
+<div id="brillosCumple">
+
+    <span>✦</span>
+    <span>✧</span>
+    <span>✦</span>
+    <span>✧</span>
+    <span>✦</span>
+    <span>✧</span>
+    <span>✦</span>
+    <span>✧</span>
+    <span>✦</span>
+    <span>✧</span>
+
+</div>
+
+
+<div id="globosCumple">
+
+    <span>🎈</span>
+    <span>🎈</span>
+    <span>🎈</span>
+    <span>🎈</span>
+
+</div>
+
+
+<div id="confetiCumple">
+
+    <span>🎉</span>
+    <span>✨</span>
+    <span>🎊</span>
+    <span>💗</span>
+    <span>✨</span>
+    <span>💕</span>
+    <span>🎉</span>
+    <span>✨</span>
+
+</div>
+
+
+<div id="contenidoCumple">
+
+    <div id="tortaCumple">
+        🎂
     </div>
 
-    <div id="controlesMusica">
-
-        <p id="tituloMusica">
-            ¿Querés escuchar música mientras esperás?
-        </p>
-
-        <div id="botonesMusica">
-
-            <button id="botonAnterior">
-                ⏮
-            </button>
-
-            <button id="botonMusica">
-                ▶
-            </button>
-
-            <button id="botonPausa">
-                ⏸
-            </button>
-
-            <button id="botonSiguiente">
-                ⏭
-            </button>
-
-        </div>
-
-        <label for="volumen">
-            Volumen 🔊
-        </label>
-
-        <input id="volumen" type="range" min="0" max="1" step="0.1" value="0.5">
-
+    <div id="textoCumple">
+        ¡Feliz cumpleaños, Eugenia! 💗
     </div>
 
-    <audio id="musica"></audio>
+    <div id="subtextoCumple">
+        Tu sorpresa está lista...
+    </div>
 
-    <p id="contador">
+</div>
 
-        <span id="mensajeContador"></span>
 
-        <span id="tiempoContador"></span>
+<div id="destelloCumple"></div>
 
+
+</div>
+
+<!-- =====================================================
+     VIDAS
+     ===================================================== -->
+
+<div id="vidas">
+    ❤️ ❤️ ❤️
+</div>
+
+<!-- =====================================================
+     MENÚ
+     ===================================================== -->
+
+<div id="menu">
+
+
+<h2>
+    ¿Por dónde querés empezar?
+</h2>
+
+<button id="botonMenuCarta">
+    💌 Carta
+</button>
+
+<button id="botonMenuCaja">
+    🔐 Juego de la Caja fuerte
+</button>
+
+<button id="botonMenuDibujo">
+    🎨 Pizarra de dibujo
+</button>
+
+
+</div>
+
+<!-- =====================================================
+     INTRODUCCIÓN CAJA FUERTE
+     ===================================================== -->
+
+<div id="introduccionJuego">
+
+
+<h2>
+    🔐 Caja fuerte
+</h2>
+
+<p>
+
+    Para ganar este juego vas a tener que responder
+    correctamente una serie de preguntas.
+
+    <br><br>
+
+    Tenés ❤️ ❤️ ❤️ <strong>3 vidas</strong>.
+
+    <br><br>
+
+    Cada respuesta incorrecta te quita una.
+
+    <br><br>
+
+    Si contestás todas bien vas a ganar un premio al final.
+
+</p>
+
+<div id="botonesIntroduccion">
+
+    <button id="botonVolverIntroduccion">
+        ← Volver
+    </button>
+
+    <button id="botonJugar">
+        💗 Jugar
+    </button>
+
+</div>
+
+
+</div>
+
+<!-- =====================================================
+     JUEGO CAJA FUERTE
+     ===================================================== -->
+
+<div id="juegoCaja">
+
+
+<div id="contenidoPregunta">
+
+    <h2>
+        🔐 Caja fuerte
+    </h2>
+
+    <img
+        id="imagenPregunta"
+        src="pregunta1.png"
+    >
+
+    <p id="pregunta">
+        Pregunta
     </p>
 
-    <script>
+    <div id="opciones">
 
-        const fechaCumple = new Date("2026-08-29T00:00:00-03:00");
+        <button id="opcionA"></button>
 
-        const modoPrueba = false;
+        <button id="opcionB"></button>
 
-        const botonMusica = document.getElementById("botonMusica");
+        <button id="opcionC"></button>
 
-        const musica = document.getElementById("musica");
+        <button id="opcionD"></button>
 
-        const botonPausa = document.getElementById("botonPausa");
+    </div>
 
-        const volumen = document.getElementById("volumen");
+    <div id="explicacion">
 
-        const contador = document.getElementById("contador");
+        <h3>
+            💡 ¿Por qué?
+        </h3>
 
-        const mensajeContador = document.getElementById("mensajeContador");
+        <p id="textoExplicacion"></p>
 
-        const tiempoContador = document.getElementById("tiempoContador");
+    </div>
 
-        const videoFondo = document.getElementById("videoFondo");
+    <button id="botonSiguientePregunta">
+        Siguiente →
+    </button>
 
-        const botonAnterior = document.getElementById("botonAnterior");
+</div>
 
-        const botonSiguiente = document.getElementById("botonSiguiente");
 
-        const tituloMusica = document.getElementById("tituloMusica");
+<div id="resultadoJuego">
 
-        const canciones =
+    <h2 id="tituloResultado"></h2>
+
+    <p id="textoResultado"></p>
+
+    <div id="codigoPremio">
+
+        <p>
+            🎁 CÓDIGO PARA RETIRAR TU PREMIO 🎁
+        </p>
+
+        <div id="codigo">
+            190625
+        </div>
+
+        <small>
+            Mostrá este código para confirmar
+            que completaste el juego.
+        </small>
+
+    </div>
+
+    <button id="botonJugarDeNuevo">
+        🔄 Jugar de nuevo
+    </button>
+
+</div>
+
+
+<button id="botonVolverJuego">
+    ← Volver al menú
+</button>
+
+
+</div>
+
+<!-- =====================================================
+     INTRODUCCIÓN PIZARRA
+     ===================================================== -->
+
+<div id="introduccionDibujo">
+
+
+<h2>
+    🎨 Pizarra de dibujo
+</h2>
+
+<p>
+
+    Elegí una dificultad y recibí una imagen
+    de referencia.
+
+    <br><br>
+
+    Después podés dibujar libremente usando
+    la pizarra.
+
+    <br><br>
+
+    No hay respuestas correctas ni incorrectas.
+    Esta vez simplemente quiero ver qué podés dibujar. 💗
+
+</p>
+
+
+<div id="seleccionDificultad">
+
+    <button
+        id="dificultadFacil"
+        data-dificultad="facil"
+    >
+        🟢 Fácil
+    </button>
+
+    <button
+        id="dificultadMedio"
+        data-dificultad="medio"
+    >
+        🟡 Medio
+    </button>
+
+    <button
+        id="dificultadDificil"
+        data-dificultad="dificil"
+    >
+        🔴 Difícil
+    </button>
+
+    <button
+        id="dificultadImposible"
+        data-dificultad="imposible"
+    >
+        ☠️ Imposible
+    </button>
+
+</div>
+
+
+<p id="textoDificultad">
+    Elegí una dificultad para comenzar.
+</p>
+
+
+<div id="botonesIntroduccionDibujo">
+
+    <button id="botonVolverDibujo">
+        ← Volver al menú
+    </button>
+
+    <button
+        id="botonComenzarDibujo"
+        disabled
+    >
+        🎨 Comenzar
+    </button>
+
+</div>
+
+
+</div>
+
+<!-- =====================================================
+     PIZARRA
+     ===================================================== -->
+
+<div id="pizarraJuego">
+
+
+<h2 id="pizarraTitulo">
+    🎨 Pizarra de dibujo
+</h2>
+
+
+<div id="zonaReferencia">
+
+    <h3 id="tituloReferencia">
+        🖼️ Referencia
+    </h3>
+
+    <img
+        id="imagenReferencia"
+        src=""
+        alt="Imagen de referencia"
+    >
+
+</div>
+
+
+<div id="herramientas">
+
+    <label for="colorPincel">
+        Color:
+    </label>
+
+    <input
+        id="colorPincel"
+        type="color"
+        value="#000000"
+    >
+
+
+    <label for="tamanoPincel">
+        Tamaño:
+    </label>
+
+    <input
+        id="tamanoPincel"
+        type="range"
+        min="1"
+        max="40"
+        value="5"
+    >
+
+
+    <button id="botonGoma">
+        🧽 Goma
+    </button>
+
+    <button id="botonPincel">
+        🖌️ Pincel
+    </button>
+
+    <button id="botonDeshacer">
+        ↩️ Deshacer
+    </button>
+
+    <button id="botonLimpiar">
+        🗑️ Limpiar
+    </button>
+
+</div>
+
+
+<div id="contenedorCanvas">
+
+    <canvas
+        id="canvasDibujo"
+        width="900"
+        height="600"
+    ></canvas>
+
+</div>
+
+
+<div id="botonesPizarra">
+
+    <button id="botonOcultarReferencia">
+        👁️ Ocultar referencia
+    </button>
+
+    <button id="botonTerminarDibujo">
+        ✅ Terminar
+    </button>
+
+</div>
+
+
+</div>
+
+<!-- =====================================================
+     RESULTADO DIBUJO
+     ===================================================== -->
+
+<div id="resultadoDibujo">
+
+
+<h2>
+    🎨 ¡Dibujo terminado!
+</h2>
+
+<p>
+    Así quedó tu dibujo:
+</p>
+
+<canvas
+    id="dibujoFinal"
+    width="900"
+    height="600"
+></canvas>
+
+
+<div id="resultadoReferenciaContainer">
+
+    <p>
+        🖼️ Referencia utilizada:
+    </p>
+
+    <img
+        id="resultadoReferencia"
+        src=""
+    >
+
+</div>
+
+
+<button id="botonNuevoDibujo">
+    🎨 Dibujar otra vez
+</button>
+
+<button id="botonVolverResultado">
+    ← Volver al menú
+</button>
+
+
+</div>
+
+<!-- =====================================================
+     CARTA
+     ===================================================== -->
+
+<div id="carta">
+
+
+<div id="papel">
+
+    <h2>
+        ¡Feliz cumpleaños!
+    </h2>
+
+    <p id="textoCarta"></p>
+
+    <div id="firmaZuko">
+
+        Zuko 🔥
+
+        <span>
+            Príncipe de la Nación del Fuego
+        </span>
+
+    </div>
+
+</div>
+
+
+<div id="sobre">
+
+    <div id="parteTrasera"></div>
+
+    <div id="solapa"></div>
+
+    <div id="parteDelantera"></div>
+
+</div>
+
+
+<button id="botonAbrirSobre">
+    Abrir carta 💗
+</button>
+
+<button id="botonVolver">
+    Volver al menú
+</button>
+
+
+</div>
+
+<!-- =====================================================
+     MÚSICA
+     ===================================================== -->
+
+<div id="controlesMusica">
+
+
+<p id="tituloMusica">
+    ¿Querés escuchar música mientras esperás?
+</p>
+
+<div id="botonesMusica">
+
+    <button id="botonAnterior">
+        ⏮
+    </button>
+
+    <button id="botonMusica">
+        ▶
+    </button>
+
+    <button id="botonPausa">
+        ⏸
+    </button>
+
+    <button id="botonSiguiente">
+        ⏭
+    </button>
+
+</div>
+
+<label for="volumen">
+    Volumen 🔊
+</label>
+
+<input
+    id="volumen"
+    type="range"
+    min="0"
+    max="1"
+    step="0.1"
+    value="0.5"
+>
+
+
+</div>
+
+<audio id="musica"></audio>
+
+<audio id="audioCarta"></audio>
+
+<!-- =====================================================
+     CONTADOR
+     ===================================================== -->
+
+<p id="contador">
+
+
+<span id="mensajeContador"></span>
+
+<span id="tiempoContador"></span>
+
+
+</p>
+
+<script>
+
+/* =====================================================
+   CONFIGURACIÓN DEL CONTADOR
+   ===================================================== */
+
+const fechaCumple =
+    new Date(
+        "2026-08-29T00:00:00-03:00"
+    );
+
+const modoPrueba = false;
+
+
+/* =====================================================
+   ELEMENTOS PRINCIPALES
+   ===================================================== */
+
+const menu =
+    document.getElementById(
+        "menu"
+    );
+
+const contador =
+    document.getElementById(
+        "contador"
+    );
+
+const mensajeContador =
+    document.getElementById(
+        "mensajeContador"
+    );
+
+const tiempoContador =
+    document.getElementById(
+        "tiempoContador"
+    );
+
+const controlesMusica =
+    document.getElementById(
+        "controlesMusica"
+    );
+
+const tituloMusica =
+    document.getElementById(
+        "tituloMusica"
+    );
+
+const videoFondo =
+    document.getElementById(
+        "videoFondo"
+    );
+
+const capaFondo =
+    document.getElementById(
+        "capaFondo"
+    );
+
+const imagenMenu =
+    document.getElementById(
+        "imagenMenu"
+    );
+
+const fondoAnimado =
+    document.getElementById(
+        "fondoAnimado"
+    );
+
+const transicionCumple =
+    document.getElementById(
+        "transicionCumple"
+    );
+
+
+/* =====================================================
+   ESTADO
+   ===================================================== */
+
+let pantalla =
+    "contador";
+
+let ahoraOficial =
+    null;
+
+let momentoConsulta =
+    null;
+
+let contadorActivo =
+    true;
+
+let intervaloContador;
+
+
+/* =====================================================
+   MOSTRAR PANTALLA
+   ===================================================== */
+
+function mostrarPantalla()
+{
+    menu.style.display =
+        "none";
+
+    contador.style.display =
+        "none";
+
+    carta.style.display =
+        "none";
+
+    introduccionJuego.style.display =
+        "none";
+
+    juegoCaja.style.display =
+        "none";
+
+    introduccionDibujo.style.display =
+        "none";
+
+    pizarraJuego.style.display =
+        "none";
+
+    resultadoDibujo.style.display =
+        "none";
+
+    vidas.style.display =
+        "none";
+
+
+    if(
+        pantalla ==
+        "contador"
+    )
+    {
+        contador.style.display =
+            "block";
+
+        controlesMusica.style.display =
+            "flex";
+
+        tituloMusica.textContent =
+            "¿Querés escuchar música mientras esperás?";
+
+        videoFondo.style.display =
+            "block";
+
+        capaFondo.style.display =
+            "block";
+
+        imagenMenu.style.display =
+            "none";
+
+        fondoAnimado.style.display =
+            "none";
+    }
+
+
+    if(
+        pantalla ==
+        "menu"
+    )
+    {
+        menu.style.display =
+            "block";
+
+        controlesMusica.style.display =
+            "flex";
+
+        tituloMusica.textContent =
+            "🎵 Música";
+
+        videoFondo.style.display =
+            "none";
+
+        capaFondo.style.display =
+            "none";
+
+        imagenMenu.style.display =
+            "block";
+
+        fondoAnimado.style.display =
+            "none";
+    }
+
+
+    if(
+        pantalla ==
+        "carta"
+    )
+    {
+        carta.style.display =
+            "block";
+
+        controlesMusica.style.display =
+            "none";
+
+        videoFondo.style.display =
+            "none";
+
+        capaFondo.style.display =
+            "none";
+
+        imagenMenu.style.display =
+            "block";
+
+        fondoAnimado.style.display =
+            "none";
+    }
+
+
+    if(
+        pantalla ==
+        "introduccion"
+    )
+    {
+        introduccionJuego.style.display =
+            "block";
+
+        controlesMusica.style.display =
+            "none";
+
+        videoFondo.style.display =
+            "none";
+
+        capaFondo.style.display =
+            "none";
+
+        imagenMenu.style.display =
+            "block";
+
+        fondoAnimado.style.display =
+            "none";
+    }
+
+
+    if(
+        pantalla ==
+        "juego"
+    )
+    {
+        juegoCaja.style.display =
+            "block";
+
+        vidas.style.display =
+            "block";
+
+        controlesMusica.style.display =
+            "none";
+
+        videoFondo.style.display =
+            "none";
+
+        capaFondo.style.display =
+            "none";
+
+        imagenMenu.style.display =
+            "block";
+
+        fondoAnimado.style.display =
+            "none";
+    }
+
+
+    if(
+        pantalla ==
+        "introduccionDibujo"
+    )
+    {
+        introduccionDibujo.style.display =
+            "block";
+
+        controlesMusica.style.display =
+            "none";
+
+        videoFondo.style.display =
+            "none";
+
+        capaFondo.style.display =
+            "none";
+
+        imagenMenu.style.display =
+            "block";
+
+        fondoAnimado.style.display =
+            "none";
+    }
+
+
+    if(
+        pantalla ==
+        "pizarra"
+    )
+    {
+        pizarraJuego.style.display =
+            "block";
+
+        controlesMusica.style.display =
+            "none";
+
+        videoFondo.style.display =
+            "none";
+
+        capaFondo.style.display =
+            "none";
+
+        imagenMenu.style.display =
+            "none";
+
+        fondoAnimado.style.display =
+            "block";
+    }
+
+
+    if(
+        pantalla ==
+        "resultadoDibujo"
+    )
+    {
+        resultadoDibujo.style.display =
+            "block";
+
+        controlesMusica.style.display =
+            "none";
+
+        videoFondo.style.display =
+            "none";
+
+        capaFondo.style.display =
+            "none";
+
+        imagenMenu.style.display =
+            "block";
+
+        fondoAnimado.style.display =
+            "none";
+    }
+}
+
+
+function mostrarMenu()
+{
+    pantalla =
+        "menu";
+
+    mostrarPantalla();
+}
+
+
+/* =====================================================
+   CARTA
+   ===================================================== */
+
+const botonMenuCarta =
+    document.getElementById(
+        "botonMenuCarta"
+    );
+
+const carta =
+    document.getElementById(
+        "carta"
+    );
+
+const botonAbrirSobre =
+    document.getElementById(
+        "botonAbrirSobre"
+    );
+
+const botonVolver =
+    document.getElementById(
+        "botonVolver"
+    );
+
+const textoCarta =
+    document.getElementById(
+        "textoCarta"
+    );
+
+const firmaZuko =
+    document.getElementById(
+        "firmaZuko"
+    );
+
+const audioCarta =
+    document.getElementById(
+        "audioCarta"
+    );
+
+audioCarta.src =
+    "Saludo1.mp3";
+
+
+const textoReal =
+`Hola Eugenia, soy el príncipe Zuko, heredero al trono, hijo del señor del fuego Ozai y Urza, hermano de Azula. Me contaron que hoy es tu cumpleaños.
+No soy muy bueno con estas cosas, pero lo intentaré.
+Te deseo un feliz cumpleaños y espero que disfrutes en tu día. Que estos 23 años sean el comienzo de una nueva etapa. Espero que este nuevo año te traiga muchas cosas buenas.
+Así que, gracias por estar.
+Sí, esto fue bastante sentimental. ¡No pienso volver a hacerlo!.
+Zuko`;
+
+
+let posicionCarta =
+    0;
+
+let temporizadorCarta;
+
+
+botonMenuCarta.addEventListener(
+    "click",
+    function()
+    {
+        pantalla =
+            "carta";
+
+        carta.classList.remove(
+            "abierta"
+        );
+
+        botonAbrirSobre.style.display =
+            "block";
+
+        botonVolver.style.display =
+            "none";
+
+        textoCarta.textContent =
+            "";
+
+        firmaZuko.style.display =
+            "none";
+
+        posicionCarta =
+            0;
+
+        audioCarta.pause();
+
+        audioCarta.currentTime =
+            0;
+
+        mostrarPantalla();
+    }
+);
+
+
+botonAbrirSobre.addEventListener(
+    "click",
+    function()
+    {
+        botonAbrirSobre.style.display =
+            "none";
+
+        carta.classList.add(
+            "abierta"
+        );
+
+        posicionCarta =
+            0;
+
+        textoCarta.textContent =
+            "";
+
+        setTimeout(
+            iniciarCarta,
+            1500
+        );
+    }
+);
+
+
+function iniciarCarta()
+{
+    musica.pause();
+
+    audioCarta.currentTime =
+        0;
+
+    audioCarta.play()
+    .catch(
+        function(error)
+        {
+            console.log(error);
+        }
+    );
+
+    escribirCarta();
+}
+
+
+function escribirCarta()
+{
+    if(
+        posicionCarta
+        <
+        textoReal.length
+    )
+    {
+        textoCarta.textContent +=
+            textoReal[
+                posicionCarta
+            ];
+
+        posicionCarta++;
+
+        temporizadorCarta =
+            setTimeout(
+                escribirCarta,
+                25
+            );
+    }
+
+    else
+    {
+        terminarCarta();
+    }
+}
+
+
+function terminarCarta()
+{
+    clearTimeout(
+        temporizadorCarta
+    );
+
+    textoCarta.textContent =
+        textoReal;
+
+    firmaZuko.style.display =
+        "block";
+
+    botonVolver.style.display =
+        "block";
+}
+
+
+botonVolver.addEventListener(
+    "click",
+    function()
+    {
+        clearTimeout(
+            temporizadorCarta
+        );
+
+        audioCarta.pause();
+
+        audioCarta.currentTime =
+            0;
+
+        mostrarMenu();
+    }
+);
+
+
+/* =====================================================
+   CAJA FUERTE
+   ===================================================== */
+
+const botonMenuCaja =
+    document.getElementById(
+        "botonMenuCaja"
+    );
+
+const introduccionJuego =
+    document.getElementById(
+        "introduccionJuego"
+    );
+
+const juegoCaja =
+    document.getElementById(
+        "juegoCaja"
+    );
+
+const vidas =
+    document.getElementById(
+        "vidas"
+    );
+
+const botonVolverIntroduccion =
+    document.getElementById(
+        "botonVolverIntroduccion"
+    );
+
+const botonJugar =
+    document.getElementById(
+        "botonJugar"
+    );
+
+const botonJugarDeNuevo =
+    document.getElementById(
+        "botonJugarDeNuevo"
+    );
+
+const botonVolverJuego =
+    document.getElementById(
+        "botonVolverJuego"
+    );
+
+const contenidoPregunta =
+    document.getElementById(
+        "contenidoPregunta"
+    );
+
+const resultadoJuego =
+    document.getElementById(
+        "resultadoJuego"
+    );
+
+const tituloResultado =
+    document.getElementById(
+        "tituloResultado"
+    );
+
+const textoResultado =
+    document.getElementById(
+        "textoResultado"
+    );
+
+const codigoPremio =
+    document.getElementById(
+        "codigoPremio"
+    );
+
+const imagenPregunta =
+    document.getElementById(
+        "imagenPregunta"
+    );
+
+const pregunta =
+    document.getElementById(
+        "pregunta"
+    );
+
+const opcionA =
+    document.getElementById(
+        "opcionA"
+    );
+
+const opcionB =
+    document.getElementById(
+        "opcionB"
+    );
+
+const opcionC =
+    document.getElementById(
+        "opcionC"
+    );
+
+const opcionD =
+    document.getElementById(
+        "opcionD"
+    );
+
+const explicacion =
+    document.getElementById(
+        "explicacion"
+    );
+
+const textoExplicacion =
+    document.getElementById(
+        "textoExplicacion"
+    );
+
+const botonSiguientePregunta =
+    document.getElementById(
+        "botonSiguientePregunta"
+    );
+
+
+const preguntas =
+[
+    {
+        imagen:
+            "pregunta1.png",
+
+        pregunta:
+            "¿Cuál es la palabra que comienza con la letra P y que describe mejor a Eugenia?",
+
+        opciones:
         [
-            "musica3.mp3",
-            "musica2.mp3",
-            "musica4.mp3",
-            "musica5.mp3"
+            "Put......",
+            "Princesa",
+            "Palurda",
+            "Potencial criminal"
+        ],
+
+        correcta:
+            1,
+
+        explicacion:
+            "¡Correcto! Esta opción representa a la perfección tanto la belleza como el corazón de Eugenia 💗"
+    },
+
+    {
+        imagen:
+            "pregunta2.png",
+
+        pregunta:
+            "¿Cómo se llama el siguiente animal?",
+
+        opciones:
+        [
+            "Conejo",
+            "Manticora",
+            "Quimera",
+            "Esquilax"
+        ],
+
+        correcta:
+            3,
+
+        explicacion:
+            "¡Correcto! Es Esquilax 🐰"
+    },
+
+    {
+        imagen:
+            "pregunta3.png",
+
+        pregunta:
+            "¿Quién es el director de la película Your Name?",
+
+        opciones:
+        [
+            "Makoto Shinkai",
+            "Kim Jong Un",
+            "Isao Takahata",
+            "Uno de los chinitos de BTS"
+        ],
+
+        correcta:
+            0,
+
+        explicacion:
+            "¡Correcto! Makoto Shinkai dirigió Your Name."
+    },
+
+    {
+        imagen:
+            "pregunta4.png",
+
+        pregunta:
+            "¿En qué país se basa la nación del fuego en Avatar?",
+
+        opciones:
+        [
+            "Japón",
+            "China",
+            "Corea",
+            "Bolivia"
+        ],
+
+        correcta:
+            0,
+
+        explicacion:
+            "¿De verdad? Yo hubiera dicho Bolivia."
+    },
+
+    {
+        imagen:
+            "pregunta5.png",
+
+        pregunta:
+            "Según el canto número XVI de la Odisea: ¿Cuántos pretendientes hay en el palacio de Odiseo?",
+
+        opciones:
+        [
+            "52",
+            "24",
+            "108",
+            "12"
+        ],
+
+        correcta:
+            2,
+
+        explicacion:
+            "¡Correcto! Quien pudiera..."
+    },
+
+    {
+        imagen:
+            "pregunta6.png",
+
+        pregunta:
+            "¿Cuál de las siguientes frases se le atribuye a Eugenia?",
+
+        opciones:
+        [
+            "La ética y la moral son solo constructos de la sociedad.",
+            "Ayy soy muy fea y no sé dibujar 😭😭😭",
+            "La primera gran virtud del hombre fue la duda.",
+            "Si no creemos en la libertad de expresión..."
+        ],
+
+        correcta:
+            1,
+
+        explicacion:
+            "¡Correcto! Este es uno de sus famosos lloros."
+    },
+
+    {
+        imagen:
+            "pregunta7.png",
+
+        pregunta:
+            "¿Cuál es la fecha de realización del siguiente dibujo?",
+
+        opciones:
+        [
+            "10/02/2026",
+            "08/02/2026",
+            "08/01/2026",
+            "18/02/2026"
+        ],
+
+        correcta:
+            1,
+
+        explicacion:
+            "¡Correcto! Completaste todo el juego."
+    }
+];
+
+
+let indicePregunta =
+    0;
+
+let vidasRestantes =
+    3;
+
+
+botonMenuCaja.addEventListener(
+    "click",
+    function()
+    {
+        pantalla =
+            "introduccion";
+
+        mostrarPantalla();
+    }
+);
+
+
+botonVolverIntroduccion.addEventListener(
+    "click",
+    function()
+    {
+        mostrarMenu();
+    }
+);
+
+
+botonJugar.addEventListener(
+    "click",
+    function()
+    {
+        iniciarJuego();
+    }
+);
+
+
+function iniciarJuego()
+{
+    pantalla =
+        "juego";
+
+    indicePregunta =
+        0;
+
+    vidasRestantes =
+        3;
+
+    actualizarVidas();
+
+    mostrarPregunta();
+
+    mostrarPantalla();
+}
+
+
+botonJugarDeNuevo.addEventListener(
+    "click",
+    function()
+    {
+        iniciarJuego();
+    }
+);
+
+
+function actualizarVidas()
+{
+    if(
+        vidasRestantes ==
+        3
+    )
+    {
+        vidas.textContent =
+            "❤️ ❤️ ❤️";
+    }
+
+    else if(
+        vidasRestantes ==
+        2
+    )
+    {
+        vidas.textContent =
+            "❤️ ❤️ 🖤";
+    }
+
+    else if(
+        vidasRestantes ==
+        1
+    )
+    {
+        vidas.textContent =
+            "❤️ 🖤 🖤";
+    }
+
+    else
+    {
+        vidas.textContent =
+            "🖤 🖤 🖤";
+    }
+}
+
+
+function mostrarPregunta()
+{
+    const actual =
+        preguntas[
+            indicePregunta
         ];
 
-        let indiceCancion = 0;
+    contenidoPregunta.style.display =
+        "block";
 
-        let ahoraOficial;
+    resultadoJuego.style.display =
+        "none";
 
-        let momentoConsulta;
+    codigoPremio.style.display =
+        "none";
 
-        musica.volume = volumen.value;
+    botonJugarDeNuevo.style.display =
+        "none";
 
-        musica.src = canciones[indiceCancion];
+    botonVolverJuego.style.display =
+        "block";
 
-        async function obtenerHora()
+    imagenPregunta.src =
+        actual.imagen;
+
+    pregunta.textContent =
+        actual.pregunta;
+
+    opcionA.textContent =
+        "A) "
+        +
+        actual.opciones[0];
+
+    opcionB.textContent =
+        "B) "
+        +
+        actual.opciones[1];
+
+    opcionC.textContent =
+        "C) "
+        +
+        actual.opciones[2];
+
+    opcionD.textContent =
+        "D) "
+        +
+        actual.opciones[3];
+
+    opcionA.disabled =
+        false;
+
+    opcionB.disabled =
+        false;
+
+    opcionC.disabled =
+        false;
+
+    opcionD.disabled =
+        false;
+
+    opcionA.className =
+        "";
+
+    opcionB.className =
+        "";
+
+    opcionC.className =
+        "";
+
+    opcionD.className =
+        "";
+
+    explicacion.style.display =
+        "none";
+
+    botonSiguientePregunta.style.display =
+        "none";
+}
+
+
+function responder(numero)
+{
+    const actual =
+        preguntas[
+            indicePregunta
+        ];
+
+    opcionA.disabled =
+        true;
+
+    opcionB.disabled =
+        true;
+
+    opcionC.disabled =
+        true;
+
+    opcionD.disabled =
+        true;
+
+
+    if(
+        numero ==
+        actual.correcta
+    )
+    {
+        if(numero == 0)
         {
-            const respuesta = await fetch("https://timeapi.io/api/time/current/zone?timeZone=America/Argentina/Buenos_Aires");
-
-            const datos = await respuesta.json();
-
-            ahoraOficial = new Date(datos.dateTime);
-
-            momentoConsulta = Date.now();
+            opcionA.classList.add(
+                "correcta"
+            );
         }
 
-        function actualizarContador()
+        if(numero == 1)
         {
-            const tiempoTranscurrido = Date.now() - momentoConsulta;
-
-            const ahora = new Date(ahoraOficial.getTime() + tiempoTranscurrido);
-
-            const diferencia = fechaCumple - ahora;
-
-            if(modoPrueba)
-            {
-                contador.style.display = "block";
-
-                return;
-            }
-
-            if(diferencia <= 0)
-            {
-                mensajeContador.textContent = "Si estás viendo esto es porque adelantes el reloj, pesimo la verdad....🙄🙄🙄";
-
-                tiempoContador.textContent = "";
-
-                return;
-            }
-
-            const segundos = diferencia / 1000;
-
-            const segundosEnteros = Math.floor(segundos);
-
-            const diasEnteros = Math.floor(segundosEnteros / 86400);
-
-            const segundosRestantes = segundosEnteros % 86400;
-
-            const horasEnteras = Math.floor(segundosRestantes / 3600);
-
-            const segundosDespuesDeHoras = segundosRestantes % 3600;
-
-            const minutosEnteros = Math.floor(segundosDespuesDeHoras / 60);
-
-            const segundosEnterosRestantes = segundosDespuesDeHoras % 60;
-
-            const diasTexto = String(diasEnteros).padStart(2, "0");
-
-            const horasTexto = String(horasEnteras).padStart(2, "0");
-
-            const minutosTexto = String(minutosEnteros).padStart(2, "0");
-
-            const segundosTexto = String(segundosEnterosRestantes).padStart(2, "0");
-
-            mensajeContador.textContent = "¡Falta poco para tu sorpresa!";
-
-            tiempoContador.textContent = diasTexto + " días, " + horasTexto + " horas, " + minutosTexto + " minutos y " + segundosTexto + " segundos";
+            opcionB.classList.add(
+                "correcta"
+            );
         }
 
-        obtenerHora().then(
+        if(numero == 2)
+        {
+            opcionC.classList.add(
+                "correcta"
+            );
+        }
+
+        if(numero == 3)
+        {
+            opcionD.classList.add(
+                "correcta"
+            );
+        }
+
+        textoExplicacion.textContent =
+            actual.explicacion;
+
+        explicacion.style.display =
+            "block";
+
+        botonSiguientePregunta.style.display =
+            "block";
+    }
+
+    else
+    {
+        if(numero == 0)
+        {
+            opcionA.classList.add(
+                "incorrecta"
+            );
+        }
+
+        if(numero == 1)
+        {
+            opcionB.classList.add(
+                "incorrecta"
+            );
+        }
+
+        if(numero == 2)
+        {
+            opcionC.classList.add(
+                "incorrecta"
+            );
+        }
+
+        if(numero == 3)
+        {
+            opcionD.classList.add(
+                "incorrecta"
+            );
+        }
+
+        vidasRestantes--;
+
+        actualizarVidas();
+
+        if(
+            vidasRestantes <= 0
+        )
+        {
+            setTimeout(
+                perderJuego,
+                700
+            );
+        }
+
+        else
+        {
+            setTimeout(
+                mostrarPregunta,
+                700
+            );
+        }
+    }
+}
+
+
+opcionA.addEventListener(
+    "click",
+    function()
+    {
+        responder(0);
+    }
+);
+
+opcionB.addEventListener(
+    "click",
+    function()
+    {
+        responder(1);
+    }
+);
+
+opcionC.addEventListener(
+    "click",
+    function()
+    {
+        responder(2);
+    }
+);
+
+opcionD.addEventListener(
+    "click",
+    function()
+    {
+        responder(3);
+    }
+);
+
+
+botonSiguientePregunta.addEventListener(
+    "click",
+    function()
+    {
+        indicePregunta++;
+
+        if(
+            indicePregunta
+            >=
+            preguntas.length
+        )
+        {
+            ganarJuego();
+        }
+
+        else
+        {
+            mostrarPregunta();
+        }
+    }
+);
+
+
+function ganarJuego()
+{
+    contenidoPregunta.style.display =
+        "none";
+
+    resultadoJuego.style.display =
+        "block";
+
+    tituloResultado.textContent =
+        "🎉 ¡Completaste el juego!";
+
+    textoResultado.textContent =
+        "Llegaste hasta el final. Ahora podés reclamar tu premio. 🎁";
+
+    codigoPremio.style.display =
+        "block";
+
+    botonJugarDeNuevo.style.display =
+        "none";
+
+    botonVolverJuego.style.display =
+        "block";
+
+    vidas.style.display =
+        "none";
+}
+
+
+function perderJuego()
+{
+    contenidoPregunta.style.display =
+        "none";
+
+    resultadoJuego.style.display =
+        "block";
+
+    tituloResultado.textContent =
+        "🔒 La caja fuerte se cerró";
+
+    textoResultado.textContent =
+        "Te quedaste sin vidas. Yo pensaba que eran preguntas fáciles...";
+
+    codigoPremio.style.display =
+        "none";
+
+    botonJugarDeNuevo.style.display =
+        "block";
+
+    botonVolverJuego.style.display =
+        "block";
+
+    vidas.style.display =
+        "none";
+}
+
+
+botonVolverJuego.addEventListener(
+    "click",
+    function()
+    {
+        mostrarMenu();
+    }
+);
+
+
+/* =====================================================
+   PIZARRA
+   ===================================================== */
+
+const botonMenuDibujo =
+    document.getElementById(
+        "botonMenuDibujo"
+    );
+
+const introduccionDibujo =
+    document.getElementById(
+        "introduccionDibujo"
+    );
+
+const pizarraJuego =
+    document.getElementById(
+        "pizarraJuego"
+    );
+
+const resultadoDibujo =
+    document.getElementById(
+        "resultadoDibujo"
+    );
+
+const botonVolverDibujo =
+    document.getElementById(
+        "botonVolverDibujo"
+    );
+
+const botonComenzarDibujo =
+    document.getElementById(
+        "botonComenzarDibujo"
+    );
+
+const dificultadFacil =
+    document.getElementById(
+        "dificultadFacil"
+    );
+
+const dificultadMedio =
+    document.getElementById(
+        "dificultadMedio"
+    );
+
+const dificultadDificil =
+    document.getElementById(
+        "dificultadDificil"
+    );
+
+const dificultadImposible =
+    document.getElementById(
+        "dificultadImposible"
+    );
+
+const textoDificultad =
+    document.getElementById(
+        "textoDificultad"
+    );
+
+const imagenReferencia =
+    document.getElementById(
+        "imagenReferencia"
+    );
+
+const resultadoReferencia =
+    document.getElementById(
+        "resultadoReferencia"
+    );
+
+const zonaReferencia =
+    document.getElementById(
+        "zonaReferencia"
+    );
+
+const tituloReferencia =
+    document.getElementById(
+        "tituloReferencia"
+    );
+
+const botonGoma =
+    document.getElementById(
+        "botonGoma"
+    );
+
+const botonPincel =
+    document.getElementById(
+        "botonPincel"
+    );
+
+const botonDeshacer =
+    document.getElementById(
+        "botonDeshacer"
+    );
+
+const botonLimpiar =
+    document.getElementById(
+        "botonLimpiar"
+    );
+
+const botonOcultarReferencia =
+    document.getElementById(
+        "botonOcultarReferencia"
+    );
+
+const botonTerminarDibujo =
+    document.getElementById(
+        "botonTerminarDibujo"
+    );
+
+const botonNuevoDibujo =
+    document.getElementById(
+        "botonNuevoDibujo"
+    );
+
+const botonVolverResultado =
+    document.getElementById(
+        "botonVolverResultado"
+    );
+
+const canvas =
+    document.getElementById(
+        "canvasDibujo"
+    );
+
+const contexto =
+    canvas.getContext(
+        "2d"
+    );
+
+const canvasFinal =
+    document.getElementById(
+        "dibujoFinal"
+    );
+
+const contextoFinal =
+    canvasFinal.getContext(
+        "2d"
+    );
+
+const colorPincel =
+    document.getElementById(
+        "colorPincel"
+    );
+
+const tamanoPincel =
+    document.getElementById(
+        "tamanoPincel"
+    );
+
+
+let dificultadSeleccionada =
+    "";
+
+let dibujando =
+    false;
+
+let herramienta =
+    "pincel";
+
+let historial =
+    [];
+
+
+const referencias =
+{
+    facil:
+    {
+        imagen:
+            "dibujofacil.png",
+
+        texto:
+            "🟢 Fácil: un dibujo sencillo."
+    },
+
+    medio:
+    {
+        imagen:
+            "dibujoMedio.png",
+
+        texto:
+            "🟡 Medio: un poco más de detalle."
+    },
+
+    dificil:
+    {
+        imagen:
+            "dibujoDificil.png",
+
+        texto:
+            "🔴 Difícil: muchos detalles."
+    },
+
+    imposible:
+    {
+        imagen:
+            "dibujoImposible.png",
+
+        texto:
+            "☠️ Imposible: buena suerte."
+    }
+};
+
+
+botonMenuDibujo.addEventListener(
+    "click",
+    function()
+    {
+        pantalla =
+            "introduccionDibujo";
+
+        dificultadSeleccionada =
+            "";
+
+        botonComenzarDibujo.disabled =
+            true;
+
+        quitarSeleccionDificultad();
+
+        textoDificultad.textContent =
+            "Elegí una dificultad para comenzar.";
+
+        mostrarPantalla();
+    }
+);
+
+
+botonVolverDibujo.addEventListener(
+    "click",
+    function()
+    {
+        mostrarMenu();
+    }
+);
+
+
+function quitarSeleccionDificultad()
+{
+    dificultadFacil.classList.remove(
+        "seleccionado"
+    );
+
+    dificultadMedio.classList.remove(
+        "seleccionado"
+    );
+
+    dificultadDificil.classList.remove(
+        "seleccionado"
+    );
+
+    dificultadImposible.classList.remove(
+        "seleccionado"
+    );
+}
+
+
+function seleccionarDificultad(
+    dificultad,
+    boton
+)
+{
+    dificultadSeleccionada =
+        dificultad;
+
+    quitarSeleccionDificultad();
+
+    boton.classList.add(
+        "seleccionado"
+    );
+
+    textoDificultad.textContent =
+        referencias[
+            dificultad
+        ].texto;
+
+    botonComenzarDibujo.disabled =
+        false;
+}
+
+
+dificultadFacil.addEventListener(
+    "click",
+    function()
+    {
+        seleccionarDificultad(
+            "facil",
+            dificultadFacil
+        );
+    }
+);
+
+dificultadMedio.addEventListener(
+    "click",
+    function()
+    {
+        seleccionarDificultad(
+            "medio",
+            dificultadMedio
+        );
+    }
+);
+
+dificultadDificil.addEventListener(
+    "click",
+    function()
+    {
+        seleccionarDificultad(
+            "dificil",
+            dificultadDificil
+        );
+    }
+);
+
+dificultadImposible.addEventListener(
+    "click",
+    function()
+    {
+        seleccionarDificultad(
+            "imposible",
+            dificultadImposible
+        );
+    }
+);
+
+
+botonComenzarDibujo.addEventListener(
+    "click",
+    function()
+    {
+        iniciarPizarra();
+    }
+);
+
+
+function iniciarPizarra()
+{
+    const referencia =
+        referencias[
+            dificultadSeleccionada
+        ];
+
+    pantalla =
+        "pizarra";
+
+    imagenReferencia.src =
+        referencia.imagen;
+
+    tituloReferencia.textContent =
+        "🖼️ Referencia: "
+        +
+        dificultadSeleccionada;
+
+    zonaReferencia.style.display =
+        "block";
+
+    botonOcultarReferencia.textContent =
+        "👁️ Ocultar referencia";
+
+    limpiarCanvas();
+
+    herramienta =
+        "pincel";
+
+    mostrarPantalla();
+
+    /*
+        Esperamos a que la pizarra sea visible
+        antes de preparar el canvas.
+    */
+
+    requestAnimationFrame(
+        function()
+        {
+            prepararCanvas();
+        }
+    );
+}
+
+
+/* =====================================================
+   CANVAS
+   ===================================================== */
+
+function prepararCanvas()
+{
+    contexto.lineCap =
+        "round";
+
+    contexto.lineJoin =
+        "round";
+
+    contexto.lineWidth =
+        Number(
+            tamanoPincel.value
+        );
+
+    contexto.strokeStyle =
+        colorPincel.value;
+}
+
+
+function limpiarCanvas()
+{
+    contexto.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    contexto.fillStyle =
+        "white";
+
+    contexto.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    historial = [];
+
+    guardarEstado();
+}
+
+
+function guardarEstado()
+{
+    historial.push(
+        contexto.getImageData(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        )
+    );
+
+    if(
+        historial.length > 30
+    )
+    {
+        historial.shift();
+    }
+}
+
+
+function deshacer()
+{
+    if(
+        historial.length <= 1
+    )
+    {
+        return;
+    }
+
+    historial.pop();
+
+    const estadoAnterior =
+        historial[
+            historial.length - 1
+        ];
+
+    contexto.putImageData(
+        estadoAnterior,
+        0,
+        0
+    );
+}
+
+
+/*
+    =====================================================
+    POSICIÓN DEL MOUSE / DEDO
+    =====================================================
+
+    ESTA ERA LA FALLA PRINCIPAL.
+
+    Antes estaba:
+
+        return
+        {
+            ...
+        };
+
+    JavaScript interpretaba el return como
+    un return vacío debido al salto de línea.
+
+    Ahora el objeto se devuelve correctamente.
+*/
+
+function obtenerPosicion(
+    evento
+)
+{
+    const rect =
+        canvas.getBoundingClientRect();
+
+    const escalaX =
+        canvas.width
+        /
+        rect.width;
+
+    const escalaY =
+        canvas.height
+        /
+        rect.height;
+
+
+    return {
+        x:
+            (
+                evento.clientX
+                -
+                rect.left
+            )
+            *
+            escalaX,
+
+        y:
+            (
+                evento.clientY
+                -
+                rect.top
+            )
+            *
+            escalaY
+    };
+}
+
+
+/* =====================================================
+   COMENZAR DIBUJO
+   ===================================================== */
+
+function comenzarDibujo(
+    evento
+)
+{
+    evento.preventDefault();
+
+    dibujando =
+        true;
+
+
+    /*
+        Capturamos el puntero.
+
+        Esto evita que el dibujo se corte
+        si el dedo o mouse se mueve un poco
+        fuera del canvas.
+    */
+
+    if(
+        canvas.setPointerCapture
+    )
+    {
+        canvas.setPointerCapture(
+            evento.pointerId
+        );
+    }
+
+
+    const posicion =
+        obtenerPosicion(
+            evento
+        );
+
+
+    contexto.beginPath();
+
+    contexto.moveTo(
+        posicion.x,
+        posicion.y
+    );
+
+    contexto.lineCap =
+        "round";
+
+    contexto.lineJoin =
+        "round";
+
+    contexto.lineWidth =
+        Number(
+            tamanoPincel.value
+        );
+
+
+    if(
+        herramienta ==
+        "goma"
+    )
+    {
+        contexto.strokeStyle =
+            "white";
+    }
+
+    else
+    {
+        contexto.strokeStyle =
+            colorPincel.value;
+    }
+
+
+    /*
+        Permite que un simple clic
+        también deje un punto.
+    */
+
+    contexto.lineTo(
+        posicion.x + 0.1,
+        posicion.y + 0.1
+    );
+
+    contexto.stroke();
+}
+
+
+/* =====================================================
+   DIBUJAR
+   ===================================================== */
+
+function dibujar(
+    evento
+)
+{
+    if(
+        !dibujando
+    )
+    {
+        return;
+    }
+
+    evento.preventDefault();
+
+
+    const posicion =
+        obtenerPosicion(
+            evento
+        );
+
+
+    contexto.lineTo(
+        posicion.x,
+        posicion.y
+    );
+
+    contexto.stroke();
+}
+
+
+/* =====================================================
+   TERMINAR TRAZO
+   ===================================================== */
+
+function terminarDibujo(
+    evento
+)
+{
+    if(
+        !dibujando
+    )
+    {
+        return;
+    }
+
+
+    dibujando =
+        false;
+
+    contexto.closePath();
+
+
+    /*
+        Guardamos el dibujo solamente
+        cuando termina cada trazo.
+    */
+
+    guardarEstado();
+
+
+    if(
+        evento
+        &&
+        canvas.releasePointerCapture
+        &&
+        canvas.hasPointerCapture
+        &&
+        canvas.hasPointerCapture(
+            evento.pointerId
+        )
+    )
+    {
+        canvas.releasePointerCapture(
+            evento.pointerId
+        );
+    }
+}
+
+
+/* =====================================================
+   EVENTOS DEL CANVAS
+   ===================================================== */
+
+/*
+    Pointer Events reemplaza mouse + touch.
+
+    Funciona con:
+        - mouse
+        - touch
+        - lápiz/stylus
+*/
+
+canvas.addEventListener(
+    "pointerdown",
+    comenzarDibujo
+);
+
+canvas.addEventListener(
+    "pointermove",
+    dibujar
+);
+
+canvas.addEventListener(
+    "pointerup",
+    terminarDibujo
+);
+
+canvas.addEventListener(
+    "pointercancel",
+    terminarDibujo
+);
+
+canvas.addEventListener(
+    "pointerleave",
+    function(evento)
+    {
+        /*
+            No terminamos el dibujo aquí,
+            porque setPointerCapture mantiene
+            el puntero capturado.
+        */
+    }
+);
+
+
+/* =====================================================
+   HERRAMIENTA GOMA
+   ===================================================== */
+
+botonGoma.addEventListener(
+    "click",
+    function()
+    {
+        herramienta =
+            "goma";
+    }
+);
+
+
+/* =====================================================
+   HERRAMIENTA PINCEL
+   ===================================================== */
+
+botonPincel.addEventListener(
+    "click",
+    function()
+    {
+        herramienta =
+            "pincel";
+    }
+);
+
+
+/* =====================================================
+   DESHACER
+   ===================================================== */
+
+botonDeshacer.addEventListener(
+    "click",
+    function()
+    {
+        deshacer();
+    }
+);
+
+
+/* =====================================================
+   LIMPIAR
+   ===================================================== */
+
+botonLimpiar.addEventListener(
+    "click",
+    function()
+    {
+        limpiarCanvas();
+    }
+);
+
+
+/* =====================================================
+   CAMBIAR COLOR
+   ===================================================== */
+
+colorPincel.addEventListener(
+    "input",
+    function()
+    {
+        if(
+            herramienta ==
+            "pincel"
+        )
+        {
+            contexto.strokeStyle =
+                colorPincel.value;
+        }
+    }
+);
+
+
+/* =====================================================
+   CAMBIAR TAMAÑO
+   ===================================================== */
+
+tamanoPincel.addEventListener(
+    "input",
+    function()
+    {
+        contexto.lineWidth =
+            Number(
+                tamanoPincel.value
+            );
+    }
+);
+
+
+/* =====================================================
+   OCULTAR REFERENCIA
+   ===================================================== */
+
+botonOcultarReferencia.addEventListener(
+    "click",
+    function()
+    {
+        if(
+            zonaReferencia.style.display
+            ==
+            "none"
+        )
+        {
+            zonaReferencia.style.display =
+                "block";
+
+            botonOcultarReferencia.textContent =
+                "👁️ Ocultar referencia";
+        }
+
+        else
+        {
+            zonaReferencia.style.display =
+                "none";
+
+            botonOcultarReferencia.textContent =
+                "👁️ Mostrar referencia";
+        }
+    }
+);
+
+
+/* =====================================================
+   TERMINAR DIBUJO
+   ===================================================== */
+
+botonTerminarDibujo.addEventListener(
+    "click",
+    function()
+    {
+        /*
+            Si está dibujando, cerramos
+            el último trazo.
+        */
+
+        if(
+            dibujando
+        )
+        {
+            terminarDibujo();
+        }
+
+
+        /*
+            Copiamos el canvas principal
+            al canvas del resultado.
+        */
+
+        contextoFinal.clearRect(
+            0,
+            0,
+            canvasFinal.width,
+            canvasFinal.height
+        );
+
+        contextoFinal.drawImage(
+            canvas,
+            0,
+            0
+        );
+
+
+        if(
+            dificultadSeleccionada
+            !=
+            ""
+        )
+        {
+            resultadoReferencia.src =
+                referencias[
+                    dificultadSeleccionada
+                ].imagen;
+
+            resultadoReferencia.style.display =
+                "block";
+        }
+
+        else
+        {
+            resultadoReferencia.style.display =
+                "none";
+        }
+
+
+        pantalla =
+            "resultadoDibujo";
+
+        mostrarPantalla();
+    }
+);
+
+
+/* =====================================================
+   NUEVO DIBUJO
+   ===================================================== */
+
+botonNuevoDibujo.addEventListener(
+    "click",
+    function()
+    {
+        pantalla =
+            "introduccionDibujo";
+
+        mostrarPantalla();
+    }
+);
+
+
+/* =====================================================
+   VOLVER DESDE RESULTADO
+   ===================================================== */
+
+botonVolverResultado.addEventListener(
+    "click",
+    function()
+    {
+        mostrarMenu();
+    }
+);
+
+
+/* =====================================================
+   MÚSICA
+   ===================================================== */
+
+const musica =
+    document.getElementById(
+        "musica"
+    );
+
+const botonMusica =
+    document.getElementById(
+        "botonMusica"
+    );
+
+const botonPausa =
+    document.getElementById(
+        "botonPausa"
+    );
+
+const botonAnterior =
+    document.getElementById(
+        "botonAnterior"
+    );
+
+const botonSiguiente =
+    document.getElementById(
+        "botonSiguiente"
+    );
+
+const volumen =
+    document.getElementById(
+        "volumen"
+    );
+
+
+const canciones =
+[
+    "musica3.mp3",
+    "musica2.mp3",
+    "musica4.mp3",
+    "musica5.mp3"
+];
+
+
+let indiceCancion =
+    0;
+
+
+musica.src =
+    canciones[
+        indiceCancion
+    ];
+
+musica.volume =
+    volumen.value;
+
+
+botonMusica.addEventListener(
+    "click",
+    function()
+    {
+        musica.play()
+        .catch(
+            function(error)
+            {
+                console.log(error);
+            }
+        );
+    }
+);
+
+
+botonPausa.addEventListener(
+    "click",
+    function()
+    {
+        musica.pause();
+    }
+);
+
+
+volumen.addEventListener(
+    "input",
+    function()
+    {
+        musica.volume =
+            volumen.value;
+    }
+);
+
+
+botonSiguiente.addEventListener(
+    "click",
+    function()
+    {
+        indiceCancion++;
+
+        if(
+            indiceCancion
+            >=
+            canciones.length
+        )
+        {
+            indiceCancion =
+                0;
+        }
+
+        musica.src =
+            canciones[
+                indiceCancion
+            ];
+
+        musica.play()
+        .catch(
+            function(error)
+            {
+                console.log(error);
+            }
+        );
+    }
+);
+
+
+botonAnterior.addEventListener(
+    "click",
+    function()
+    {
+        indiceCancion--;
+
+        if(
+            indiceCancion
+            <
+            0
+        )
+        {
+            indiceCancion =
+                canciones.length - 1;
+        }
+
+        musica.src =
+            canciones[
+                indiceCancion
+            ];
+
+        musica.play()
+        .catch(
+            function(error)
+            {
+                console.log(error);
+            }
+        );
+    }
+);
+
+
+musica.addEventListener(
+    "ended",
+    function()
+    {
+        indiceCancion++;
+
+        if(
+            indiceCancion
+            >=
+            canciones.length
+        )
+        {
+            indiceCancion =
+                0;
+        }
+
+        musica.src =
+            canciones[
+                indiceCancion
+            ];
+
+        musica.play()
+        .catch(
+            function(error)
+            {
+                console.log(error);
+            }
+        );
+    }
+);
+
+
+/* =====================================================
+   IMAGEN DEL MENÚ
+   ===================================================== */
+
+function elegirImagenMenu()
+{
+    if(
+        window.innerWidth
+        <=
+        600
+    )
+    {
+        imagenMenu.src =
+            "fondoMenu1.png";
+    }
+
+    else
+    {
+        imagenMenu.src =
+            "fondoMenu.png";
+    }
+}
+
+
+window.addEventListener(
+    "resize",
+    function()
+    {
+        elegirImagenMenu();
+    }
+);
+
+
+/* =====================================================
+   TRANSICIÓN DE CUMPLEAÑOS
+   ===================================================== */
+
+function iniciarTransicionCumple()
+{
+    const transicionMostrada =
+        localStorage.getItem(
+            "transicionCumpleMostrada"
+        );
+
+
+    if(
+        transicionMostrada ==
+        "true"
+    )
+    {
+        pantalla =
+            "menu";
+
+        mostrarMenu();
+
+        return;
+    }
+
+
+    localStorage.setItem(
+        "transicionCumpleMostrada",
+        "true"
+    );
+
+
+    contador.style.display =
+        "none";
+
+    controlesMusica.style.display =
+        "none";
+
+    videoFondo.style.display =
+        "none";
+
+    capaFondo.style.display =
+        "none";
+
+    imagenMenu.style.display =
+        "none";
+
+    fondoAnimado.style.display =
+        "none";
+
+
+    transicionCumple.classList.remove(
+        "mostrar"
+    );
+
+    transicionCumple.classList.remove(
+        "salir"
+    );
+
+    transicionCumple.classList.remove(
+        "destello"
+    );
+
+
+    void transicionCumple.offsetWidth;
+
+
+    transicionCumple.style.display =
+        "flex";
+
+    void transicionCumple.offsetWidth;
+
+    transicionCumple.classList.add(
+        "mostrar"
+    );
+
+
+    setTimeout(
+        function()
+        {
+            transicionCumple.classList.add(
+                "destello"
+            );
+
+            transicionCumple.classList.add(
+                "salir"
+            );
+        },
+        4500
+    );
+
+
+    setTimeout(
+        function()
+        {
+            transicionCumple.classList.remove(
+                "mostrar"
+            );
+
+            transicionCumple.classList.remove(
+                "salir"
+            );
+
+            transicionCumple.classList.remove(
+                "destello"
+            );
+
+            transicionCumple.style.display =
+                "none";
+
+            pantalla =
+                "menu";
+
+            mostrarMenu();
+        },
+        6000
+    );
+}
+
+
+/* =====================================================
+   OBTENER HORA OFICIAL
+   ===================================================== */
+
+async function obtenerHora()
+{
+    try
+    {
+        const respuesta =
+            await fetch(
+                "https://timeapi.io/api/time/current/zone?timeZone=America/Argentina/Buenos_Aires"
+            );
+
+
+        if(
+            !respuesta.ok
+        )
+        {
+            throw new Error(
+                "Error HTTP "
+                +
+                respuesta.status
+            );
+        }
+
+
+        const datos =
+            await respuesta.json();
+
+
+        let textoFecha =
+            datos.dateTime;
+
+
+        if(
+            textoFecha.indexOf("-03:00")
+            ==
+            -1
+        )
+        {
+            textoFecha +=
+                "-03:00";
+        }
+
+
+        ahoraOficial =
+            new Date(
+                textoFecha
+            );
+
+        momentoConsulta =
+            Date.now();
+    }
+
+    catch(error)
+    {
+        ahoraOficial =
+            new Date();
+
+        momentoConsulta =
+            Date.now();
+
+        console.error(
+            "No se pudo obtener la hora oficial:",
+            error
+        );
+    }
+}
+
+
+/* =====================================================
+   ACTUALIZAR CONTADOR
+   ===================================================== */
+
+function actualizarContador()
+{
+    if(
+        pantalla !=
+        "contador"
+    )
+    {
+        return;
+    }
+
+
+    if(
+        modoPrueba
+    )
+    {
+        contadorActivo =
+            false;
+
+        clearInterval(
+            intervaloContador
+        );
+
+        iniciarTransicionCumple();
+
+        return;
+    }
+
+
+    if(
+        ahoraOficial ==
+        null
+    )
+    {
+        return;
+    }
+
+
+    const tiempoTranscurrido =
+        Date.now()
+        -
+        momentoConsulta;
+
+
+    const ahora =
+        new Date(
+            ahoraOficial.getTime()
+            +
+            tiempoTranscurrido
+        );
+
+
+    const diferencia =
+        fechaCumple
+        -
+        ahora;
+
+
+    if(
+        diferencia <= 0
+    )
+    {
+        contadorActivo =
+            false;
+
+        clearInterval(
+            intervaloContador
+        );
+
+        iniciarTransicionCumple();
+
+        return;
+    }
+
+
+    contador.style.display =
+        "block";
+
+
+    const segundos =
+        Math.floor(
+            diferencia / 1000
+        );
+
+
+    const dias =
+        Math.floor(
+            segundos / 86400
+        );
+
+
+    const horas =
+        Math.floor(
+            (
+                segundos
+                %
+                86400
+            )
+            /
+            3600
+        );
+
+
+    const minutos =
+        Math.floor(
+            (
+                segundos
+                %
+                3600
+            )
+            /
+            60
+        );
+
+
+    const segundosFinal =
+        segundos
+        %
+        60;
+
+
+    const diasTexto =
+        String(
+            dias
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const horasTexto =
+        String(
+            horas
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const minutosTexto =
+        String(
+            minutos
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    const segundosTexto =
+        String(
+            segundosFinal
+        ).padStart(
+            2,
+            "0"
+        );
+
+
+    mensajeContador.textContent =
+        "¡Falta poco para tu sorpresa!";
+
+
+    tiempoContador.textContent =
+        diasTexto
+        +
+        " días, "
+        +
+        horasTexto
+        +
+        " horas, "
+        +
+        minutosTexto
+        +
+        " minutos y "
+        +
+        segundosTexto
+        +
+        " segundos";
+}
+
+
+/* =====================================================
+   INICIAR PÁGINA
+   ===================================================== */
+
+elegirImagenMenu();
+
+
+pantalla =
+    "contador";
+
+mostrarPantalla();
+
+
+obtenerHora()
+.then(
+    function()
+    {
+        actualizarContador();
+
+
+        intervaloContador =
+            setInterval(
+                actualizarContador,
+                1000
+            );
+
+
+        setInterval(
             function()
             {
-                actualizarContador();
+                if(
+                    pantalla ==
+                    "contador"
+                )
+                {
+                    obtenerHora();
+                }
+            },
+            60000
+        );
+    }
+);
 
-                setInterval(actualizarContador,1000);
 
-                setInterval(
-                    function()
-                    {
-                        obtenerHora();
-                    },
-                    60000
+/* =====================================================
+   REPETIR VIDEO
+   ===================================================== */
+
+videoFondo.addEventListener(
+    "ended",
+    function()
+    {
+        videoFondo.currentTime =
+            0;
+
+        videoFondo.play()
+        .catch(
+            function(error)
+            {
+                console.error(
+                    "No se pudo reproducir el video:",
+                    error
                 );
             }
         );
+    }
+);
 
-        botonMusica.addEventListener("click",
-            function()
-            {
-                musica.play();
-            }
-        );
-
-        botonPausa.addEventListener(
-            "click",
-            function()
-            {
-                musica.pause();
-            }
-        );
-
-        volumen.addEventListener(
-            "input",
-            function()
-            {
-                musica.volume = volumen.value;
-            }
-        );
-
-        botonSiguiente.addEventListener(
-            "click",
-            function()
-            {
-                indiceCancion++;
-
-                if(indiceCancion >= canciones.length)
-                {
-                    indiceCancion = 0;
-                }
-
-                musica.src = canciones[indiceCancion];
-
-                musica.play();
-            }
-        );
-
-        botonAnterior.addEventListener(
-            "click",
-            function()
-            {
-                indiceCancion--;
-
-                if(indiceCancion < 0)
-                {
-                    indiceCancion = canciones.length - 1;
-                }
-
-                musica.src = canciones[indiceCancion];
-
-                musica.play();
-            }
-        );
-
-        musica.addEventListener("ended",
-            function()
-            {
-                indiceCancion++;
-
-                if(indiceCancion >= canciones.length)
-                {
-                    indiceCancion = 0;
-                }
-
-                musica.src = canciones[indiceCancion];
-
-                musica.play();
-            }
-        );
-
-        videoFondo.addEventListener("ended",
-            function()
-            {
-                videoFondo.currentTime = 0;
-
-                videoFondo.play().catch(
-                    function(error)
-                    {
-                        console.error("No se pudo reproducir el video:", error);
-                    }
-                );
-            }
-        );
-
-    </script>
+</script>
 
 </body>
 
